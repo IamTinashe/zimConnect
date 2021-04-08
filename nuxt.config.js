@@ -1,4 +1,6 @@
 const pkg = require('./package')
+const express = require('express');
+const session = require('express-session');
 
 module.exports = {
   mode: 'universal',
@@ -53,11 +55,19 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
-      
     }
-  }
+  },
+  serverMiddleware: [
+    express.json(),
+    session({
+      secret: '12345',
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 6000000
+      }
+    }),
+    '~/server/routes/candidates'
+  ],
 }
