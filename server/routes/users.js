@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
-var Users = require('../schema/users');
+const Users = require('../schema/users');
 //const jwt = require('jsonwebtoken');
 const mongoURI = 'mongodb://159.69.120.82:27017/zimconnect';
 app.use(express.json({limit: '100mb'}));
@@ -31,7 +31,7 @@ router.use((req, res, next) => {
 })();
 
 router.post('/', (req, res) => {
-  var user = new Users({
+  let user = new Users({
 		firstname: req.body.firstname
 	})
 	user.save(function(error, response) {
