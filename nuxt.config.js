@@ -68,6 +68,6 @@ module.exports = {
         maxAge: 6000000
       }
     }),
-    '~/server/routes/candidates'
+    '~/server/routes/users'
   ],
 }
