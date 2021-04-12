@@ -13,13 +13,22 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bgColor-gray-10 py-4">
+    <div class="container-fluid bgColor-gray-20 py-3">
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-3">
-            <h1 CLASS="title">ZIMCONNECT</h1>
+            <h1 class="title text-shadow mt-2">ZIMCONNECT</h1>
           </div>
-          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <ul class="Color-gray-60 body-detail mt-3">
+              <li class="display-inline mx-2">Home</li>
+              <li class="display-inline mx-2">Jobs</li>
+              <li class="display-inline mx-2">Candidates</li>
+              <li class="display-inline mx-2">Employers</li>
+              <li class="display-inline mx-2">Contact Us</li>
+              <li class="display-inline mx-2"><i class="fa fa-search"></i></li>
+            </ul>
+          </div>
           <div class="col-md-3">
             <div class="button button-primary button-semi-pill contracted">
               FOR EMPLOYERS
