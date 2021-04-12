@@ -33,8 +33,8 @@
                   </div>
                   <div class="row pb-5 justify-content-md-center">
                     <div class="col-md-3">
-                      <div class="button button-primary button-semi-pill py-0">
-                        <i class="fa fa-search fa-2x Color-white"></i>
+                      <div class="button button-primary button-semi-pill py-1">
+                        <i class="fa fa-search fa-1x Color-white"></i>
                         <span class="px-2">Search</span>
                       </div>
                     </div>
