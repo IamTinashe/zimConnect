@@ -1,7 +1,7 @@
 .title {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 26px;
   line-height: 35px;
 }
 
@@ -67,6 +67,10 @@ h4, .section-header {
   font-size: 14px;
   font-weight: 700;
   line-height: 21px;
+}
+
+.text-shadow{
+  text-shadow: .5px .5px $black;
 }
 
 

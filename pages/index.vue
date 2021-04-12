@@ -15,26 +15,27 @@
                 <form class="form">
                   <div class="row justify-content-md-center pb-5">
                     <div class="col-md-5">
-                      <select class="select feature-paragraph Color-gray-60 mb-3">
+                      <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>What are you looking for?</option>
                       </select>
-                      <select class="select feature-paragraph Color-gray-60">
+                      <select class="px-3 select feature-paragraph Color-gray-60">
                         <option>All Types</option>
                       </select>
                     </div>
                     <div class="col-md-5">
-                      <select class="select feature-paragraph Color-gray-60 mb-3">
+                      <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>Work Schedule</option>
                       </select>
-                      <select class="select feature-paragraph Color-gray-60">
+                      <select class="px-3 select feature-paragraph Color-gray-60">
                         <option>Proffession</option>
                       </select>
                     </div>
                   </div>
                   <div class="row pb-5 justify-content-md-center">
-                    <div class="col-md-2">
-                      <div class="button button-primary button-semi-pill py-1">
-                        Search
+                    <div class="col-md-3">
+                      <div class="button button-primary button-semi-pill py-0">
+                        <i class="fa fa-search fa-2x Color-white"></i>
+                        <span class="px-2">Search</span>
                       </div>
                     </div>
                   </div>
@@ -48,7 +49,7 @@
     <div class="container-fluid bgColor-gray-10 py-5">
       <div class="container">
         <div class="row justify-content-md-center">
-
+          
         </div>
       </div>
     </div>
