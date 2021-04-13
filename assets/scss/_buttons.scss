@@ -24,8 +24,8 @@
     background-color: $black;
     border: 1px solid $black;
     &:hover, &:active, &:focus{
-      background-color: darken($primary, 5%);
-      border: 1px solid darken($primary, 5%);
+      background-color: darken($black, 5%);
+      border: 1px solid darken($black, 5%);
       color: $white;
     }
   }
