@@ -21,7 +21,11 @@
           </div>
           <div class="col-md-6">
             <ul class="Color-gray-60 body-detail mt-3">
-              <li class="display-inline mx-2">Home</li>
+              <li class="display-inline mx-2">
+                <NuxtLink class="Color-gray-60 text-decoration-none" to="/" title="Home">
+                  Home
+                </NuxtLink>
+              </li>
               <li class="display-inline mx-2">Jobs</li>
               <li class="display-inline mx-2">Candidates</li>
               <li class="display-inline mx-2">Employers</li>
@@ -30,9 +34,11 @@
             </ul>
           </div>
           <div class="col-md-3">
-            <div class="button button-primary button-semi-pill contracted">
-              FOR EMPLOYERS
-            </div>
+            <NuxtLink class="text-decoration-none" to="/register" title="Register">
+              <div class="button button-primary button-semi-pill contracted">
+                FOR EMPLOYERS
+              </div>
+            </NuxtLink>
           </div>
         </div>
       </div>
