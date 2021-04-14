@@ -42,25 +42,11 @@
   }
 
   &.expanded{
-    display: block;
     width: 100%;
   }
 
   &.contracted{
-    display: block;
     width: 60%;
-  }
-
-  &.button-rounded{
-    border-radius: 50% !important;
-  }
-
-  &.button-pill {
-    border-radius: 30px;
-  }
-
-  &.button-semi-pill {
-    border-radius: 8px;
   }
 
   &.button-icon{

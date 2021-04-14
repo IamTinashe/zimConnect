@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-3">
             <NuxtLink class="text-decoration-none" to="/register" title="Register">
-              <div class="button button-primary button-semi-pill contracted">
+              <div class="button button-primary border-radius-8 contracted">
                 FOR EMPLOYERS
               </div>
             </NuxtLink>
