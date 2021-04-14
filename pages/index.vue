@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100">
+  <div class="w-100 home">
     <div class="container-fluid bgColor-gray-30 py-5">
       <div class="container">
         <div class="row hero">
