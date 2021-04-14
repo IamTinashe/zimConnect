@@ -5,6 +5,13 @@
   line-height: 35px;
 }
 
+.title-large {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 35px;
+}
+
 .text-hero{
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -14,10 +21,9 @@
 
 .subhead {
   font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
+  font-weight: 600;
+  font-size: 44px;
   line-height: 33px;
-  box-shadow: 0px 10px 11px 0px rgb(245, 248, 255);
 }
 
 h4, .section-header {
@@ -29,7 +35,7 @@ h4, .section-header {
 
 .group-header {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
   line-height: 25px;
 }
