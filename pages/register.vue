@@ -1,15 +1,5 @@
 <template>
   <div class="w-100">
-    <div class="container-fluid bgColor-gray-30 py-5">
-      <div class="container text-left">
-        <h1 class="Color-gray-60 title-large pt-4">My Account</h1>
-        <p>
-          <span class="Color-black group-header">Home</span>
-          &nbsp;
-          <span class="Color-white feature-paragraph">My Account</span>
-        </p>
-      </div>
-    </div>
     <div class="container-fluid bgColor-gray-10 py-5">
       <div class="container">
         <div class="row justify-content-md-center">
