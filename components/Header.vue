@@ -8,8 +8,12 @@
         </div>
         <div class="col-md-4 col-lg-5"></div>
         <div class="col-md-3 col-lg-2 text-right">
-          <span class="mr-5">SIGNUP</span>
-          <span>SIGNIN</span>
+          <NuxtLink class="Color-white text-decoration-none" to="/register" title="Register">
+            <span class="mr-5">SIGNUP</span>
+          </NuxtLink>
+          <NuxtLink class="Color-white text-decoration-none" to="/login" title="Login">
+            <span>SIGNIN</span>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -34,7 +38,7 @@
             </ul>
           </div>
           <div class="col-md-3">
-            <NuxtLink class="text-decoration-none" to="/register" title="Register">
+            <NuxtLink class="text-decoration-none" to="/login" title="Login">
               <div class="button button-primary border-radius-8 contracted">
                 FOR EMPLOYERS
               </div>
