@@ -1,10 +1,10 @@
 <template>
   <div class="w-100">
     <div class="container-fluid bgColor-gray-30 py-5">
-      <div class="container pb-5">
-        <div class="row py-5">
-          <div class="col-md-12 pt-5">
-            <p class="text-center text-hero Color-gray pt-5 pb-1">
+      <div class="container">
+        <div class="row hero">
+          <div class="col-md-12 middle-align">
+            <p class="text-center text-hero Color-gray pb-1">
               <strong style="font-weight: 600;">2500+</strong> Browse Jobs
             </p>
             <p class="text-center paragraph-large Color-black pb-5">
