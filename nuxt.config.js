@@ -1,6 +1,7 @@
 const pkg = require('./package')
 const express = require('express');
 const session = require('express-session');
+require('dotenv').config();
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreen
 module.exports = {
   mode: 'universal',
@@ -48,6 +49,7 @@ module.exports = {
         maxAge: 6000000
       }
     }),
-    '~/server/routes/users'
+    '~/server/routes/users',
+    '~/server/routes/authentication'
   ],
 }
