@@ -1,0 +1,30 @@
+{
+  "name": "ZimConnect",
+  "short_name": "zimconnect",
+  "lang": "en",
+  "start_url": "https://zimconnect.com",
+  "display": "standalone",
+  "gcm_sender_id": "",
+  "gcm_sender_id_comment": "",
+  "theme_color": "#3375EC",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/images/manifest/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "id": "",
+      "url": "https://www.zimbojobs.com/"
+    },
+    {
+      "platform": "webapp",
+      "id": "",
+      "url": "https://globalbpsolutions.com/"
+    }
+  ]
+}

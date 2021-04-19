@@ -22,3 +22,64 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  mounted(){
+    
+  },
+  head() {
+    return {
+      title: `${process.env.title} | Login`,
+      meta: [
+        {
+          hid: 'description',
+          property: 'description',
+          content: ''
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: `${process.env.title} | Login`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: ''
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `${process.env.BASE}/login`
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${process.env.BASE}/images/test.png`
+        },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: `${process.env.title} | Login`
+        },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: ``
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: `${process.env.BASE}/images/test.png`
+        },
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: `${process.env.BASE}/login`,
+        }
+      ],
+    }
+  }
+}
+</script>

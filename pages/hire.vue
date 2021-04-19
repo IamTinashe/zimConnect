@@ -25,3 +25,64 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  mounted(){
+    
+  },
+  head() {
+    return {
+      title: `${process.env.title} | Hire`,
+      meta: [
+        {
+          hid: 'description',
+          property: 'description',
+          content: ''
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: `${process.env.title} | Hire`
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: ''
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `${process.env.BASE}/hire`
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${process.env.BASE}/images/test.png`
+        },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: `${process.env.title} | Hire`
+        },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: ``
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: `${process.env.BASE}/images/test.png`
+        },
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: `${process.env.BASE}/hire`,
+        }
+      ],
+    }
+  }
+}
+</script>
