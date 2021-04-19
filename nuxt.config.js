@@ -108,7 +108,8 @@ module.exports = {
   plugins: [
   ],
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   axios: {},
   build: {
@@ -128,4 +129,30 @@ module.exports = {
     '~/server/routes/users',
     '~/server/routes/authentication'
   ],
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/authentication/login', method: 'post' },
+          user: { url: '/authentication/user', method: 'get' },
+          logout: false
+        }
+      }
+    }
+  }
 }

@@ -30,15 +30,19 @@ router.use((req, res, next) => {
   }
 })();
 
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
   let authentication = new Authentication({
     email: req.body.email,
     password: req.body.password
   })
   authentication.save(function(error, response) {
     if (error) return res.status(500).json(error);
-    else return res.status(201).json(response)
+    else return res.status(201).json(response);
   })
+});
+
+router.post('/logout', (req, res) => {
+  return res.status(201).json({msg: 'logged out'});
 });
 
 
