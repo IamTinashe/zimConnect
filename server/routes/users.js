@@ -3,6 +3,7 @@ const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
 const Users = require('../schema/users');
+const Roles = require('../schema/roles');
 //const jwt = require('jsonwebtoken');
 const mongoURI = 'mongodb://159.69.120.82:27017/zimconnect';
 app.use(express.json({limit: '100mb'}));
@@ -35,6 +36,16 @@ router.post('/', (req, res) => {
     email: req.body.email
   })
   user.save(function(error, response) {
+    if (error) return res.status(500).json(error);
+    else return res.status(201).json(response)
+  })
+});
+
+router.post('/roles', (req, res) => {
+  let roles = new Roles({
+    name: req.body.role,
+  })
+  roles.save(function(error, response) {
     if (error) return res.status(500).json(error);
     else return res.status(201).json(response)
   })
