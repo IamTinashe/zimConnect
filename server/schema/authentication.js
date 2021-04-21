@@ -3,8 +3,16 @@ const Schema = mongoose.Schema;
 
 
 let authentication = new Schema({
-  email: String,
-  password: String
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true,
+    unique: true
+  }
 });
 
 let Authentication = mongoose.model('Authentication', authentication);
