@@ -36,8 +36,8 @@ export default {
   methods: {
     async userLogin() {
       try {
-        await this.$auth.loginWith('local', { data: this.login })
-        this.$router.push({ name: 'hire'})
+        await this.$auth.loginWith('local', { data: {'email': this.login.email, 'password' : this.login.password}})
+        this.$router.push('/hire')
       } catch (error) {
         console.log(error)
       }
