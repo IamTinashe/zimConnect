@@ -6,7 +6,6 @@ const routes = require('./assets/json/routes.json');
 const manifest = require('./manifest.json');
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreen
 module.exports = {
-  mode: 'universal',
   env: {
     Base: 'https://zimconnect.org',
     title: 'Zimconnect'
@@ -39,8 +38,8 @@ module.exports = {
   head: {
     title: 'ZimConnect',
     meta: [
-			{ charset: 'utf-8'},
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=5' },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=5' },
       { 'http-equiv': 'Cache-Control', content: 'public, max-age=1800, max-stale, stale-while-revalidate=86400, stale-if-error=259200', rem: 'max-age=30minutes' },
       { 'http-equiv': 'Page-Enter', content: 'RevealTrans(Duration=2.0,Transition=2)' },
       { 'http-equiv': 'Page-Exit', content: 'RevealTrans(Duration=3.0,Transition=12)' },
@@ -50,7 +49,7 @@ module.exports = {
       { name: 'apple-mobile-web-app-status-bar-style', content: "white" },
       { name: 'apple-touch-fullscreen', content: 'yes' },
       { name: "format-detection", content: "telephone=no" },
-			{ name: 'description', content: '' },
+      { name: 'description', content: '' },
       { name: 'keywords', content: 'Zimworx, Zimbojobs' },
       { name: 'target', content: 'all' },
       { name: 'audience', content: 'all' },
@@ -61,12 +60,12 @@ module.exports = {
       { name: 'url', content: 'https://zimconnect.org' },
       { name: 'identifier-URL', content: 'https://zimconnect.org' },
       { name: 'author', content: 'Zimworx' },
-			{ hid: 'og:site_name', property: 'og:site_name', content: 'ZimConnect' },
-			{ property: 'og:type', content: 'website' },
-			{ property: 'og:title', content: 'ZimConnect' },
-			{ property: 'og:description', content: '' },
-			{ hid: 'og:url', property: 'og:url', content: 'https://zimconnect.org' },
-			{ hid: 'og:image', property: 'og:image', content: '' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'ZimConnect' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:title', content: 'ZimConnect' },
+      { property: 'og:description', content: '' },
+      { hid: 'og:url', property: 'og:url', content: 'https://zimconnect.org' },
+      { hid: 'og:image', property: 'og:image', content: '' },
       { hid: 'og:image:width', property: 'og:image:width', content: 1200 },
       { hid: 'og:image:height', property: 'og:image:height', content: 630 },
       { hid: 'og:locale', property: 'og:locale', content: 'en_GB' },
@@ -75,19 +74,19 @@ module.exports = {
       { hid: 'og:latitude', property: 'og:latitude', content: '33.120605' },
       { hid: 'og:longitude', property: 'og:longitude', content: '-97.185202' },
       { hid: 'og:street-address', property: 'og:street-address', content: '440 US-377 Suite 1140, Argyle, TX 76226, United States' },
-      { hid: 'og:locality', property: 'og:locality', content:'Argyle' },
+      { hid: 'og:locality', property: 'og:locality', content: 'Argyle' },
       { hid: 'og:region', property: 'og:region', content: 'Texas' },
       { hid: 'og:country-name', property: 'og:country-name', content: 'US' },
       { property: 'twitter:title', content: 'ZimConnect' },
       { property: 'twitter:description', content: '' },
-			{ property: 'twitter:image', content: '' },
-			{ hid: 'twitter:card', property: 'twitter:card', content: '' },
-			{ hid: 'twitter:site', property: 'twitter:site', content: '' },
-			{ hid: 'twitter:creator', property: 'twitter:creator', content: 'Zimworx' },
+      { property: 'twitter:image', content: '' },
+      { hid: 'twitter:card', property: 'twitter:card', content: '' },
+      { hid: 'twitter:site', property: 'twitter:site', content: '' },
+      { hid: 'twitter:creator', property: 'twitter:creator', content: 'Zimworx' },
       { hid: 'fb:app_id', property: 'fb:app_id', content: '' },
       { hid: 'google-site-verification', name: 'google-site-verification', content: '' },
-			{ hid: 'msvalidate.01', name: 'msvalidate.01', content: '' }
-  	],
+      { hid: 'msvalidate.01', name: 'msvalidate.01', content: '' }
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "stylesheet", type: "text/css", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" },
@@ -108,10 +107,9 @@ module.exports = {
   plugins: [
   ],
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    "@nuxtjs/auth",
+    "@nuxtjs/axios",
   ],
-  axios: {},
   build: {
     extend(config, ctx) {
     }
@@ -129,30 +127,32 @@ module.exports = {
     '~/server/routes/users',
     '~/server/routes/authentication'
   ],
+  axios: {
+    baseURL: 'http://127.0.0.1:3001'
+  },
   auth: {
+    localStorage: true,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/authentication/login',
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: false,
+          user: {
+            url: '/api/auth/user',
+            method: 'get',
+            propertyName: false
+          },
+        },
+      }
+    },
     redirect: {
-      login: '/login',
       logout: '/',
       callback: '/login',
       home: '/'
     },
-    strategies: {
-      local: {
-        token: {
-          property: 'token',
-          required: true,
-          type: 'Bearer'
-        },
-        user: {
-          property: 'user',
-          // autoFetch: true
-        },
-        endpoints: {
-          login: { url: '/authentication/login', method: 'post' },
-          user: { url: '/authentication/user', method: 'get' },
-          logout: false
-        }
-      }
-    }
-  }
+  },
 }

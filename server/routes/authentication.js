@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const mongoose = require('mongoose');
 const Authentication = require('../schema/authentication');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const mongoURI = 'mongodb://159.69.120.82:27017/zimconnect';
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({limit: '100mb', extended: true, parameterLimit:100000}));
@@ -31,13 +31,25 @@ router.use((req, res, next) => {
 })();
 
 router.post('/login', (req, res) => {
-  let authentication = new Authentication({
+  let data = {
     email: req.body.email,
     password: req.body.password
-  })
-  authentication.save(function(error, response) {
+  }
+  Authentication.findOne(data, function(error, response) {
     if (error) return res.status(500).json(error);
-    else return res.status(201).json(response);
+    else if(!response) return res.status(401).json({ error: 'Incorrect Credentials' });
+    else {
+      let token = jwt.sign(
+        { id: response._id },
+        '123456',
+        { expiresIn: 86400}
+      );
+      return res.status(200).send({
+        id: response._id,
+        auth: true,
+        token: token
+      });
+    }
   })
 });
 
