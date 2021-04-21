@@ -128,7 +128,7 @@ module.exports = {
     '~/server/routes/authentication'
   ],
   axios: {
-    baseURL: 'http://127.0.0.1:3001'
+    baseURL: 'http://127.0.0.1:8080'
   },
   auth: {
     localStorage: true,
@@ -136,9 +136,9 @@ module.exports = {
       local: {
         endpoints: {
           login: {
-            url: '/authentication/login',
+            url: '/api/auth/signin',
             method: 'post',
-            propertyName: 'token'
+            propertyName: 'accessToken'
           },
           logout: false,
           user: {
@@ -148,11 +148,6 @@ module.exports = {
           },
         },
       }
-    },
-    redirect: {
-      logout: '/',
-      callback: '/login',
-      home: '/'
-    },
+    }
   },
 }
