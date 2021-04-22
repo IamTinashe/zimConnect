@@ -1,15 +1,8 @@
 <template>
-<<<<<<< HEAD
   <div class="header">
     <div class="container-fluid px-4 py-4 bgColor-primary">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="col-md-5 Color-white">
-=======
-  <div class="conatiner-fluid">
-    <div class="container-fluid bgColor-black Color-white px-4 py-4">
-      <div class="row justify-content-md-center mx-lg-2">
-        <div class="col-md-5">
->>>>>>> 926c84e5e38421e335f1b10961baca1757ba3348
           <span>PHONE: +75 8746 958</span>
           <span class="ml-2">EMAIL: ZIMCONNECT@ZIMWORX.COM</span>
         </div>
@@ -24,7 +17,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <div
       class="container-fluid py-3 position-absolute z-index-2"
       v-bind:class="{ bgColorPrimary: isActive, bgColorWhite: !isActive }"
@@ -40,18 +32,6 @@
             <ul class="body-detail mt-3" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
               <li class="display-inline mx-2">
                 <NuxtLink class="text-decoration-none" to="/" title="Home" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-=======
-    <div class="container-fluid bgColor-gray-20 py-3">
-      <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-md-3">
-            <h1 class="title text-shadow mt-2">ZIMCONNECT</h1>
-          </div>
-          <div class="col-md-6">
-            <ul class="Color-gray-60 body-detail mt-3">
-              <li class="display-inline mx-2">
-                <NuxtLink class="Color-gray-60 text-decoration-none" to="/" title="Home">
->>>>>>> 926c84e5e38421e335f1b10961baca1757ba3348
                   Home
                 </NuxtLink>
               </li>
