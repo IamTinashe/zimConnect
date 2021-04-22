@@ -1,5 +1,5 @@
 <template>
-  <div class="conatiner-fluid">
+  <div class="conatiner-fluid header">
     <div class="container-fluid bgColor-black Color-white px-4 py-4">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="col-md-5">
@@ -21,7 +21,7 @@
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-3">
-            <h1 class="title text-shadow mt-2">ZIMCONNECT</h1>
+            <img src="/icons/logo.png" class="logo" alt="ZimConnect" title="ZimConnect"/>
           </div>
           <div class="col-md-6">
             <ul class="Color-gray-60 body-detail mt-3">
