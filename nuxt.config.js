@@ -104,8 +104,7 @@ module.exports = {
   css: [
     '@/assets/scss/app.scss'
   ],
-  plugins: [
-  ],
+  plugins: [],
   modules: [
     "@nuxtjs/auth",
     "@nuxtjs/axios",
@@ -142,7 +141,7 @@ module.exports = {
           },
           logout: false,
           user: {
-            url: '/api/users/',
+            url: '/api/auth/user/',
             method: 'get',
             propertyName: false
           },

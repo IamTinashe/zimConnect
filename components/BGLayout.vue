@@ -6,18 +6,6 @@
         <source id="mp4" src="/videos/hero-video.MOV" type="video/mp4">
       </video>
     </section>
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row test">
-          <div class="col-md-12 bgColor-primary">
-            Hello
-            <br>
-            <br>
-            Hello
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
