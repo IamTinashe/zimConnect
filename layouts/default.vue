@@ -1,5 +1,5 @@
 <template>
-  <div class="bgColor-white">
+  <div>
     <Header/>
     <nuxt/>
   </div>
@@ -27,7 +27,7 @@ html {
 
 
 <script>
-export default{
+export default {
   components: {
     'Header': () => import('@/components/Header')
   }

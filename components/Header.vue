@@ -1,6 +1,6 @@
 <template>
   <div class="conatiner-fluid header">
-    <div class="container-fluid bgColor-black Color-white px-4 py-4">
+    <div class="container-fluid bgColor-primary px-4 py-4">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="col-md-5">
           <span>PHONE: +75 8746 958</span>
@@ -17,16 +17,16 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bgColor-gray-20 py-3">
+    <div class="container-fluid py-3">
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-3">
-            <img src="/icons/logo.png" class="logo" alt="ZimConnect" title="ZimConnect"/>
+            <img src="/icons/logo-white.png" class="logo" alt="ZimConnect" title="ZimConnect"/>
           </div>
           <div class="col-md-6">
-            <ul class="Color-gray-60 body-detail mt-3">
+            <ul class="Color-white body-detail mt-3">
               <li class="display-inline mx-2">
-                <NuxtLink class="Color-gray-60 text-decoration-none" to="/" title="Home">
+                <NuxtLink class="Color-white text-decoration-none" to="/" title="Home">
                   Home
                 </NuxtLink>
               </li>
