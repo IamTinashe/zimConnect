@@ -1,8 +1,8 @@
 <template>
-  <div class="conatiner-fluid header">
+  <div class="header">
     <div class="container-fluid bgColor-primary px-4 py-4">
       <div class="row justify-content-md-center mx-lg-2">
-        <div class="col-md-5">
+        <div class="col-md-5 Color-white">
           <span>PHONE: +75 8746 958</span>
           <span class="ml-2">EMAIL: ZIMCONNECT@ZIMWORX.COM</span>
         </div>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-3 position-absolute z-index-2">
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-3">
