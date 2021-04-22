@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="container-fluid bgColor-primary px-4 py-4">
+    <div class="container-fluid px-4 py-4 bgColor-primary">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="col-md-5 Color-white">
           <span>PHONE: +75 8746 958</span>
@@ -17,16 +17,21 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid py-3 position-absolute z-index-2">
+    <div
+      class="container-fluid py-3 position-absolute z-index-2"
+      v-bind:class="{ bgColorPrimary: isActive, bgColorWhite: !isActive }"
+    >
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-3">
-            <img src="/icons/logo-white.png" class="logo" alt="ZimConnect" title="ZimConnect"/>
+            <transition name="fade" mode="out-in">
+              <img :src="logo" class="logo" alt="ZimConnect" title="ZimConnect"/>
+            </transition>
           </div>
           <div class="col-md-6">
-            <ul class="Color-white body-detail mt-3">
+            <ul class="body-detail mt-3" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
               <li class="display-inline mx-2">
-                <NuxtLink class="Color-white text-decoration-none" to="/" title="Home">
+                <NuxtLink class="text-decoration-none" to="/" title="Home" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
                   Home
                 </NuxtLink>
               </li>
@@ -49,3 +54,50 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isActive: true,
+      scroll: 1,
+      logo: '/icons/logo-white.png'
+    }
+  },
+  mounted () {
+    document.addEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll (event) {
+      this.scroll = window.scrollY || window.scrollTop
+      if(this.scroll < 5 || typeof(this.scroll) == 'undefined'){
+        this.isActive = true;
+        this.logo = '/icons/logo-white.png'
+      }
+      else{
+        this.isActive = false;
+        this.logo = '/icons/logo.png'
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .bgColorPrimary {
+    transition: background-color 1s ease;
+  }
+  .bgColorWhite {
+    transition: background-color 1s ease;
+    background-color: #ffffff;
+  }
+
+  .ColorWhite {
+    transition: color 1s ease;
+    color: #ffffff;
+  }
+  .ColorGray {
+    transition: color 1s ease;
+    color: #818181;
+  }
+</style>
