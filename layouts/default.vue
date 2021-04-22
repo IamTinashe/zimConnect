@@ -27,11 +27,7 @@ html {
 
 
 <script>
-<<<<<<< HEAD
 export default {
-=======
-export default{
->>>>>>> 926c84e5e38421e335f1b10961baca1757ba3348
   components: {
     'Header': () => import('@/components/Header')
   }
