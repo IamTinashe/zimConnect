@@ -34,6 +34,11 @@
             </div>
           </div>
         </div>
+        <div class="py-5">
+          <h2 class="title-large Color-gray-60 py-5 pl-0">
+            <span class="text-underline">RECENT</span> JOBS
+          </h2>
+        </div>
       </div>
     </div>
   </div>
