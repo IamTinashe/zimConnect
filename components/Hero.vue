@@ -27,7 +27,7 @@
                         <option>Work Schedule</option>
                       </select>
                       <select class="px-3 select feature-paragraph Color-gray-60">
-                        <option>Proffession</option>
+                        <option>Profession</option>
                       </select>
                     </div>
                   </div>
