@@ -139,12 +139,7 @@ module.exports = {
             method: 'post',
             propertyName: 'accessToken'
           },
-          logout: false,
-          user: {
-            url: '/api/auth/user/',
-            method: 'get',
-            propertyName: false
-          },
+          logout: false
         },
       }
     }
