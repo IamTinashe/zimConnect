@@ -1,9 +1,9 @@
 <template>
   <div class="w-100 home">
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
       <div class="container">
         <div class="row hero">
-          <div class="col-md-12 middle-align">
+          <div class="col-lg-12 middle-align">
             <p class="text-center text-hero Color-white pb-1">
               <strong style="font-weight: 600;">Browse Jobs</strong>
             </p>
@@ -11,10 +11,10 @@
               Find Jobs, Employment & Career Opportunities
             </p>
             <div class="row justify-content-md-center">
-              <div class="col-md-10">
+              <div class="col-lg-10">
                 <form class="form">
                   <div class="row justify-content-md-center pb-5">
-                    <div class="col-md-5">
+                    <div class="col-lg-5">
                       <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>What are you looking for?</option>
                       </select>
@@ -22,7 +22,7 @@
                         <option>All Types</option>
                       </select>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-lg-5">
                       <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>Work Schedule</option>
                       </select>
@@ -31,8 +31,8 @@
                       </select>
                     </div>
                   </div>
-                  <div class="row pb-5 justify-content-md-center">
-                    <div class="col-md-3">
+                  <div class="row justify-content-md-center">
+                    <div class="col-lg-3">
                       <div class="button bgColor-primary borderColor-primary button-primary border-radius-8 w-75 py-1">
                         <i class="fa fa-search fa-1x Color-white"></i>
                         <span class="px-2">Search</span>

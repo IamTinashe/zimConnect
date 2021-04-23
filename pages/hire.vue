@@ -3,7 +3,7 @@
     <div class="container-fluid bgColor-gray-30 py-5">
       <div class="container">
         <div class="row hero">
-          <div class="col-md-12 middle-align">
+          <div class="col-lg-12 middle-align">
             <p class="text-center text-hero Color-gray pb-1">
               HIRE A
               <br>

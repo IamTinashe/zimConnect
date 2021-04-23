@@ -9,7 +9,7 @@
     <div class="container-fluid">
       <div class="container">
         <div class="row test">
-          <div class="col-md-12 bgColor-primary">
+          <div class="col-lg-12 bgColor-primary">
             Hello
             <br>
             <br>
