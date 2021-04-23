@@ -1,9 +1,11 @@
 <template>
   <div class="video-bg-layout">
     <BGLayout/>
-    <div class="container-fluid position-absolute">
+    <div class="container-fluid position-absolute px-0">
       <Hero/>
+      <TrendingBox/>
     </div>
+    
   </div>
 </template>
 
@@ -11,7 +13,8 @@
 export default {
   components: {
     'BGLayout': () => import('@/components/BGLayout'),
-    'Hero': () => import('@/components/Hero')
+    'Hero': () => import('@/components/Hero'),
+    'TrendingBox': () => import('@/components/TrendingBox')
   },
   mounted(){
     
