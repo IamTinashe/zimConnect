@@ -1,5 +1,8 @@
 .home{
   .hero{
-    height: 90vh;
+    height: 65vh;
+    @include breakpoint(large){
+      height: 90vh;
+    }
   }
 }
