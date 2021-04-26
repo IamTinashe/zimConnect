@@ -47,68 +47,24 @@
           </h2>
           <div class="row">
             <div class="col-lg-12">
-              <div class="bgColor-white py-3 px-5 box-shadow-1 border-radius-2 mb-5">
+              <div
+                class="bgColor-white py-3 px-5 box-shadow-1 mb-5 border-radius-2"
+                v-for="(job, index) in allJobs"
+                :key="index">
                 <div class="row">
                   <div class="col-md-3">
                     <div class="circular-landscape">
-                      <img src="/images/young-writer-taking-notes.jpg" alt="Young Writer Taking Notes" class="img"/>
+                      <img src="/images/young-writer-taking-notes.jpg" :alt="job.title" class="img"/>
                     </div>
                   </div>
                   <div class="col-md-9">
-                    <h3 class="p-small Color-gray-80 mb-1">PR Content Writer</h3>
-                    <p class="Color-gray text-regular">
-                      Skills Required: <br>
-                      Advance Degree in Journalism <br>
-                      Great Writing Skills that are translatable for US reader. <br>
-                      Social media content <br>
-                      Personable.
-                    </p>
-                    <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
-                      <span class="small">APPLY</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bgColor-white py-3 px-5 box-shadow-1 mb-5 border-radius-2">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="circular-landscape">
-                      <img src="/images/young-writer-taking-notes.jpg" alt="Young Writer Taking Notes" class="img"/>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <h3 class="p-small Color-gray-80 mb-1">Dental Coordinators</h3>
-                    <p class="Color-gray text-regular">
-                      Looking for dynamic people who would to be virtual dental coordinators. All you need
-                      is a Bachelor's degree and we will train you and then help place you with the right company.
-                    </p>
-                    <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
-                      <span class="small">APPLY</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bgColor-white py-3 px-5 box-shadow-1 mb-5 border-radius-2">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="circular-landscape">
-                      <img src="/images/man-hand-typing-keyboard-input-code-register-system.jpg" alt="Man Hand Typing Keyboard Input Code Register System" class="img"/>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <h3 class="p-small Color-gray-80 mb-1">Program Coordinator</h3>
-                    <p class="Color-gray text-regular">
-                      Sales Experience<br>
-                      - Customer Service Experience<br>
-                      - Great Phone Skills<br>
-                      - Knowledge of Applications/ Tech Savvy<br>
-                      - IT Background minimum level 1 Experience is a plus<br>
-                    </p>
-                    <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
-                      <span class="small">APPLY</span>
-                    </div>
+                    <h3 class="p-small Color-gray-80 mb-1">{{job.title}}</h3>
+                    <pre class="Color-gray pre text-regular">{{job.description}}</pre>
+                    <a :href="'https://www.zimbojobs.com/job/' + job.slug" :title="job.title" target="_blank">
+                      <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
+                        <span class="small">APPLY</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -124,3 +80,22 @@
     </div>
   </div>
 </template>
+
+<script>
+import Jobs from '@/assets/js/zimbojobs/jobs';
+export default {
+  data() {
+    return {
+      allJobs: []
+    }
+  },
+  async created(){
+    await this.jobs();
+  },
+  methods: {
+    async jobs(){
+      this.allJobs  = Jobs.correctsData(await Jobs.getUsers());
+    }
+  }
+}
+</script>

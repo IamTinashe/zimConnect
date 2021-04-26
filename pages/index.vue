@@ -22,7 +22,6 @@ export default {
     'Footer': () => import('@/components/Footer')
   },
   mounted(){
-    console.log(this.$router.options.base)
   },
   head() {
     return {
