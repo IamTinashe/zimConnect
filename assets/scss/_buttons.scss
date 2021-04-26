@@ -48,6 +48,9 @@
   &.contracted{
     width: 60%;
   }
+  &.small{
+    width: none;
+  }
 
   &.button-icon{
     content: '';

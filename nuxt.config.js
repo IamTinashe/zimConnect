@@ -123,8 +123,8 @@ module.exports = {
         maxAge: 6000000
       }
     }),
-    '~/server/routes/users',
-    '~/server/routes/authentication'
+    //'~/server/routes/users',
+    //'~/server/routes/authentication'
   ],
   axios: {
     baseURL: 'http://127.0.0.1:8080'

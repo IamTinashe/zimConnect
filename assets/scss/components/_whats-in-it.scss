@@ -1,0 +1,17 @@
+.whats-in-it{
+  .banner{
+    background-image: url("/images/info-banner.jpg");
+    background-color: $gray-5;
+  }
+
+  .wrapper:after {
+    content: "";
+    background-color: $primary;
+    position: absolute;
+    width: 8px;
+    height: 60%;
+    top: 35px;
+    left: 4%;
+    display: block;
+  }
+}

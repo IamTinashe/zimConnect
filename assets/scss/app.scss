@@ -3,6 +3,7 @@
 @import 'breakpoints';
 @import 'colors';
 @import 'widths';
+@import 'heights';
 @import 'buttons';
 @import 'border-radius';
 @import 'box-shadows';
@@ -12,6 +13,7 @@
 @import 'forms';
 @import 'icons';
 @import 'utilities';
+@import 'images';
 
 @import './components/header';
 @import './components/video-bg-layout';
@@ -20,3 +22,5 @@
 @import './pages/register';
 @import './pages/hire';
 @import './components/trending';
+@import './components/whats-in-it';
+@import './components/clients-banner';

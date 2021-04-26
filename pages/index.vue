@@ -4,6 +4,8 @@
     <div class="container-fluid position-absolute px-0">
       <Hero/>
       <TrendingBox/>
+      <WhatsInIt/>
+      <ClientsBanner/>
     </div>
     
   </div>
@@ -14,7 +16,9 @@ export default {
   components: {
     'BGLayout': () => import('@/components/BGLayout'),
     'Hero': () => import('@/components/Hero'),
-    'TrendingBox': () => import('@/components/TrendingBox')
+    'TrendingBox': () => import('@/components/TrendingBox'),
+    'WhatsInIt': () => import('@/components/WhatsInIt'),
+    'ClientsBanner': () => import('@/components/ClientsBanner')
   },
   mounted(){
     

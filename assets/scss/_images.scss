@@ -1,0 +1,25 @@
+.circular-landscape {
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  .img{
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+  }
+}
+
+.circular-portrait {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  .img {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -56,3 +56,33 @@
     border-style: solid;
   }
 }
+
+.text-underline-80{
+  text-decoration: none;
+  position: relative;
+  &::after{
+    content: '';
+    width: 70%;
+    left: 15%;
+    position: absolute;
+    bottom: -10px;
+    border-width: 0 0 3px;
+    border-style: solid;
+    color: $gray-40;
+  }
+}
+
+.text-underline-white-80{
+  text-decoration: none;
+  position: relative;
+  &::after{
+    content: '';
+    width: 70%;
+    left: 15%;
+    position: absolute;
+    bottom: -10px;
+    border-width: 0 0 3px;
+    border-style: solid;
+    color: $white;
+  }
+}

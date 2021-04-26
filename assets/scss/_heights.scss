@@ -1,0 +1,52 @@
+$heights: (
+  '5': 5%,
+  '10': 10%,
+  '15': 15%,
+  '20': 20%,
+  '25': 25%,
+  '30': 30%,
+  '35': 35%,
+  '40': 40%,
+  '45': 45%,
+  '50': 50%,
+  '55': 55%,
+  '60': 60%,
+  '65': 65%,
+  '70': 70%,
+  '75': 75%,
+  '80': 80%,
+  '85': 85%,
+  '90': 90%,
+  '95': 95%,
+  '100': 100%
+);
+
+@each $name, $value in $heights {
+  .h-#{$name} {
+    height: $value !important;
+  }
+  .h-sm-#{$name} {
+    height: 100%;
+    @include breakpoint(small){
+      height: $value !important;
+    }
+  }
+  .h-md-#{$name} {
+    height: 100%;
+    @include breakpoint(medium){
+      height: $value !important;
+    }
+  }
+  .h-lg-#{$name} {
+    height: 100%;
+    @include breakpoint(large){
+      height: $value !important;
+    }
+  }
+  .h-xl-#{$name} {
+    height: 100%;
+    @include breakpoint(xlarge){
+      height: $value !important;
+    }
+  }
+}
