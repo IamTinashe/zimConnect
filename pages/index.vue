@@ -1,13 +1,13 @@
 <template>
-  <div class="video-bg-layout">
+  <div class="">
     <BGLayout/>
     <div class="container-fluid position-absolute px-0">
       <Hero/>
       <TrendingBox/>
       <WhatsInIt/>
       <ClientsBanner/>
+      <Footer/>
     </div>
-    
   </div>
 </template>
 
@@ -18,10 +18,11 @@ export default {
     'Hero': () => import('@/components/Hero'),
     'TrendingBox': () => import('@/components/TrendingBox'),
     'WhatsInIt': () => import('@/components/WhatsInIt'),
-    'ClientsBanner': () => import('@/components/ClientsBanner')
+    'ClientsBanner': () => import('@/components/ClientsBanner'),
+    'Footer': () => import('@/components/Footer')
   },
   mounted(){
-    
+    console.log(this.$router.options.base)
   },
   head() {
     return {

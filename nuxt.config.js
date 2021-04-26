@@ -88,7 +88,7 @@ module.exports = {
       { hid: 'msvalidate.01', name: 'msvalidate.01', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', sizes: "64x64", href: '/icons/logo.png' },
+      { rel: 'icon', type: 'image/png', sizes: "64x64", href: '/icons/icon.png' },
       { rel: "stylesheet", type: "text/css", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" },
       { rel: "preconnect", href: "https://fonts.gstatic.com" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" },

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="video-bg-layout">
     <section class="section">
       <div class="video_overlay"></div>
       <video id="hero-video" video autobuffer autoplay muted loop ref="video" class="hero-video">

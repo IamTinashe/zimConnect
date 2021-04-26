@@ -2,6 +2,12 @@
   <div>
     <Header/>
     <nuxt/>
+    <div
+      v-if="$route.name != 'index'"
+      class="container-fluid position-absolute px-0"
+    >
+      <Footer/>
+    </div>
   </div>
 </template>
 
@@ -29,7 +35,8 @@ html {
 <script>
 export default {
   components: {
-    'Header': () => import('@/components/Header')
+    'Header': () => import('@/components/Header'),
+    'Footer': () => import('@/components/Footer')
   }
 }
 </script>

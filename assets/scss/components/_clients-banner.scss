@@ -1,6 +1,26 @@
 .clients-banner{
   .banner{
-    background-image: url("/images/info-banner.jpg");
-    background-color: $gray-5;
+    background-image: url("/images/handshake.jpg");
+    background-size: cover;
+    .overlay{
+      background: rgba(43, 189, 185, .4);
+    }
+  }
+
+  .testimonials{
+    background: rgba(255, 255, 255, 0.9);
+    height: 350px;
+    @include breakpoint(medium){
+      height: 240px;
+    }
+  }
+  .testimonial-image{
+    width: 100%;
+    @include breakpoint(medium){
+      width: 280px;
+      position: absolute;
+      margin-top: -50px;
+      margin-left: 40px;
+    }
   }
 }
