@@ -17,17 +17,11 @@ class Jobs{
   }
 
   static correctsData(jobs){
-    let index;
-    let returnJobs = []
+    let index, returnJobs = [];
     for(index in jobs){
-      let description = jobs[index].description.replace(/\r\n\r\n/g,"\r\n");
-      description = description.replace(/<li>/g,"");
-      description = description.replace(/<li>/g,"\r\n");
-      while(description.includes('<'))
-      description = this.removesHTML(description);
       returnJobs.push({
         'date_published': jobs[index].date_published,
-        'description': description,
+        'description': this.removesChars(jobs[index]),
         'featured_img_src': jobs[index].featured_img_src,
         'id': jobs[index].id,
         'slug': jobs[index].slug,
@@ -35,16 +29,28 @@ class Jobs{
         'type': jobs[index].type
       })
     }
+    return this.sortArrayByDate(returnJobs).slice(0, 3);
+  }
 
-    returnJobs.sort(function(a,b){
-      return new Date(b.date_published) - new Date(a.date_published);
-    });
-    return returnJobs.slice(0, 3);
+  static removesChars(job){
+    let description = job.description.replace(/\r\n\r\n/g,"\r\n");
+    description = description.replace(/<li>/g,"");
+    description = description.replace(/<li>/g,"\r\n");
+    while(description.includes('<'))
+      description = this.removesHTML(description);
+    
+    return description;
   }
 
   static removesHTML(value){
     let substring = value.slice(value.indexOf('<') , value.indexOf('>') + 1);
     return value.replace(substring, '');
+  }
+
+  static sortArrayByDate(Array){
+    return Array.sort( function (a,b) {
+      return new Date(b.date_published) - new Date(a.date_published);
+    });
   }
 }
 
