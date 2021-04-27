@@ -20,9 +20,9 @@ class Jobs{
     let index;
     let returnJobs = []
     for(index in jobs){
-      let description = jobs[index].description.replaceAll("\r\n\r\n", "\r\n");
-      description = description.replaceAll("<li>", "");
-      description = description.replaceAll("</li>", "\r\n");
+      let description = jobs[index].description.replace(/\r\n\r\n/g,"\r\n");
+      description = description.replace(/<li>/g,"");
+      description = description.replace(/<li>/g,"\r\n");
       while(description.includes('<'))
       description = this.removesHTML(description);
       returnJobs.push({
