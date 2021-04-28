@@ -12,7 +12,7 @@
 <script>
 export default {
   mounted(){
-    this.$refs.video.playbackRate = 2;
+    this.$refs.video.playbackRate = 1.5;
   }
 }
 </script>

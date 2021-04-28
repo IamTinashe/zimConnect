@@ -48,19 +48,25 @@
           <div class="row">
             <div class="col-lg-12">
               <div
-                class="bgColor-white py-3 px-5 box-shadow-1 mb-5 border-radius-2"
+                class="bgColor-white pt-3 px-5 box-shadow-1 mb-5 border-radius-2"
                 v-for="(job, index) in allJobs"
-                :key="index">
+                :key="index"
+                style="height: 220px;"
+              >
                 <div class="row">
                   <div class="col-md-3">
                     <div class="circular-landscape">
                       <img src="/images/young-writer-taking-notes.jpg" :alt="job.title" class="img"/>
                     </div>
                   </div>
-                  <div class="col-md-9">
+                  <div class="col-md-9 middle-align">
                     <h3 class="p-small Color-gray-80 mb-1">{{job.title}}</h3>
                     <pre class="Color-gray pre text-regular">{{job.description}}</pre>
-                    <a :href="'https://www.zimbojobs.com/job/' + job.slug" :title="job.title" target="_blank">
+                    <a
+                      :href="'https://www.zimbojobs.com/job/' + job.slug"
+                      :title="job.title"
+                      target="_blank"
+                    >
                       <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
                         <span class="small">APPLY</span>
                       </div>

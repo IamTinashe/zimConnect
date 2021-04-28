@@ -1,6 +1,9 @@
 <template>
   <div class="w-100 register">
-    <div class="container-fluid bgColor-gray-10 py-5">
+    <div class="w-100 banner">
+      <img class="w-100 banner-image" src="/images/living-room-interior-with-blue-velvet-armchair-cabinet.jpg" alt="Living room interior with blue velvet armchair cabinet"/>
+    </div>
+    <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
         <div class="row justify-content-md-center hero">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
@@ -15,13 +18,16 @@
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Confirm Password*</label>
               <input type="password" id="confirm_password" class="form-input w-100 px-3 py-3 mb-4"/>
 
-              <div class="button button-primary border-radius-16 py-3">
+              <div class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-16 py-3">
                 REGISTER
               </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="w-100 banner">
+      <img class="w-100 banner-image mb-5" src="/images/banner.jpg" alt="Banner"/>
     </div>
   </div>
 </template>
