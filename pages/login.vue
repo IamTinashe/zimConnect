@@ -1,6 +1,9 @@
 <template>
   <div class="w-100 login">
-    <div class="container-fluid bgColor-gray-10 py-5">
+    <div class="w-100 banner">
+      <img class="w-100 banner-image" src="/images/living-room-interior-with-blue-velvet-armchair-cabinet.jpg" alt="Living room interior with blue velvet armchair cabinet"/>
+    </div>
+    <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
@@ -12,13 +15,16 @@
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
               <input v-model="login.password" type="password" id="password" class="form-input w-100 px-3 py-3 mb-4"/>
 
-              <button type="submit" class="button button-primary expanded border-radius-16 py-3">
+              <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-3">
                 LOGIN
               </button>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="w-100 banner">
+      <img class="w-100 banner-image mb-5" src="/images/banner.jpg" alt="Banner"/>
     </div>
   </div>
 </template>
@@ -37,7 +43,7 @@ export default {
     async userLogin() {
       try {
         await this.$auth.loginWith('local', { data: {'email': this.login.email, 'password' : this.login.password}})
-        this.$router.push('/hire')
+        .then(this.$router.push('/hire'));
       } catch (error) {
         console.log(error)
       }
