@@ -1,4 +1,8 @@
 .hire {
+  .bg-image{
+    background-image: url("/images/info-banner.jpg");
+    background-color: $gray-5;
+  }
   .hero{
     min-height: 38vh;
   }

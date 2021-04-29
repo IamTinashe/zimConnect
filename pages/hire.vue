@@ -1,6 +1,6 @@
 <template>
   <div class="w-100 hire">
-    <div class="container-fluid bgColor-gray-30 py-5">
+    <div class="container-fluid bg-image py-5">
       <div class="container">
         <div class="row hero">
           <div class="col-lg-12 middle-align">

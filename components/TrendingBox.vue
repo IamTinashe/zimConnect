@@ -49,7 +49,7 @@
             <div class="col-lg-12">
               <div
                 class="bgColor-white pt-3 px-5 box-shadow-1 mb-5 border-radius-2"
-                v-for="(job, index) in allJobs"
+                v-for="(job, index) in listedJobs"
                 :key="index"
                 style="height: 220px;"
               >
@@ -74,11 +74,21 @@
                   </div>
                 </div>
               </div>
+              <small
+                class="float-right Color-gray-80 text-regular cursor-pointer"
+                title="View More Jobs"
+                @click="moreJobs()"
+                v-if="!maxReached"
+
+              >More</small>
               <a
                 href="https://zimbojobs.com"
-                target="_blank" class="float-right Color-gray-80 text-regular"
-                title="More"
-              >More</a>
+                target="_blank"
+                class="float-right Color-gray-80 text-regular cursor-pointer"
+                title="View More Jobs"
+                v-else
+
+              >View More on Zimbojobs</a>
             </div>
           </div>
         </div>
@@ -92,7 +102,10 @@ import Jobs from '@/assets/js/zimbojobs/jobs';
 export default {
   data() {
     return {
-      allJobs: []
+      allJobs: [],
+      listedJobs: [],
+      count: 3,
+      maxReached: false
     }
   },
   async created(){
@@ -100,7 +113,14 @@ export default {
   },
   methods: {
     async jobs(){
-      this.allJobs  = Jobs.correctsData(await Jobs.getUsers());
+      this.allJobs = await Jobs.getJobs();
+      this.listedJobs  = Jobs.correctsData(this.allJobs, this.count);
+    },
+
+    async moreJobs(){
+      this.count = (this.count < (this.allJobs.length - 2)) ?  (this.count + 2) : (this.allJobs.length - 1);
+      this.maxReached = (this.count == (this.allJobs.length - 1))
+      this.listedJobs  = Jobs.correctsData(this.allJobs, this.count);
     }
   }
 }

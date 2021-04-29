@@ -4,11 +4,11 @@ import jwt from 'jsonwebtoken'
 const BASEUrl = 'https://www.zimbojobs.com';
 
 class Jobs{
-  static getUsers(){
+  static getJobs(){
     let api = '/wp-json/custom/v1/all-posts';
     return new Promise(async (resolve, reject) => {
       try {
-        var response = await axios.get(BASEUrl + api)
+        let response = await axios.get(BASEUrl + api)
         resolve(response.data);
       } catch (error) {
         reject(error)
@@ -16,7 +16,7 @@ class Jobs{
     })
   }
 
-  static correctsData(jobs){
+  static correctsData(jobs, count){
     let index, returnJobs = [];
     for(index in jobs){
       returnJobs.push({
@@ -29,7 +29,7 @@ class Jobs{
         'type': jobs[index].type
       })
     }
-    return this.sortArrayByDate(returnJobs).slice(0, 3);
+    return this.sortArrayByDate(returnJobs).slice(0, count);
   }
 
   static removesChars(job){
@@ -39,7 +39,7 @@ class Jobs{
     while(description.includes('<'))
       description = this.removesHTML(description);
     
-    return description;
+    return this.sliceString(description);
   }
 
   static removesHTML(value){
@@ -51,6 +51,15 @@ class Jobs{
     return Array.sort( function (a,b) {
       return new Date(b.date_published) - new Date(a.date_published);
     });
+  }
+
+  static sliceString(value){
+    if(value.length > 280){
+      if((value.match(/\n/g) || []).length >= 7){
+        let str = value , delimiter = '\n', start = 7, tokens = str.split(delimiter).slice(start), result = tokens.join(delimiter);
+        return value.replace(result, '');
+      } else return value.slice(0 , 280);
+    }else return value;
   }
 }
 
