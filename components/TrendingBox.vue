@@ -119,7 +119,7 @@ export default {
 
     async moreJobs(){
       this.count = (this.count < (this.allJobs.length - 2)) ?  (this.count + 2) : (this.allJobs.length - 1);
-      this.maxReached = (this.count == (this.allJobs.length - 1))
+      this.maxReached = (this.count == (this.allJobs.length - 1));
       this.listedJobs  = Jobs.correctsData(this.allJobs, this.count);
     }
   }

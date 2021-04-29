@@ -33,8 +33,13 @@ class Jobs{
   }
 
   static addsImage(imageUrl){
-    let images = ['/images/young-writer-taking-notes.jpg', '/images/lady-typing.jpg', '/images/man-hand-typing-keyboard-input-code-register-system.jpg'];
-    return (imageUrl == null) ? images[Math.floor(Math.random() * 3)] : imageUrl;
+    let images = [
+      '/images/young-writer-taking-notes.jpg',
+      '/images/lady-typing.jpg',
+      '/images/man-hand-typing-keyboard-input-code-register-system.jpg',
+      '/images/smiling-woman-potrait.jpg'
+    ];
+    return (imageUrl == null) ? images[Math.floor(Math.random() * 4)] : imageUrl;
   }
 
   static removesChars(job){
