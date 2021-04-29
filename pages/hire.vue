@@ -1,6 +1,9 @@
 <template>
   <div class="w-100 hire">
-    <div class="container-fluid bg-image py-5">
+    <div class="w-100 banner">
+      <img class="w-100 banner-image" src="/images/smiling-woman.jpg" alt="Smiling Woman"/>
+    </div>
+    <div class="container-fluid py-5">
       <div class="container">
         <div class="row hero">
           <div class="col-lg-12 middle-align">
