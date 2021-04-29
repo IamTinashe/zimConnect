@@ -55,8 +55,8 @@
               >
                 <div class="row">
                   <div class="col-md-3">
-                    <div class="circular-landscape">
-                      <img src="/images/young-writer-taking-notes.jpg" :alt="job.title" class="img"/>
+                    <div class="circular-portrait">
+                      <img :src="job.featured_img_src" :alt="job.title" class="img"/>
                     </div>
                   </div>
                   <div class="col-md-9 middle-align">

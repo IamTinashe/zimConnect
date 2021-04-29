@@ -22,7 +22,7 @@ class Jobs{
       returnJobs.push({
         'date_published': jobs[index].date_published,
         'description': this.removesChars(jobs[index]),
-        'featured_img_src': jobs[index].featured_img_src,
+        'featured_img_src': this.addsImage(jobs[index].featured_img_src),
         'id': jobs[index].id,
         'slug': jobs[index].slug,
         'title': jobs[index].title,
@@ -30,6 +30,11 @@ class Jobs{
       })
     }
     return this.sortArrayByDate(returnJobs).slice(0, count);
+  }
+
+  static addsImage(imageUrl){
+    let images = ['/images/young-writer-taking-notes.jpg', '/images/lady-typing.jpg', '/images/man-hand-typing-keyboard-input-code-register-system.jpg'];
+    return (imageUrl == null) ? images[Math.floor(Math.random() * 3)] : imageUrl;
   }
 
   static removesChars(job){
