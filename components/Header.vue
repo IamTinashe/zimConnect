@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header position-fixed w-100 z-index-10">
     <div class="container-fluid px-4 py-4 bgColor-primary">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="col-md-6 Color-white">

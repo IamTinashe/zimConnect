@@ -1,9 +1,10 @@
 .hire {
   .bg-image{
-    background-image: url("/images/info-banner.jpg");
+    background-image: url("/images/smiling-woman.jpg");
     background-color: $gray-5;
+    background-size: cover;
   }
   .hero{
-    min-height: 38vh;
+    min-height: 60vh;
   }
 }

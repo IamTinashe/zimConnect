@@ -1,18 +1,15 @@
 <template>
   <div class="w-100 hire">
-    <div class="w-100 banner">
-      <img class="w-100 banner-image" src="/images/smiling-woman.jpg" alt="Smiling Woman"/>
-    </div>
-    <div class="container-fluid py-5">
+    <div class="container-fluid bg-image py-5">
       <div class="container">
-        <div class="row hero">
-          <div class="col-lg-12 middle-align">
-            <p class="text-center text-hero Color-gray pb-1">
+        <div class="row justify-content-md-center hero">
+          <div class="col-12 middle-align">
+            <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
               <br>
               <strong>TEAM MEMBER</strong>
             </p>
-            <p class="text-center paragraph-large Color-black pb-5">
+            <p class="text-center paragraph-large Color-white pb-5">
               Find a Team Member Tailored to your specification
             </p>
           </div>
