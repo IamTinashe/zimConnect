@@ -124,7 +124,8 @@ module.exports = {
       }
     }),
     //'~/server/routes/users',
-    //'~/server/routes/authentication'
+    //'~/server/routes/authentication',
+    '~/server/routes/roles'
   ],
   axios: {
     baseURL: 'http://127.0.0.1:8080'

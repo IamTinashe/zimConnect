@@ -106,3 +106,10 @@
 .z-index-10{
   z-index: 10;
 }
+
+.text-center-sm-left{
+  text-align: center;
+  @include breakpoint(small){
+    text-align: left;
+  }
+}

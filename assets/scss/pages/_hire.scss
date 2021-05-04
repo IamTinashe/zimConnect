@@ -7,4 +7,45 @@
   .hero{
     min-height: 60vh;
   }
+
+  .companies {
+    width: 100%;
+    input[type="radio"] {
+      display: none;
+      &:checked {
+        + .box {
+          background-color: $primary;
+          span {
+            color: $white;
+            transition: all 500ms ease;
+            will-change: transition;
+          }
+        }
+      }
+    }
+    .box {
+      width: 125px;
+      @include breakpoint(small){
+        width: 250px;
+      }
+      @include breakpoint(medium){
+        width: 150px;
+      }
+      @include breakpoint(large){
+        width: 200px;
+      }
+      @include breakpoint(xlarge){
+        width: 250px;
+      }
+      height: 30px;
+      background-color: $gray-30;
+      color: $gray-80;
+      transition: all 500ms ease;
+      will-change: transition;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+  }
 }
