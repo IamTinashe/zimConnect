@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Roles = require('../schema/roles');
 const jwt = require('jsonwebtoken');
-const mongoURI = 'mongodb://159.69.120.82:27017/zimconnect';
+const mongoURI = 'mongodb://admin:zimconnect@159.69.120.82:27017/zimconnect';
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({limit: '100mb', extended: true, parameterLimit:100000}));
 
