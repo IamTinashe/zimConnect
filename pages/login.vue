@@ -9,8 +9,8 @@
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
             <h2 class="text-center Color-gray-80 subhead py-4">LOGIN</h2>
             <form class="form pt-3 pb-5" @submit.prevent="userLogin">
-              <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email Address*</label>
-              <input v-model="login.email" type="email" id="email" class="form-input w-100 px-3 py-3 mb-4"/>
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
+              <input v-model="login.username" type="text" id="username" class="form-input w-100 px-3 py-3 mb-4"/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
               <input v-model="login.password" type="password" id="password" class="form-input w-100 px-3 py-3 mb-4"/>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       login: {
-        email: '',
+        username: '',
         password: ''
       }
     }
@@ -42,7 +42,7 @@ export default {
   methods: {
     async userLogin() {
       try {
-        await this.$auth.loginWith('local', { data: {'email': this.login.email, 'password' : this.login.password}})
+        await this.$auth.loginWith('local', { data: {'username': this.login.username, 'password' : this.login.password}})
         .then(this.$router.push('/hire'));
       } catch (error) {
         console.log(error)

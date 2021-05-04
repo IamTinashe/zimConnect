@@ -1,6 +1,5 @@
   
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 const BASEUrl = 'https://www.zimbojobs.com';
 
 class Jobs{

@@ -32,13 +32,13 @@
         width: 150px;
       }
       @include breakpoint(large){
-        width: 200px;
-      }
-      @include breakpoint(xlarge){
         width: 250px;
       }
-      height: 30px;
-      background-color: $gray-30;
+      @include breakpoint(xlarge){
+        width: 300px;
+      }
+      height: 32px;
+      background-color: $gray-20;
       color: $gray-80;
       transition: all 500ms ease;
       will-change: transition;
