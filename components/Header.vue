@@ -43,7 +43,12 @@
             </ul>
           </div>
           <div class="col-lg-3">
-            <NuxtLink class="text-decoration-none" to="/login" title="Login">
+            <div v-if="loggedIn" class="text-decoration-none" title="Login">
+              <div class="button button-primary border-radius-8 contracted" @click="logout()">
+                LOGOUT
+              </div>
+            </div>
+            <NuxtLink v-else class="text-decoration-none" to="/login" title="Login">
               <div class="button button-primary border-radius-8 contracted">
                 FOR EMPLOYERS
               </div>
@@ -56,18 +61,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+  computed: {
+    ...mapState('auth', ['loggedIn', 'user'])
+  },
   data() {
     return {
       isActive: true,
       scroll: 1,
-      logo: '/icons/logo-white.png'
+      logo: '/icons/logo-white.png',
     }
   },
   mounted () {
     document.addEventListener('scroll', this.handleScroll);
   },
   methods: {
+    async logout() {
+      await this.$auth.logout()
+      this.$router.push('/')
+    },
     handleScroll (event) {
       this.scroll = window.scrollY || window.scrollTop
       if(this.scroll < 5 || typeof(this.scroll) == 'undefined'){

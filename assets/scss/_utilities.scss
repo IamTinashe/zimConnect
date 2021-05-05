@@ -114,7 +114,18 @@
   }
 }
 
+.text-center-md-left{
+  text-align: center;
+  @include breakpoint(medium){
+    text-align: left;
+  }
+}
+
 .border-line{
   border: none;
   height: 1px;
+}
+
+.display-none{
+  display: none;
 }

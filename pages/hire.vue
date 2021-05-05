@@ -41,14 +41,14 @@
                 >4</span
               >
             </div>
-            <div class="row position-relative mb-0 text-center-sm-left">
+            <div class="row position-relative mb-0 text-center-md-left">
               <div class="col-sm-12 col-md-7 col-lg-8 mb-5">
                 <h3 class="group-header Color-gray-60 mb-lg-2">SELECT THE PROPER</h3>
                 <h2 class="section-header Color-primary mb-4">CATEGORY COMPANY</h2>
                 <div class="companies">
                   <label class="mb-2" v-for="(company, index) in allCompanies" :key="index">
-                    <input v-model="profile.company" type="radio" name="radio" />
-                    <div class="box text-left text-regular pl-3 mr-0 mr-sm-3 pt-2">
+                    <input v-model="profile.company" type="radio" :id="'company' + index" name="company" :value="company.name"/>
+                    <div class="box text-left text-regular pl-3 mr-1 mr-sm-3 pt-2">
                       <span>{{company.name}}</span>
                     </div>
                   </label>
@@ -64,16 +64,44 @@
             </div>
             <hr class=" w-100 Color-gray-40 bgColor-gray-40 border-line">
 
-            <div class="row position-relative mt-5 mb-0">
+            <div class="row position-relative my-5 mb-0">
               <div class="col-sm-12 col-md-6 col-lg-3" v-for="(position, index) in positions" :key="index">
-                <div class="w-100">
+                <div class="w-100 mb-3">
                   <div class="bgColor-primary text-center Color-white py-2 p-small w-100">
                     {{position.name}}
                   </div>
-                  <div class="bgColor-gray-20 Color-black text-regular p-3 w-100">
-                    <p v-for="(role, i) in position.positions" :key="i">
-                      {{role}}
-                    </p>
+                  <div class="positions bgColor-gray-20 Color-black text-regular p-3 w-100">
+                    <ul class="ul">
+                      <li v-for="(role, i) in position.positions" :key="i">
+                        <input type="radio" v-model="profile.position" :id="'position' + index + i" name="position" :value="role">
+                        <label class="text-regular Color-black" :for="'position' + index + i">{{role}}</label>
+                        <div class="check"><div class="inside"></div></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class=" w-100 Color-gray-40 bgColor-gray-40 border-line">
+
+            <div class="row position-relative my-5">
+              <div class="col-sm-12">
+                <h3 class="group-header Color-gray-60 mb-lg-2">SELECT THE PROPER</h3>
+                <h2 class="section-header Color-primary mb-5">CATEGORY SKILL</h2>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-2" v-for="(skill, index) in skills" :key="index">
+                <div class="w-100 mb-3">
+                  <div class="bgColor-gray-20 Color-gray-60 bgColor-hover-primary Color-hover-white text-center cursor-pointer py-2 small w-100">
+                    {{skill.name}}
+                  </div>
+                  <div class="positions display-none bgColor-gray-20 Color-black text-regular p-3 w-100">
+                    <ul class="ul">
+                      <li v-for="(role, i) in skill.skills" :key="i">
+                        <input type="checkbox" v-model="profile.skill[i]" :id="'skill' + index + i" name="skill" :value="role">
+                        <label class="text-regular Color-black" :for="'skill' + index + i">{{role}}</label>
+                        <div class="check"><div class="inside"></div></div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -88,20 +116,27 @@
 <script>
 import company from '@/assets/js/zimconnect/company';
 import positions from '@/assets/js/zimconnect/positions';
+import skills from '@/assets/js/zimconnect/skills';
 export default {
+  middleware: ['auth'],
   data() {
     return {
       allCompanies: [],
       profile: {
-        company: ''
+        company: '',
+        position: '',
+        skill: []
       },
       positions: {},
-      token: window.localStorage.getItem('undefined_token.local')
+      skills: {},
+      token: ''
     }
   },
   async mounted() {
+    this.token = window.localStorage.getItem('auth._token.local');
     await this.getCompanies();
     await this.getPositions();
+    await this.getSkills();
   },
   methods: {
     async getCompanies(){
@@ -109,7 +144,9 @@ export default {
     },
     async getPositions(){
       this.positions = await positions.getPositions(this.token);
-      console.log(this.positions)
+    },
+    async getSkills(){
+      this.skills = await skills.getSkills(this.token);
     }
   },
   head() {

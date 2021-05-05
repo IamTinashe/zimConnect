@@ -73,4 +73,22 @@ $colors: (
     border-bottom-style: solid;
     border-color: $value !important;
   }
+
+  .Color-hover-#{$name} {
+    &:hover{
+      color: $value !important;
+    }
+  }
+  .bgColor-hover-#{$name} {
+    &:hover{
+      background-color: $value !important;
+    }
+  }
+  .borderColor-hover-#{$name} {
+    &:hover{
+      border-width: 1px;
+      border-bottom-style: solid;
+      border-color: $value !important;
+    }
+  }
 }

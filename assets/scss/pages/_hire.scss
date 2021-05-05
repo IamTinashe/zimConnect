@@ -26,7 +26,7 @@
     .box {
       width: 125px;
       @include breakpoint(small){
-        width: 250px;
+        width: 230px;
       }
       @include breakpoint(medium){
         width: 150px;
@@ -46,6 +46,72 @@
       text-align: center;
       cursor: pointer;
       position: relative;
+    }
+  }
+
+  .positions{
+    height: 250px;
+    @include breakpoint(xlarge){
+      height: 200px;
+    }
+    .ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+    }
+    
+    .ul li{
+      color: $gray-80;
+      display: block;
+      position: relative;
+      float: left;
+      width: 100%;
+    }
+    
+    .ul li input[type=radio]{
+      position: absolute;
+      visibility: hidden;
+    }
+    
+    .ul li label{
+      display: block;
+      position: relative;
+      padding: 3px 3px 3px 20px;
+      margin: 3px;
+      cursor: pointer;
+    }
+    
+    .ul li .check{
+      display: block;
+      position: absolute;
+      background-color: $white;
+      height: 15px;
+      width: 15px;
+      top: 5px;
+    }
+    
+    .ul li .check::before {
+      display: block;
+      position: absolute;
+      content: '';
+      height: 15px;
+      width: 15px;
+      top: -5px;
+      left: -5px;
+      margin: auto;
+    }
+    
+    input[type=radio]:checked ~ .check {
+      border: 5px solid $primary;
+    }
+    
+    input[type=radio]:checked ~ .check::before{
+      background: $primary;
+    }
+    
+    input[type=radio]:checked ~ label{
+      color: $gray-80;
     }
   }
 }

@@ -127,22 +127,25 @@ module.exports = {
     //'~/server/routes/authentication',
     //'~/server/routes/roles'
   ],
-  axios: {
-    baseURL: 'http://127.0.0.1:8080'
-  },
   auth: {
-    localStorage: true,
     strategies: {
       local: {
         endpoints: {
           login: {
-            url: '/api/auth/signin',
+            url: '/auth/signin',
             method: 'post',
-            propertyName: 'accessToken'
+            propertyName: 'data'
           },
+          user: false,
           logout: false
         },
+        tokenRequired: false,
+        tokenType: false
       }
     }
   },
+
+  axios: {
+    baseURL: 'http://127.0.0.1:8080/api'
+  }
 }
