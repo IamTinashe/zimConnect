@@ -89,23 +89,27 @@
                 <h3 class="group-header Color-gray-60 mb-lg-2">SELECT THE PROPER</h3>
                 <h2 class="section-header Color-primary mb-5">CATEGORY SKILL</h2>
               </div>
-              <div class="col-sm-12 col-md-6 col-lg-2" v-for="(skill, index) in skills" :key="index">
+              <div class="col-sm-12 col-md-6 col-lg-2 px-1" v-for="(skill, index) in skills" :key="index">
                 <div class="w-100 mb-3">
-                  <div class="bgColor-gray-20 Color-gray-60 bgColor-hover-primary Color-hover-white text-center cursor-pointer py-2 small w-100">
+                  <div
+                    @click="showSkills('skill' + index, 'parentSkill' + index)"
+                    class="bgColor-gray-20 Color-gray-60 bgColor-hover-primary Color-hover-white text-center cursor-pointer py-2 small w-100"
+                    :id="'parentSkill' + index"
+                  >
                     {{skill.name}}
                   </div>
-                  <div class="positions display-none bgColor-gray-20 Color-black text-regular p-3 w-100">
+                  <div :id="'skill' + index" class="z-index-5 skills display-none position-absolute bgColor-gray-20 Color-black small p-2">
                     <ul class="ul">
                       <li v-for="(role, i) in skill.skills" :key="i">
-                        <input type="checkbox" v-model="profile.skill[i]" :id="'skill' + index + i" name="skill" :value="role">
-                        <label class="text-regular Color-black" :for="'skill' + index + i">{{role}}</label>
-                        <div class="check"><div class="inside"></div></div>
+                        <input type="checkbox" v-model="profile.skill[[index],[i]]" :id="'skill' + index + i" :name="role" :value="role">
+                        <label class="small Color-black" :for="'skill' + index + i">{{role}}</label>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+            <hr class=" w-100 Color-gray-40 bgColor-gray-40 border-line">
           </div>
         </div>
       </div>
@@ -125,11 +129,13 @@ export default {
       profile: {
         company: '',
         position: '',
-        skill: []
+        skill: [[],[]]
       },
       positions: {},
       skills: {},
-      token: ''
+      token: '',
+      previousSkillID: '',
+      previousParentID: ''
     }
   },
   async mounted() {
@@ -147,6 +153,31 @@ export default {
     },
     async getSkills(){
       this.skills = await skills.getSkills(this.token);
+    },
+    showSkills(id, parentID){
+      if(this.previousSkillID == '' || this.previousParentID == ''){
+        document.getElementById(id).classList.remove("display-none");
+        document.getElementById(id).classList.add("display-block");
+        document.getElementById(parentID).classList.remove("bgColor-gray-20");
+        document.getElementById(parentID).classList.add("bgColor-primary");
+      }else if (this.previousSkillID == id){
+        document.getElementById(id).classList.add("display-none");
+        document.getElementById(id).classList.remove("display-block");
+        document.getElementById(parentID).classList.add("bgColor-primary");
+      }
+      else{
+        document.getElementById(id).classList.remove("display-none");
+        document.getElementById(this.previousSkillID).classList.add("display-none");
+        document.getElementById(this.previousSkillID).classList.remove("display-block");
+        document.getElementById(id).classList.add("display-block");
+        
+        document.getElementById(this.previousParentID).classList.remove("bgColor-primary");
+        document.getElementById(this.previousParentID).classList.add("bgColor-gray-20");
+        document.getElementById(parentID).classList.remove("bgColor-gray-20");
+        document.getElementById(parentID).classList.add("bgColor-primary");
+      }
+      this.previousSkillID = id;
+      this.previousParentID = parentID;
     }
   },
   head() {
