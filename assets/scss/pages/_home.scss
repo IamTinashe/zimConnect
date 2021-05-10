@@ -1,7 +1,11 @@
 .home{
   .hero{
+    margin-top: 32px;
     @include breakpoint(large){
       height: 100vh;
+    }
+    @include breakpoint(xlarge){
+      margin-top: 0px;
     }
   }
 }
