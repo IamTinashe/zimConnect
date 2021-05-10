@@ -180,6 +180,21 @@
                   <h3 class="body-detail Color-gray-60 mb-5">
                     (40hrs Standard)
                   </h3>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6" v-for="(day, index) in workdays" :key="index">
+                      <input
+                        type="checkbox"
+                        @change="chooseDay(day.name)"
+                        :id="'day' + index"
+                        :name="day.name"
+                        :value="day.name"
+                      />
+                      <label
+                        class="small Color-black"
+                        :for="'day' + index"
+                      >{{ day.name }}</label>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                   <div class="w-100 mb-3">
@@ -212,6 +227,7 @@ import company from "@/assets/js/zimconnect/company";
 import positions from "@/assets/js/zimconnect/positions";
 import skills from "@/assets/js/zimconnect/skills";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
+import workdays from "@/assets/js/zimconnect/workdays";
 export default {
   middleware: ["auth"],
   data() {
@@ -221,12 +237,14 @@ export default {
         company: "",
         position: "",
         skill: [],
+        workdays: []
       },
       positions: {},
       skills: {},
       token: "",
       previousSkillID: "",
-      previousParentID: ""
+      previousParentID: "",
+      workdays: []
     };
   },
   async mounted() {
@@ -234,6 +252,7 @@ export default {
     await this.getCompanies();
     await this.getPositions();
     await this.getSkills();
+    await this.getWorkdays();
   },
   methods: {
     async getCompanies() {
@@ -244,6 +263,9 @@ export default {
     },
     async getSkills() {
       this.skills = await skills.getSkills(this.token);
+    },
+    async getWorkdays(){
+      this.workdays = await workdays.getWorkdays(this.token);
     },
     showSkills(id, parentID) {
       if (this.previousSkillID == "" || this.previousParentID == "") {
@@ -280,7 +302,7 @@ export default {
     async submitForm (){
       let cvs = await cvmatching.getCVs();
       let matched = cvmatching.matchCVs(this.profile, cvs);
-      console.log(matched);
+      console.log(this.profile);
     },
     chooseSkill(skill){
       if(this.profile.skill.includes(skill)){
@@ -288,6 +310,12 @@ export default {
       }else{
         this.profile.skill.push(skill);
       }
+    },
+    chooseDay(day){
+      if(this.profile.workdays.includes(day))
+        this.profile.workdays.splice(this.profile.workdays.indexOf(day), this.profile.workdays.indexOf(day) + 1);
+      else
+        this.profile.workdays.push(day);
     }
   },
   head() {
