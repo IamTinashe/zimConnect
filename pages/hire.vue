@@ -1,9 +1,9 @@
 <template>
   <div class="w-100 hire">
-    <div class="container-fluid bg-image py-5">
-      <div class="container">
+    <div class="container-fluid bg-image">
+      <div class="container wrapper">
         <div class="row justify-content-md-center hero">
-          <div class="col-12 middle-align">
+          <div class="col-12 middle-align mt-5">
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
               <br />

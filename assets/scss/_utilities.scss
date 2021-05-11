@@ -137,3 +137,10 @@
 .display-block{
   display: block;
 }
+
+.show-large-only{
+  display:none;
+  @include breakpoint(medium){
+    display: block;
+  }
+}

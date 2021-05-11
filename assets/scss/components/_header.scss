@@ -1,5 +1,8 @@
 .header{
   .logo{
-    width: 90%;
+    width: 100px;
+    @include breakpoint(large){
+      width: 90%;
+    }
   }
 }

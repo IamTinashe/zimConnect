@@ -2,12 +2,12 @@
   <div class="header position-fixed w-100 z-index-10">
     <div class="container-fluid px-4 py-4 bgColor-primary">
       <div class="row justify-content-md-center mx-lg-2">
-        <div class="col-md-6 Color-white">
+        <div class="show-large-only col-md-6 Color-white">
           <span>PHONE: +75 8746 958</span>
           <span class="ml-2">EMAIL: ZIMCONNECT@ZIMWORX.COM</span>
         </div>
-        <div class="col-md-3 col-lg-4"></div>
-        <div class="col-md-3 col-lg-2 text-right">
+        <div class="show-large-only col-md-3 col-lg-4"></div>
+        <div class="col-sm-12 col-md-3 col-lg-2 text-right">
           <NuxtLink class="Color-white text-decoration-none" to="/register" title="Register">
             <span class="mr-5">SIGNUP</span>
           </NuxtLink>
@@ -23,12 +23,12 @@
     >
       <div class="container">
         <div class="row justify-content-md-center">
-          <div class="col-lg-3">
+          <div class="col-sm-12 col-md-2 col-lg-3">
             <transition name="fade" mode="out-in">
               <img :src="logo" class="logo" alt="ZimConnect" title="ZimConnect"/>
             </transition>
           </div>
-          <div class="col-lg-6">
+          <div class="show-large-only col-md-10 col-lg-6">
             <ul class="body-detail mt-3" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
               <li class="display-inline mx-2">
                 <NuxtLink class="text-decoration-none" to="/" title="Home" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
@@ -42,7 +42,7 @@
               <li class="display-inline mx-2"><i class="fa fa-search"></i></li>
             </ul>
           </div>
-          <div class="col-lg-3">
+          <div class="show-large-only col-lg-3">
             <div v-if="loggedIn" class="text-decoration-none" title="Login">
               <div class="button button-primary border-radius-8 contracted" @click="logout()">
                 LOGOUT
