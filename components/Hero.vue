@@ -18,7 +18,7 @@
                       <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>What are you looking for?</option>
                       </select>
-                      <select class="px-3 select feature-paragraph Color-gray-60">
+                      <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>All Types</option>
                       </select>
                     </div>
@@ -26,7 +26,7 @@
                       <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>Work Schedule</option>
                       </select>
-                      <select class="px-3 select feature-paragraph Color-gray-60">
+                      <select class="px-3 select feature-paragraph Color-gray-60 mb-3">
                         <option>Profession</option>
                       </select>
                     </div>

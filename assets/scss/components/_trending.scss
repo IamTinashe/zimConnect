@@ -5,14 +5,21 @@
     border-radius: 0px 12px 12px 0px;
   }
 
-  .wrapper:after {
-    content: "";
-    background-color: $gray-30;
-    position: absolute;
-    width: 1px;
-    height: 80%;
-    top: 20px;
-    left: 99%;
-    display: block;
+  .wrapper{
+    border-bottom: 1px solid $gray-30;
+    @include breakpoint(large){
+      border-bottom: none;
+      &:after{
+        border-bottom: none;
+        content: "";
+        background-color: $gray-30;
+        position: absolute;
+        width: 1px;
+        height: 80%;
+        top: 20px;
+        left: 99%;
+        display: block;
+      }
+    }
   }
 }

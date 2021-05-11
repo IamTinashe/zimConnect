@@ -4,10 +4,10 @@
       <div class="container">
         <div class="box-shadow-2 bgColor-white tr-section">
           <div class="row">
-            <div class="col-lg-2 bgColor-primary Color-white py-5">
+            <div class="col-sm-12 col-lg-2 bgColor-primary Color-white px-5 px-lg-0 py-5">
               <h2 class="text-center py-5 title">TRENDING JOBS</h2>
             </div>
-            <div class="col-lg-3 wrapper px-4 py-4">
+            <div class="col-sm-12 col-lg-3 bgColor-white wrapper px-5 px-lg-4 py-4">
               <h3 class="Color-primary feature-paragraph pb-1">
                 Dental Coordinator
               </h3>
@@ -17,7 +17,7 @@
                 is a Bachelor's degree and we will train you and then help place you with the right company.
               </p>
             </div>
-            <div class="col-lg-3 wrapper px-3 py-4">
+            <div class="col-sm-12 col-lg-3 bgColor-white wrapper px-5 px-lg-3 py-4">
               <h3 class="Color-primary feature-paragraph pb-1">
                 IT Client Liaison/Compliance & Security Officer
               </h3>
@@ -29,7 +29,7 @@
                 made to the network.
               </p>
             </div>
-            <div class="col-lg-3 px-4 py-4">
+            <div class="col-sm-12 col-lg-3 bgColor-white px-5 px-lg-4 py-4">
               <h3 class="Color-primary feature-paragraph pb-1">
                 Telemarketer
               </h3>
