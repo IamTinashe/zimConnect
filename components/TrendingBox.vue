@@ -48,18 +48,17 @@
           <div class="row">
             <div class="col-lg-12">
               <div
-                class="bgColor-white pt-3 px-5 box-shadow-1 mb-5 border-radius-2"
+                class="bgColor-white pt-3 px-4 px-lg-5 box-shadow-1 mb-5 border-radius-2 recent-card"
                 v-for="(job, index) in listedJobs"
                 :key="index"
-                style="height: 220px;"
               >
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-sm-12 col-md-3 mb-3 mb-lg-0">
                     <div class="circular-portrait">
                       <img :src="job.featured_img_src" :alt="job.title" class="img"/>
                     </div>
                   </div>
-                  <div class="col-md-9 middle-align">
+                  <div class="col-sm-12 col-md-9 middle-align mb-3 mb-lg-0">
                     <h3 class="p-small Color-gray-80 mb-1">{{job.title}}</h3>
                     <pre class="Color-gray pre text-regular">{{job.description}}</pre>
                     <a
@@ -67,7 +66,7 @@
                       :title="job.title"
                       target="_blank"
                     >
-                      <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-10 py-1 float-left">
+                      <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 px-3 py-1 float-left">
                         <span class="small">APPLY</span>
                       </div>
                     </a>

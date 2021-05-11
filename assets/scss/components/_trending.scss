@@ -22,4 +22,10 @@
       }
     }
   }
+
+  .recent-card{
+    @include breakpoint(large){
+      height: 220px;
+    }
+  }
 }

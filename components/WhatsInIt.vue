@@ -10,7 +10,7 @@
           products, services and company policies.
         </p>
         <div
-          class="button button-primary bgColor-white borderColor-white border-radius-4 w-10 py-2"
+          class="button button-primary button-size-200 bgColor-white borderColor-white border-radius-4 py-2"
         >
           <span class="text-regular Color-black">HOW IT WORKS</span>
         </div>
@@ -86,11 +86,11 @@
           <h3 class="section-header Color-gray-80 pb-4">
             <span class="text-underline-80">I'M AN EMPLOYER</span>
           </h3>
-          <p class="text-regular Color-gray-60 mb-5">
+          <p class="text-regular Color-gray-60 mb-5 px-3">
             Register as an employer to view potential candidates for your business
           </p>
           <NuxtLink to='/register' title="Register as a Company" class="text-decoration-none">
-            <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 w-20 mb-4 py-2">
+            <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 button-size-200 mb-4 py-2">
               <span class="text-regular">REGISTER AS A COMPANY</span>
             </div>
           </NuxtLink>
@@ -103,7 +103,7 @@
             Register and upload your CV.
           </p>
           <a href="https://zimbojobs.com" target="_blank" title="Register as a Candidate" class="text-decoration-none">
-            <div class="button button-primary bgColor-white Color-black borderColor-white border-radius-4 w-20 mb-4 py-2">
+            <div class="button button-primary bgColor-white Color-black borderColor-white border-radius-4 button-size-200 mb-4 py-2">
               <span class="text-regular">REGISTER AS A CANDIDATE</span>
             </div>
           </a>
