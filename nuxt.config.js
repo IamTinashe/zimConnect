@@ -4,12 +4,13 @@ const session = require('express-session');
 require('dotenv').config();
 const routes = require('./assets/json/routes.json');
 const manifest = require('./manifest.json');
+const BASE_URL = 'http://159.69.120.82';
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreen
 module.exports = {
   env: {
-    Base: 'https://zimconnect.org',
+    Base: BASE_URL,
     title: 'Zimconnect',
-    baseUrl: process.env.BASE_URL || 'http://159.69.120.82'
+    baseUrl: process.env.BASE_URL || BASE_URL
   },
   helmet: {
     dnsPrefetchControl: true,
@@ -22,7 +23,7 @@ module.exports = {
     referrerPolicy: true,
   },
   sitemap: {
-    hostname: 'https://zimconnect.org',
+    hostname: BASE_URL,
     gzip: true,
     path: '/sitemap.xml',
     exclude: [
@@ -58,14 +59,14 @@ module.exports = {
       { name: 'distribution', content: 'Global' },
       { name: 'rating', content: 'safe for kids' },
       { name: 'copyright', content: 'Zimworx' },
-      { name: 'url', content: 'https://zimconnect.org' },
-      { name: 'identifier-URL', content: 'https://zimconnect.org' },
+      { name: 'url', content: BASE_URL },
+      { name: 'identifier-URL', content: BASE_URL },
       { name: 'author', content: 'Zimworx' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'ZimConnect' },
       { property: 'og:type', content: 'website' },
       { property: 'og:title', content: 'ZimConnect' },
       { property: 'og:description', content: '' },
-      { hid: 'og:url', property: 'og:url', content: 'https://zimconnect.org' },
+      { hid: 'og:url', property: 'og:url', content: BASE_URL },
       { hid: 'og:image', property: 'og:image', content: '' },
       { hid: 'og:image:width', property: 'og:image:width', content: 1200 },
       { hid: 'og:image:height', property: 'og:image:height', content: 630 },
@@ -147,6 +148,6 @@ module.exports = {
   },
 
   axios: {
-    baseURL: 'http://159.69.120.82/api'
+    baseURL: BASE_URL + '/api'
   }
 }
