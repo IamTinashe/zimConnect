@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASEUrl = 'http://127.0.0.1:8080';
+const BASEUrl = process.env.baseUrl;
 
 class Skills {
   static getSkills(token){

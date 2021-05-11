@@ -8,7 +8,8 @@ const manifest = require('./manifest.json');
 module.exports = {
   env: {
     Base: 'https://zimconnect.org',
-    title: 'Zimconnect'
+    title: 'Zimconnect',
+    baseUrl: process.env.BASE_URL || 'http://159.69.120.82'
   },
   helmet: {
     dnsPrefetchControl: true,
