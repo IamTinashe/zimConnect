@@ -1,7 +1,7 @@
 <template>
-  <div class="bgColor-gray-10 py-5">
+  <div class="bgColor-gray-10 py-5 force-top">
     <div class="trending container-fluid">
-      <div class="container">
+      <div class="container mt-lg-4">
         <div class="box-shadow-2 bgColor-white tr-section">
           <div class="row">
             <div class="col-sm-12 col-lg-2 bgColor-primary Color-white px-5 px-lg-0 py-5">
