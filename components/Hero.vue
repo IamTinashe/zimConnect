@@ -1,7 +1,7 @@
 <template>
-  <div class="w-100 home">
+  <div class="w-100 home bgimage">
     <div class="container-fluid">
-      <div class="container">
+      <div class="container mt-5 mt-lg-0 pt-5 pt-lg-0">
         <div class="row hero">
           <div class="col-lg-12 middle-align">
             <p class="text-center text-hero Color-white pb-1">

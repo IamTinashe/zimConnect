@@ -1,6 +1,23 @@
 .video-bg-layout{
   display: none;
 }
+
+@media only screen and (max-width: 1024px) {
+  .bgimage{
+    background-image: url("/images/joina.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .bgimage{
+    background-image: url("/images/joina-mobile.jpg");
+    background-size: cover
+  }
+}
 @include breakpoint(large){
   .video-bg-layout{
     width: 100%;
