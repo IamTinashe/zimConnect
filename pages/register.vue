@@ -5,22 +5,36 @@
     </div>
     <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
-        <div class="row justify-content-md-center hero">
+        <div class="row justify-content-md-center pt-5 pt-lg-0 hero">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead">Register</h2>
-            <form class="form pt-3">
+            <h2 class="text-center Color-gray-80 subhead mt-5">Register</h2>
+            <small class="text-center Color-error" v-if="error.length > 0">{{error}} </small>
+            <form class="form pt-3" @submit.prevent="register()">
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="fullname">Fullname*</label>
+              <input v-model="user.fullname" type="text" id="fullname" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
+              <input v-model="user.username" type="text" id="username" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+
               <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email Address*</label>
-              <input type="email" id="email" class="form-input w-100 px-3 py-3 mb-4"/>
+              <input v-model="user.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="company">Company*</label>
+              <select id="company" v-model="user.companyID" class="px-3 select feature-paragraph Color-gray-60 py-2 py-lg-3 mb-3">
+                <option v-for="(company, index) in allCompanies" :key="index" :value="company.id">
+                  {{company.name}}
+                </option>
+              </select>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
-              <input type="password" id="password" class="form-input w-100 px-3 py-3 mb-4"/>
+              <input  v-model="user.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Confirm Password*</label>
-              <input type="password" id="confirm_password" class="form-input w-100 px-3 py-3 mb-4"/>
+              <input v-model="confirmpass" type="password" id="confirm_password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
 
-              <div class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-16 py-3">
+              <button class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-16 w-100 py-2 py-lg-3">
                 REGISTER
-              </div>
+              </button>
             </form>
           </div>
         </div>
@@ -33,9 +47,49 @@
 </template>
 
 <script>
+import company from "@/assets/js/zimconnect/company";
+import users from "@/assets/js/zimconnect/users";
 export default {
-  mounted(){
-    
+  data() {
+    return {
+      allCompanies: [],
+      user: {
+        fullname: '',
+        username: '',
+        email: '',
+        companyID: '',
+        password: '',
+        roles: ["user", "mod"]
+      },
+      confirmpass: '',
+      error: ''
+    };
+  },
+  async mounted() {
+    this.token = window.localStorage.getItem("auth._token.local");
+    await this.getCompanies();
+  },
+  methods: {
+    async getCompanies() {
+      this.allCompanies = await company.getCompanies(this.token);
+    },
+    async register(){
+      if (this.validateEmail(this.user.email)){
+        if(this.confirmPassword()){
+           await users.addUser(this.user);
+        }else {
+          this.error = 'Please confirm your password. Passwords do not match.'
+        }
+      }else{
+        this.error = 'Please enter a valid email address'
+      }
+    },
+    validateEmail(email){
+      return (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+    },
+    confirmPassword(){
+      return this.confirmpass == this.user.password;
+    }
   },
   head() {
     return {

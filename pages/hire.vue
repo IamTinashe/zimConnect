@@ -301,8 +301,9 @@ export default {
     },
     async submitForm (){
       let cvs = await cvmatching.getCVs();
-      let matched = cvmatching.matchCVs(this.profile, cvs);
-      console.log(this.profile);
+      cvs = cvmatching.filterByEducation(cvs);
+      cvs = cvmatching.filterByGoodName(cvs);
+      console.log(cvs);
     },
     chooseSkill(skill){
       if(this.profile.skill.includes(skill)){

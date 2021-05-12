@@ -1,0 +1,10 @@
+{
+  "accounting": [{
+    "bookkeeping": [
+      {"skill": {
+        "name": "ACCA",
+        "weight": ".5"
+      }}
+    ]
+  }]
+}

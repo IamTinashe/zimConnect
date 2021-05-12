@@ -15,8 +15,32 @@ class CVmatching{
     })
   }
 
-  static matchCVs(profile, cvs){
-    console.log(cvs)
+  static filterByEducation(cvs){
+    let index = 0, i = 0;
+    for(index in cvs)
+      if(cvs[index].education_academy.length === 0 || cvs[index].education_academy === "" || cvs[index].education_academy[0] === ""){
+        cvs.splice(index, 1);
+        index--;
+      }
+
+    for(i in cvs)
+      while(cvs[i].education_academy.length === 0 || cvs[i].education_academy === "" || cvs[i].education_academy[0] === "")
+        this.filterByEducation(cvs)
+    return cvs;
+  }
+
+  static filterByGoodName(cvs){
+    let index = 0, i = 0;
+    for(index in cvs)
+      if(!cvs[index].fullname.includes(' ')){
+        cvs.splice(index, 1);
+        index--;
+      }
+
+    for(i in cvs)
+      while(!cvs[index].fullname.includes(' '))
+        this.filterByGoodName(cvs)
+    return cvs;
   }
 }
 
