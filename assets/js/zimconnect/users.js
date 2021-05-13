@@ -21,15 +21,14 @@ class Users {
 
   static addUser(user){
     let api = '/api/auth/signup';
-    console.log(user)
-    /*return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, user)
+        let response = await axios.post(BASEUrl + api, user);
         resolve(response.data);
       } catch (error) {
-        reject(error)
+        reject(error.response);
       }
-    }) */
+    })
   }
 }
 

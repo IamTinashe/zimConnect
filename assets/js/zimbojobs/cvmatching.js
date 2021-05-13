@@ -10,7 +10,7 @@ class CVmatching{
         let response = await axios.get(BASEUrl + api)
         resolve(response.data);
       } catch (error) {
-        reject(error)
+        reject(error.response)
       }
     })
   }

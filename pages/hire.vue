@@ -256,7 +256,7 @@ export default {
   },
   methods: {
     async getCompanies() {
-      this.allCompanies = await company.getCompanies(this.token);
+      this.allCompanies = await company.getCompanies();
     },
     async getPositions() {
       this.positions = await positions.getPositions(this.token);

@@ -2,19 +2,14 @@ import axios from 'axios'
 const BASEUrl = process.env.baseUrl;
 
 class Company {
-    static getCompanies(token){
+    static getCompanies(){
         let api = '/api/company/all';
-        let config = {
-            headers: {
-                Authorization: `${token}`
-            }
-        };
         return new Promise(async (resolve, reject) => {
           try {
-            let response = await axios.get(BASEUrl + api, config)
+            let response = await axios.get(BASEUrl + api)
             resolve(response.data);
           } catch (error) {
-            reject(error)
+            reject(error.response)
           }
         })
       }

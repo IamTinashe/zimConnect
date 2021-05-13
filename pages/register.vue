@@ -5,37 +5,42 @@
     </div>
     <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
-        <div class="row justify-content-md-center pt-5 pt-lg-0 hero">
+        <div class="row justify-content-md-center pt-5 pt-lg-0 hero" v-if="message.length <= 0">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
             <h2 class="text-center Color-gray-80 subhead mt-5">Register</h2>
             <small class="text-center Color-error" v-if="error.length > 0">{{error}} </small>
             <form class="form pt-3" @submit.prevent="register()">
               <label class="ml-2 Color-gray-80 feature-paragraph" for="fullname">Fullname*</label>
-              <input v-model="user.fullname" type="text" id="fullname" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+              <input v-model="user.fullname" type="text" id="fullname" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
-              <input v-model="user.username" type="text" id="username" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+              <input v-model="user.username" type="text" id="username" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email Address*</label>
-              <input v-model="user.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+              <input v-model="user.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="company">Company*</label>
-              <select id="company" v-model="user.companyID" class="px-3 select feature-paragraph Color-gray-60 py-2 py-lg-3 mb-3">
+              <select id="company" v-model="user.companyID" class="px-3 select feature-paragraph Color-gray-60 py-2 py-lg-3 mb-3" required>
                 <option v-for="(company, index) in allCompanies" :key="index" :value="company.id">
                   {{company.name}}
                 </option>
               </select>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
-              <input  v-model="user.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+              <input  v-model="user.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Confirm Password*</label>
-              <input v-model="confirmpass" type="password" id="confirm_password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4"/>
+              <input v-model="confirmpass" type="password" id="confirm_password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <button class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-16 w-100 py-2 py-lg-3">
                 REGISTER
               </button>
             </form>
+          </div>
+        </div>
+        <div class="row justify-content-md-center pt-5 pt-lg-0 hero" v-else>
+          <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
+            <h2 class="text-center Color-gray-80 subhead mt-5">Your Account was successfully created!</h2>
           </div>
         </div>
       </div>
@@ -62,23 +67,31 @@ export default {
         roles: ["user", "mod"]
       },
       confirmpass: '',
-      error: ''
+      error: '',
+      message: ''
     };
   },
   async mounted() {
-    this.token = window.localStorage.getItem("auth._token.local");
     await this.getCompanies();
   },
   methods: {
     async getCompanies() {
-      this.allCompanies = await company.getCompanies(this.token);
+      this.allCompanies = await company.getCompanies();
     },
     async register(){
       if (this.validateEmail(this.user.email)){
-        if(this.confirmPassword()){
-           await users.addUser(this.user);
-        }else {
-          this.error = 'Please confirm your password. Passwords do not match.'
+        if(this.validatePassword(this.user.password)){
+          if(this.confirmPassword()){
+            try {
+              let response = await users.addUser(this.user);
+              this.message = response.message;
+            }catch(error){
+              console.log(error)
+              this.error = error;
+            }
+          }else {
+            this.error = 'Passwords do not match. Please confirm your password.'
+          }
         }
       }else{
         this.error = 'Please enter a valid email address'
@@ -89,6 +102,32 @@ export default {
     },
     confirmPassword(){
       return this.confirmpass == this.user.password;
+    },
+    validatePassword(password){
+      let lowerCaseLetters = /[a-z]/g;
+      let upperCaseLetters = /[A-Z]/g;
+      let numbers = /[0-9]/g;
+      if(!password.match(lowerCaseLetters)){
+        this.error = 'Your password needs to have at least 1 lowercase letter';
+        return false;
+      }
+
+      if(!password.match(upperCaseLetters)){
+        this.error = 'Your password needs to have at least 1 uppercase letter';
+        return false;
+      }
+
+      if(!password.match(numbers)){
+        this.error = 'Your password needs to have at least 1 digit';
+        return false;
+      }
+
+      if(password.length < 8){
+        this.error = 'Your password needs to be at least 8 characters long';
+        return false;
+      }
+
+      return true;
     }
   },
   head() {
