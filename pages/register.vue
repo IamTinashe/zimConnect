@@ -82,12 +82,15 @@ export default {
       if (this.validateEmail(this.user.email)){
         if(this.validatePassword(this.user.password)){
           if(this.confirmPassword()){
-            try {
-              let response = await users.addUser(this.user);
-              this.message = response.message;
-            }catch(error){
-              console.log(error)
-              this.error = error;
+            if(this.validateUsername(this.user.username)){
+              try {
+                let response = await users.addUser(this.user);
+                this.message = response.message;
+              }catch(error){
+                this.error = error.data.message;
+              }
+            }else{
+              this.error = 'Please remove any special characters in your username'
             }
           }else {
             this.error = 'Passwords do not match. Please confirm your password.'
@@ -128,6 +131,20 @@ export default {
       }
 
       return true;
+    },
+    validateUsername(username){
+      return (
+        !username.startsWith(".") &&
+        !username.startsWith("_") &&
+        !username.endsWith(".") &&
+        !username.endsWith("_") &&
+        !username.includes("..") &&
+        !username.includes("__") &&
+        !username.includes("._") &&
+        !username.includes(" ") &&
+        !username.includes("'") &&
+        !username.includes("_.")
+      );
     }
   },
   head() {
