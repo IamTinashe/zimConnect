@@ -8,7 +8,7 @@
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
             <h2 class="text-center Color-gray-80 subhead py-4">LOGIN</h2>
-            <form class="form pt-3 pb-5" @submit.prevent="userLogin">
+            <form class="form pt-3 pb-5" @submit.prevent="userLogin()">
               <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
               <input v-model="login.username" type="text" id="username" class="form-input w-100 px-3 py-3 mb-4"/>
 
@@ -36,19 +36,19 @@ export default {
       login: {
         username: '',
         password: ''
-      }
+      },
+      error: ''
     }
   },
   methods: {
     async userLogin() {
       try {
-        let res = await this.$auth.loginWith('local', { data: {'username': this.login.username, 'password' : this.login.password}});
-        console.log(res);
-        //.then(this.$router.push('/hire'));
+        await this.$store.dispatch("login", {username: this.login.username, password: this.login.password});
+        window.location.href = '/hire'   
       } catch (error) {
-        console.log(error)
+        this.error = error.message;
       }
-    }
+    },
   },
   head() {
     return {

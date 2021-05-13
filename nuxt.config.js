@@ -4,8 +4,8 @@ const session = require('express-session');
 require('dotenv').config();
 const routes = require('./assets/json/routes.json');
 const manifest = require('./manifest.json');
-const BASE_URL = 'http://159.69.120.82';
-//const BASE_URL = 'http://127.0.0.1:8080';
+//const BASE_URL = 'http://159.69.120.82';
+const BASE_URL = 'http://127.0.0.1:8080';
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreen
 module.exports = {
   env: {
@@ -118,14 +118,6 @@ module.exports = {
   },
   serverMiddleware: [
     express.json(),
-    session({
-      secret: '12345',
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        maxAge: 6000000
-      }
-    }),
     //'~/server/routes/users',
     //'~/server/routes/authentication',
     //'~/server/routes/roles'
