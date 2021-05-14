@@ -2,12 +2,14 @@ import axios from 'axios';
 const BASEUrl = process.env.baseUrl;
 
 export const state = () => ({
+  isLoggedIn: false,
   authUser: null
 })
 
 export const mutations = {
   SET_USER: function (state, user) {
     state.authUser = user;
+    state.isLoggedIn = true;
   }
 }
 

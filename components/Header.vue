@@ -61,25 +61,26 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
-  computed: {
-    ...mapState('auth', ['loggedIn', 'user'])
-  },
   data() {
     return {
       isActive: true,
       scroll: 1,
       logo: '/icons/logo-white.png',
+      loggedIn: this.$store.$auth.$state.loggedIn
     }
   },
   mounted () {
     document.addEventListener('scroll', this.handleScroll);
+    console.log(this.$store.$auth.$state.loggedIn);
   },
   methods: {
     async logout() {
-      await this.$auth.logout()
-      this.$router.push('/')
+      await this.$auth.logout();
+      await this.$store.dispatch('logout')
+      .then(()=> {
+        window.location.href = '/';
+      })
     },
     handleScroll (event) {
       this.scroll = window.scrollY || window.scrollTop

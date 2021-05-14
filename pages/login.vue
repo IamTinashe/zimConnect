@@ -44,16 +44,16 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$store.$auth.$state.loggedIn)
+    //console.log(this.$store.$auth.$state.loggedIn)
   },
   methods: {
     async userLogin() {
       try {
         await this.$store.dispatch("login", {username: this.login.username, password: this.login.password})
         .then((response)=>{
-          if(response)
+          if(response){
             window.location.href = '/hire'
-          else
+          }else
             this.error = "Failed to connect"
         });
       } catch (error) {
