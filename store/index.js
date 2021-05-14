@@ -7,7 +7,7 @@ export const state = () => ({
 
 export const mutations = {
   SET_USER: function (state, user) {
-    state.authUser = user
+    state.authUser = user;
   }
 }
 
@@ -20,16 +20,24 @@ export const actions = {
 
   async login({commit}, {username, password}) {
     let api = '/api/auth/signin';
-    try {
-      const {data} = await axios.post(BASEUrl + api, {username, password})
-      commit('SET_USER', data)
-    }catch(error) {
-      if (error.response) 
-        throw new Error(error.response)
-    }
+    return new Promise(async (resolve, reject) => {
+      try {
+        let response = await axios.post(BASEUrl + api, {username, password});
+        let user = {id: response.data.id, accessToken: response.data.accessToken};
+        commit('SET_USER', user);
+        window.localStorage.setItem('accessToken', 'Bearer ' + user.accessToken);
+        window.localStorage.setItem('id', user.id);
+        resolve(response.data);
+      } catch (error) {
+        reject(error.response);
+      }
+    })
   },
   
   async logout({commit}) {
-    commit('SET_USER', null)
+    window.localStorage.removeItem('accessToken');
+    window.localStorage.removeItem('id');
+    window.localStorage.clear(); //Just to be sure
+    commit('SET_USER', null);
   },
 }
