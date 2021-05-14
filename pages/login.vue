@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  middleware: 'auth',
+  middleware: ["auth"],
   data() {
     return {
       login: {
@@ -40,21 +40,22 @@ export default {
         password: ''
       },
       error: '',
-      loggedIn: this.$store.$auth.$state.loggedIn
+      loggedIn: false
     }
   },
   mounted(){
-    //console.log(this.$store.$auth.$state.loggedIn)
+    this.loggedIn = this.$store.state.auth.loggedIn;
   },
   methods: {
     async userLogin() {
       try {
         await this.$store.dispatch("login", {username: this.login.username, password: this.login.password})
-        .then((response)=>{
-          if(response){
-            window.location.href = '/hire'
+        .then((user)=>{
+          if(user){
+            this.$auth.setUser(user);
+            window.location.href = '/hire';
           }else
-            this.error = "Failed to connect"
+            this.error = "Failed to connect";
         });
       } catch (error) {
         this.error = (error.data.message.length > 0)? error.data.message : 'Login credentials mismatch';

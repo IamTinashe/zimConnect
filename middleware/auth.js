@@ -1,4 +1,4 @@
-export default function ({store}) {
-  if (store.auth.state.loggedIn)
-    window.location.href = '/hire';
+export default function ({ store, redirect }) {
+  if (store.state.auth.loggedIn)
+    return redirect('/hire');
 }

@@ -67,18 +67,19 @@ export default {
       isActive: true,
       scroll: 1,
       logo: '/icons/logo-white.png',
-      loggedIn: this.$store.$auth.$state.loggedIn
+      loggedIn: false
     }
   },
   mounted () {
+    console.log(this.$store.state.auth);
     document.addEventListener('scroll', this.handleScroll);
-    console.log(this.$store.$auth.$state.loggedIn);
+    this.loggedIn = this.$store.state.auth.loggedIn;
   },
   methods: {
     async logout() {
-      await this.$auth.logout();
       await this.$store.dispatch('logout')
-      .then(()=> {
+      .then(async ()=> {
+        await this.$auth.logout();
         window.location.href = '/';
       })
     },

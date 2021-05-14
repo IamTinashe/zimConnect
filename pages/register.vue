@@ -55,7 +55,7 @@
 import company from "@/assets/js/zimconnect/company";
 import users from "@/assets/js/zimconnect/users";
 export default {
-  middleware: 'auth',
+  middleware: ["auth"],
   data() {
     return {
       allCompanies: [],

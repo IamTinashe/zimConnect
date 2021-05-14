@@ -2,21 +2,23 @@ import axios from 'axios';
 const BASEUrl = process.env.baseUrl;
 
 export const state = () => ({
-  isLoggedIn: false,
-  authUser: null
+  auth: {
+    loggedIn: false,
+    user: null
+  }
 })
 
 export const mutations = {
-  SET_USER: function (state, user) {
-    state.authUser = user;
-    state.isLoggedIn = true;
+  SET_USER: function (state, user, loginState) {
+    state.auth.loggedIn = loginState;
+    state.auth.user = user;
   }
 }
 
 export const actions = {
   nuxtServerInit({ commit }, { req }) {
-    if (req.session && req.session.authUser) {
-      commit('SET_USER', req.session.authUser)
+    if (req.session && req.session.auth.user) {
+      commit('SET_USER', req.session.auth.user, loginState);
     }
   },
 
@@ -26,9 +28,10 @@ export const actions = {
       try {
         let response = await axios.post(BASEUrl + api, {username, password});
         let user = {id: response.data.id, accessToken: response.data.accessToken};
-        commit('SET_USER', user);
+        commit('SET_USER', user, true);
         window.localStorage.setItem('accessToken', 'Bearer ' + user.accessToken);
         window.localStorage.setItem('id', user.id);
+        window.localStorage.setItem('loggedIn', true);
         resolve(response.data);
       } catch (error) {
         reject(error.response);
@@ -39,7 +42,9 @@ export const actions = {
   async logout({commit}) {
     window.localStorage.removeItem('accessToken');
     window.localStorage.removeItem('id');
+    window.localStorage.removeItem('loggedIn');
+    window.localStorage.removeItem('auth.strategy');
     window.localStorage.clear(); //Just to be sure
-    commit('SET_USER', null);
+    commit('SET_USER', null, false);
   },
 }

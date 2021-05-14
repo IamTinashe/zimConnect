@@ -229,7 +229,7 @@ import skills from "@/assets/js/zimconnect/skills";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
 export default {
-  middleware: ["auth"],
+  middleware: ["noneauth"],
   data() {
     return {
       allCompanies: [],
@@ -248,7 +248,10 @@ export default {
     };
   },
   async mounted() {
-    this.token = window.localStorage.getItem("auth._token.local");
+    if (localStorage.getItem("loggedIn") === null) 
+      window.location.href = '/login';
+    else
+      this.token = window.localStorage.getItem("accessToken");
     await this.getCompanies();
     await this.getPositions();
     await this.getSkills();
