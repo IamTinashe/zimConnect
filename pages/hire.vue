@@ -303,9 +303,18 @@ export default {
     },
     async submitForm (){
       let cvs = await cvmatching.getCVs();
-      cvs = cvmatching.filterByEducation(cvs);
       cvs = cvmatching.filterByGoodName(cvs);
-      console.log(cvs);
+      let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
+      filteredCVs = cvmatching.filterByEducation(cvs, filteredCVs);
+      filteredCVs = cvmatching.sortFilters(filteredCVs);
+
+      //let x = 0
+      //for(x = 0; x < 10; x++){
+      //  console.log(cvs[filteredCVs[x].index]);
+      //}
+
+      //console.log(filteredCVs)
+      
     },
     chooseSkill(skill){
       if(this.profile.skill.includes(skill)){
