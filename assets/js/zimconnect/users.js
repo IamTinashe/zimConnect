@@ -14,7 +14,19 @@ class Users {
         let response = await axios.get(BASEUrl + api, config)
         resolve(response.data);
       } catch (error) {
-        reject(error)
+        reject(error.response);
+      }
+    })
+  }
+
+  static getUserId(id){
+    return new Promise(async (resolve, reject) => {
+      try {
+        let api = '/api/user/' + id;
+        let response = await axios.get(BASEUrl + api);
+        resolve(response.data);
+      } catch (error) {
+        reject(error.response);
       }
     })
   }

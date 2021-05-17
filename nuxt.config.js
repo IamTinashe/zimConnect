@@ -109,7 +109,6 @@ module.exports = {
   ],
   plugins: [],
   modules: [
-    "@nuxtjs/auth",
     "@nuxtjs/axios",
   ],
   build: {
@@ -123,21 +122,6 @@ module.exports = {
     //'~/server/routes/roles'
   ],
   auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: '/auth/signin',
-            method: 'post',
-            propertyName: 'data'
-          },
-          user: false,
-          logout: false
-        },
-        tokenRequired: false,
-        tokenType: false
-      }
-    }
   },
 
   axios: {

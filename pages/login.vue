@@ -52,13 +52,12 @@ export default {
         await this.$store.dispatch("login", {username: this.login.username, password: this.login.password})
         .then((user)=>{
           if(user){
-            this.$auth.setUser(user);
             window.location.href = '/hire';
           }else
             this.error = "Failed to connect";
         });
       } catch (error) {
-        this.error = (error.data.message.length > 0)? error.data.message : 'Login credentials mismatch';
+        this.error = ((typeof error.data.message === "undefined") && (error.data.message.length > 0))? error.data.message : 'Login credentials mismatch';
       }
     },
   },

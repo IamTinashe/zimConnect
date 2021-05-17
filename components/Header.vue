@@ -8,12 +8,15 @@
         </div>
         <div class="show-large-only col-md-3 col-lg-4"></div>
         <div class="col-sm-12 col-md-3 col-lg-2 text-right">
-          <NuxtLink class="Color-white text-decoration-none" to="/register" title="Register">
+          <NuxtLink v-if="!loggedIn" class="Color-white text-decoration-none" to="/register" title="Register">
             <span class="mr-5">SIGNUP</span>
           </NuxtLink>
-          <NuxtLink class="Color-white text-decoration-none" to="/login" title="Login">
+          <NuxtLink v-if="!loggedIn" class="Color-white text-decoration-none" to="/login" title="Login">
             <span>SIGNIN</span>
           </NuxtLink>
+          <p v-else class="Color-white text-decoration-none">
+            <span class="mr-5">{{user.fullname}}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -35,10 +38,26 @@
                   Home
                 </NuxtLink>
               </li>
-              <li class="display-inline mx-2">Jobs</li>
-              <li class="display-inline mx-2">Candidates</li>
-              <li class="display-inline mx-2">Employers</li>
-              <li class="display-inline mx-2">Contact Us</li>
+              <li class="display-inline mx-2">
+                <a class="text-decoration-none" href="https://zimbojobs.com" target="_blank" title="Jobs" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  Jobs
+                </a>
+              </li>
+              <li class="display-inline mx-2">
+                <NuxtLink class="text-decoration-none" to="/hire" title="Candidates" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  Candidates
+                </NuxtLink>
+              </li>
+              <li class="display-inline mx-2">
+                <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" title="Employers" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  Employers
+                </a>
+              </li>
+              <li class="display-inline mx-2">
+                <NuxtLink class="text-decoration-none" to="/contact" title="Contact Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  Contact Us
+                </NuxtLink>
+              </li>
               <li class="display-inline mx-2"><i class="fa fa-search"></i></li>
             </ul>
           </div>
@@ -61,25 +80,46 @@
 </template>
 
 <script>
+import users from "@/assets/js/zimconnect/users";
 export default {
   data() {
     return {
       isActive: true,
       scroll: 1,
       logo: '/icons/logo-white.png',
-      loggedIn: false
+      loggedIn: false,
+      error: '',
+      user: {},
+      id: ''
     }
   },
-  mounted () {
-    console.log(this.$store.state.auth);
+  async mounted () {
+    if(window.localStorage.getItem('id') != null){
+      this.id = window.localStorage.getItem('id');
+      await this.autoLogin();
+      await this.getUser();
+    }
     document.addEventListener('scroll', this.handleScroll);
-    this.loggedIn = this.$store.state.auth.loggedIn;
   },
   methods: {
+    async autoLogin(){
+      if(window.localStorage.getItem('id').length > 0){
+        try {
+          this.loggedIn = Boolean(window.localStorage.getItem('loggedIn'));
+          await this.$store.dispatch("autoLogin", {id: this.id, token: window.localStorage.getItem('accessToken')});
+        } catch (error) {
+          this.error = (error.data.message.length > 0)? error.data.message : 'Login credentials mismatch';
+        }
+      }
+    },
+    async getUser(){
+      if(this.loggedIn){
+        this.user = await users.getUserId(this.id);
+      }
+    },
     async logout() {
       await this.$store.dispatch('logout')
       .then(async ()=> {
-        await this.$auth.logout();
         window.location.href = '/';
       })
     },

@@ -229,7 +229,6 @@ import skills from "@/assets/js/zimconnect/skills";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
 export default {
-  middleware: ["noneauth"],
   data() {
     return {
       allCompanies: [],
