@@ -306,12 +306,13 @@ export default {
       cvs = cvmatching.filterByGoodName(cvs);
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
       filteredCVs = cvmatching.filterByEducation(cvs, filteredCVs);
+      filteredCVs = cvmatching.filterByExperience(cvs, filteredCVs);
       filteredCVs = cvmatching.sortFilters(filteredCVs);
 
-      //let x = 0
-      //for(x = 0; x < 10; x++){
-      //  console.log(cvs[filteredCVs[x].index]);
-      //}
+      let x = 0
+      for(x = 0; x < 20; x++){
+        console.log(cvs[filteredCVs[x].index]);
+      }
 
       //console.log(filteredCVs)
       
