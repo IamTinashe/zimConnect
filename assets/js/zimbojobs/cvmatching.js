@@ -38,20 +38,20 @@ class CVmatching {
         for (i in educationAcademy) {
           if (educationAcademy[i].toLowerCase().includes('polytech') || educationAcademy[i].toLowerCase().includes('training')) {
             educationAcademy.splice(i, 1);
-            weight = weight + 0.5;
+            weight = weight + 1;
           } else if (educationAcademy[i].toLowerCase().includes('university') || educationAcademy[i].toLowerCase().includes('institute')) {
             if (cvs[index].education.length > 0) {
               let education = this.removeDups(cvs[index].education);
               let j = 0;
               for (j in education) {
                 if (education[j].toLowerCase().includes('bachelor') || education[j].toLowerCase().includes('b.sc') || education[j].toLowerCase().includes('b.a') || education[j].toLowerCase().includes('ba')) {
-                  weight = weight + 1;
-                } else if (education[j].toLowerCase().includes('master')) {
-                  weight = weight + 1.5;
-                } else if (education[j].toLowerCase().includes('phd')) {
                   weight = weight + 2;
+                } else if (education[j].toLowerCase().includes('master')) {
+                  weight = weight + 2.5;
+                } else if (education[j].toLowerCase().includes('phd')) {
+                  weight = weight + 3;
                 } else {
-                  weight = weight + 0.5;
+                  weight = weight + 1;
                 }
                 education.splice(j, 1);
               }
@@ -74,43 +74,47 @@ class CVmatching {
     return filterArr;
   }
 
+  static filterByField(cvs, filterArr, profile){
+
+  }
+
   static filterByExperience(cvs, filterArr){
     let index = 0;
     for (index in cvs) {
       let i = 0, j = 0;
       let lowerDate = 0, upperDate = 0;
-      while (i < cvs[index].experience_start.length - 1 && cvs[index].experience_start.length > 0){
-        if(new Date(cvs[index].experience_start[i]) < new Date(cvs[index].experience_start[i + 1])){
-          lowerDate = new Date(cvs[index].experience_start[i]);
-        }else{
-          lowerDate = new Date(cvs[index].experience_start[i + 1]);
+      if(cvs[index].experience_start.length > 0){
+        lowerDate = cvs[index].experience_start[0]
+        upperDate = cvs[index].experience_start[0]
+        while (i < cvs[index].experience_start.length){
+          if(new Date(lowerDate) > new Date(cvs[index].experience_start[i])){
+            lowerDate = cvs[index].experience_start[i];
+          }
+
+          if(new Date(upperDate) < new Date(cvs[index].experience_start[i])){
+            upperDate = new Date(cvs[index].experience_start[i]);
+          }
+          i++;
         }
 
-        if(new Date(cvs[index].experience_start[i]) > new Date(cvs[index].experience_start[i + 1])){
-          upperDate = new Date(cvs[index].experience_start[i]);
-        }else if(cvs[index].experience_start[i] == ''){
-          upperDate = Date.now();
-        }else{
-          upperDate = new Date(cvs[index].experience_start[i + 1]);
+        while (j < cvs[index].experience_end.length - 1 && cvs[index].experience_end.length > 0){
+          if(cvs[index].experience_end.includes("")){
+            let date = new Date();
+            let year =  date.getFullYear();
+            let month =  date.getMonth()
+            month = month < 10 ? '0' + month : '' + month;
+            let today = year +"-"+ month +"-01";
+            cvs[index].experience_end[cvs[index].experience_end.indexOf("")] = today
+          }
+          if(lowerDate > new Date(cvs[index].experience_end[j])){
+            lowerDate = new Date(cvs[index].experience_end[j]);
+          }
+          
+          if(upperDate < new Date(cvs[index].experience_end[j])){
+            upperDate = new Date(cvs[index].experience_end[j]);
+          }
+          j++;
         }
-        i++;
-      }
-
-      while (j < cvs[index].experience_end.length - 1 && cvs[index].experience_end.length > 0){
-        if(new Date(cvs[index].experience_end[j]) < new Date(cvs[index].experience_end[j + 1])){
-          lowerDate = new Date(cvs[index].experience_end[j]);
-        }else{
-          lowerDate = new Date(cvs[index].experience_end[j + 1]);
-        }
-        
-        if(new Date(cvs[index].experience_end[j]) > new Date(cvs[index].experience_end[j + 1])){
-          upperDate = new Date(cvs[index].experience_end[j]);
-        }else if(cvs[index].experience_end[j] == ''){
-          upperDate = Date.now();
-        }else{
-          upperDate = new Date(cvs[index].experience_end[j + 1]);
-        }
-        j++;
       }
 
       if(lowerDate != 0 && upperDate != 0 && lowerDate != 'Invalid Date' && upperDate != 'Invalid Date'){
@@ -133,19 +137,10 @@ class CVmatching {
     return filterArr;
   }
 
-  static dateDifference(date1, date2){
-    let diff = new Date(date2.getTime() - date1.getTime());
-    let years = diff.getUTCFullYear() - 1970;
-    if(diff.getUTCMonth() > 7)
-      years = years + 1
-    return years
-  }
-
-
   static filterByGoodName(cvs) {
     let index = 0, i = 0;
     for (index in cvs)
-      if (!cvs[index].fullname.includes(' ')) {
+      if (!cvs[index].fullname.includes(' ') || cvs[index].fullname.includes('@')) {
         cvs.splice(index, 1);
         index--;
       }
@@ -170,7 +165,7 @@ class CVmatching {
               || (profile.skill[i].toLowerCase() == 'java' && cvs[j].skills[k].toLowerCase() == 'javascript')
               || (profile.skill[i].toLowerCase() == 'word' && cvs[j].skills[k].toLowerCase().includes('wordpress'))
               || (cvs[j].skills[k].toLowerCase() == 'r'))) {
-              weight = 0.6 + weight;
+              weight = 2 + weight;
             }
           }
         }
@@ -184,14 +179,49 @@ class CVmatching {
     return filteredCVs;
   }
 
+  static getRankedCVs(cvs, filteredCVs){
+    let index = 0, rankedCVs = [];
+    for(index in filteredCVs){
+        cvs[filteredCVs[index].index]
+      rankedCVs.push({
+        fullname: cvs[filteredCVs[index].index].fullname,
+        skills: this.removeDups(cvs[filteredCVs[index].index].skills),
+        description: '',
+        image: cvs[filteredCVs[index].index].userimage,
+        gender: cvs[filteredCVs[index].index].gender,
+        sector: cvs[filteredCVs[index].index].sector,
+        dob: cvs[filteredCVs[index].index].dob,
+        yoe: filteredCVs[index].experience,
+        attendedSchools: this.removeDups(cvs[filteredCVs[index].index].education_academy),
+        qualifications: this.removeDups(cvs[filteredCVs[index].index].education),
+        cvUrl: cvs[filteredCVs[index].index].cv_url.file_url,
+        weight: filteredCVs[index].weight
+      })
+    }
+
+    return rankedCVs;
+  }
+
+  static dateDifference(date1, date2){
+    let diff = new Date(date2.getTime() - date1.getTime());
+    let years = diff.getUTCFullYear() - 1970;
+    if(diff.getUTCMonth() > 7)
+      years = years + 1
+    return years
+  }
+
   static sortFilters(filterArr) {
     return filterArr.sort((a, b) => (a.weight < b.weight) ? 1 : -1);
   }
 
   static removeDups(a) {
-    return a.sort().filter(function (item, pos, ary) {
-      return !pos || item != ary[pos - 1];
-    });
+    if(Array.isArray(a)){
+      return a.sort().filter(function (item, pos, ary) {
+        return !pos || item != ary[pos - 1];
+      });
+    }else{
+      return a;
+    }
   }
 }
 

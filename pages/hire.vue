@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <form>
+    <form  v-if="search">
       <div class="container-fluid bgColor-gray-10 py-5">
         <div class="container bgColor-white py-5">
           <div class="row justify-content-md-center">
@@ -219,6 +219,33 @@
         </div>
       </div>
     </form>
+
+    <div class="container-fluid bgColor-gray-10 py-5" v-else>
+      <div class="container">
+        <div class="row hero justify-content-md-center my-4">
+          <div class="col-sm-12">
+            <div class="card border-radius-2 box-shadow-1 text-left py-3 px-5 my-3" v-for='index in max' :key='index'>
+              <div class="row">
+                <div class="col-md-3 col-lg-2">
+                  <div class="circular-portrait">
+                    <img src="/images/smiling-woman-potrait.jpg" alt="Smiling Woman Potrait" class="img"/>
+                  </div>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                  Name: {{rankedCVs[index].fullname}} <br>
+                  Skills: {{rankedCVs[index].skills}} <br>
+                  Years of Experience: {{rankedCVs[index].yoe}} <br>
+                  Schools Attended: {{rankedCVs[index].attendedSchools}} <br>
+                  Qualifications: {{rankedCVs[index].qualifications}} <br>
+                  CV Weight: {{rankedCVs[index].weight}} <br>
+                </div>
+              </div>
+            </div>
+            <p class="" @click="max = max + 5">More</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -243,7 +270,10 @@ export default {
       token: "",
       previousSkillID: "",
       previousParentID: "",
-      workdays: []
+      workdays: [],
+      search: true,
+      rankedCVs: [],
+      max: 5
     };
   },
   async mounted() {
@@ -307,19 +337,13 @@ export default {
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
       filteredCVs = cvmatching.filterByEducation(cvs, filteredCVs);
       filteredCVs = cvmatching.filterByExperience(cvs, filteredCVs);
-      filteredCVs = cvmatching.sortFilters(filteredCVs);
-
-      let x = 0
-      for(x = 0; x < 20; x++){
-        console.log(cvs[filteredCVs[x].index]);
-      }
-
-      //console.log(filteredCVs)
-      
+      this.rankedCVs = cvmatching.getRankedCVs(cvs, filteredCVs);
+      this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
+      this.search = false;
     },
     chooseSkill(skill){
       if(this.profile.skill.includes(skill)){
-        this.profile.skill.splice(this.profile.skill.indexOf(skill), this.profile.skill.indexOf(skill) + 1)
+        this.profile.skill.splice(this.profile.skill.indexOf(skill), this.profile.skill.indexOf(skill) + 1);
       }else{
         this.profile.skill.push(skill);
       }
