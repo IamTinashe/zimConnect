@@ -146,7 +146,7 @@ class CVmatching {
       }
 
     for (i in cvs)
-      while (!cvs[index].fullname.includes(' '))
+      while (!cvs[index].fullname.includes(' ') || cvs[index].fullname.includes('@'))
         this.filterByGoodName(cvs)
     return cvs;
   }
@@ -165,7 +165,7 @@ class CVmatching {
               || (profile.skill[i].toLowerCase() == 'java' && cvs[j].skills[k].toLowerCase() == 'javascript')
               || (profile.skill[i].toLowerCase() == 'word' && cvs[j].skills[k].toLowerCase().includes('wordpress'))
               || (cvs[j].skills[k].toLowerCase() == 'r'))) {
-              weight = 2.5 + weight;
+              weight = 3 + weight;
             }
           }
         }
@@ -182,12 +182,12 @@ class CVmatching {
   static getRankedCVs(cvs, filteredCVs){
     let index = 0, rankedCVs = [];
     for(index in filteredCVs){
-        cvs[filteredCVs[index].index]
+      let img = cvs[filteredCVs[index].index].userimage.length < 0? cvs[filteredCVs[index].index].userimage : '/images/smiling-woman-potrait.jpg';
       rankedCVs.push({
         fullname: cvs[filteredCVs[index].index].fullname,
         skills: this.removeDups(cvs[filteredCVs[index].index].skills),
         description: '',
-        image: cvs[filteredCVs[index].index].userimage,
+        image: img,
         gender: cvs[filteredCVs[index].index].gender,
         sector: cvs[filteredCVs[index].index].sector,
         dob: cvs[filteredCVs[index].index].dob,

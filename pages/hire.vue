@@ -224,24 +224,57 @@
       <div class="container">
         <div class="row hero justify-content-md-center my-4">
           <div class="col-sm-12">
-            <div class="card border-radius-2 box-shadow-1 text-left py-3 px-5 my-3" v-for='index in max' :key='index'>
+            <div class="card border-radius-2 box-shadow-1 text-left py-3 px-2 px-lg-5 my-3" v-for='index in max' :key='index'>
               <div class="row">
-                <div class="col-md-3 col-lg-2">
+                <div class="col-md-3">
                   <div class="circular-portrait">
-                    <img src="/images/smiling-woman-potrait.jpg" alt="Smiling Woman Potrait" class="img"/>
+                    <img :src="rankedCVs[index].image" :alt="rankedCVs[index].fullname" class="img"/>
                   </div>
                 </div>
-                <div class="col-md-9 col-lg-10">
-                  Name: {{rankedCVs[index].fullname}} <br>
-                  Skills: {{rankedCVs[index].skills}} <br>
-                  Years of Experience: {{rankedCVs[index].yoe}} <br>
-                  Schools Attended: {{rankedCVs[index].attendedSchools}} <br>
-                  Qualifications: {{rankedCVs[index].qualifications}} <br>
-                  CV Weight: {{rankedCVs[index].weight}} <br>
+                <div class="col-md-9">
+                  <p class="paragraph-large mb-0 pb-0">{{rankedCVs[index].fullname}} </p>
+                  <div class="row">
+                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Skills:</p></div>
+                    <div class="col-8 col-sm-9 col-md-10">
+                      <span
+                      class="small Color-white bgColor-primary mx-1 border-radius-2 px-2"
+                      v-for="(skill, index) in rankedCVs[index].skills"
+                      :key="index"
+                    >{{skill.toUpperCase()}} </span>
+                    </div>
+                  </div>
+                  <div class="row" v-if="rankedCVs[index].qualifications.length > 0 || rankedCVs[index].qualifications[0] != '' || rankedCVs[index].qualifications != ''">
+                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Description:</p></div>
+                    <div class="col-8 col-sm-9 col-md-10">
+                      <span
+                      class="small Color-black mr-2"
+                      v-for="(qualification, index) in rankedCVs[index].qualifications"
+                      :key="index"
+                    >{{qualification.toUpperCase()}} </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Education:</p></div>
+                    <div class="col-8 col-sm-9 col-md-10">
+                      <span
+                      class="p-small Color-black mr-4"
+                      v-for="(school, index) in rankedCVs[index].attendedSchools"
+                      :key="index"
+                    >{{school.toUpperCase()}} </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Weight:</p></div>
+                    <div class="col-8 col-sm-9 col-md-10">
+                      <span
+                      class="p-small Color-black mr-4"
+                    >{{rankedCVs[index].weight}} </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <p class="" @click="max = max + 5">More</p>
+            <p class="text-right cursor-pointer" @click="max = max + 5">More</p>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ $light-blue: #73a3e8 !default;
 $faint-blue: #F6F7FB;
 $deep-blue: #698ABA;
 $green: #008000;
+$yellow: #FFFF00;
 
 
 $blue-lighter: #d0e0f7;
@@ -51,6 +52,7 @@ $colors: (
   'quinary': $quinary,
   'background': $background,
   'text-muted': $text-muted,
+  'yellow': $yellow,
   'error': $red,
   'gray-5': $gray-5,
   'gray-10': $gray-10,
