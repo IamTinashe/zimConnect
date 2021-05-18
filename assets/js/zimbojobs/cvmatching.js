@@ -165,7 +165,7 @@ class CVmatching {
               || (profile.skill[i].toLowerCase() == 'java' && cvs[j].skills[k].toLowerCase() == 'javascript')
               || (profile.skill[i].toLowerCase() == 'word' && cvs[j].skills[k].toLowerCase().includes('wordpress'))
               || (cvs[j].skills[k].toLowerCase() == 'r'))) {
-              weight = 2 + weight;
+              weight = 2.5 + weight;
             }
           }
         }
