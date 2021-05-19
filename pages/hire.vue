@@ -5,9 +5,9 @@
       <div class="container wrapper">
         <div class="row justify-content-md-center hero">
           <div class="col-12 middle-align mt-5">
-            <div class="float-right position-absolute">
+            <div class="w-100 position-absolute mt-5">
               <button
-                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mt-4 position-fixed z-index-10 p-small"
+                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 position-fixed z-index-10 p-small"
                 @click="search = !search, max = 5"
                 v-if="!search"
               >BACK TO SEARCH</button>
@@ -268,13 +268,15 @@
               </div>
             </div>
             <p class="text-right cursor-pointer" @click="max = max + 5">More</p>
+            <div class="z-index-10 candidate-modal" v-if="modalActive">
+              <span @click="modalActive = false" class="close"></span>
+              <div class="container bgColor-white">
+                Hello
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="modal" v-if="modalActive">
-      {{activeCV}}
     </div>
   </div>
 </template>
