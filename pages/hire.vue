@@ -5,14 +5,13 @@
       <div class="container wrapper">
         <div class="row justify-content-md-center hero">
           <div class="col-12 middle-align mt-5">
-            <div class="float-right position-relative">
+            <div class="float-right position-absolute">
               <button
-                class="button button-primary float-right text-right Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mt-4 position-fixed z-index-10"
+                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mt-4 position-fixed z-index-10 p-small"
                 @click="search = !search, max = 5"
                 v-if="!search"
-              >Back to Search</button>
+              >BACK TO SEARCH</button>
             </div>
-            
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
               <br />
@@ -233,14 +232,14 @@
       <div class="container">
         <div class="row hero justify-content-md-center my-4">
           <div class="col-sm-12">
-            <div class="card border-radius-2 box-shadow-1 text-left py-3 px-2 px-lg-5 my-3" v-for='index in max' :key='index'>
+            <div class="card border-radius-2 box-shadow-1 text-left py-4 px-2 px-lg-5 my-3" v-for='index in max' :key='index'>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-lg-2">
                   <div class="circular-portrait">
                     <img :src="rankedCVs[index].image" :alt="rankedCVs[index].fullname" class="img"/>
                   </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 col-lg-10">
                   <p class="paragraph-large mb-0 pb-0">{{rankedCVs[index].fullname}} </p>
                   <div class="row mb-2" v-if="rankedCVs[index].description.length > 0">
                     <div class="col-12">
@@ -251,7 +250,7 @@
                     >{{descript.toUpperCase()}} </span>
                     </div>
                   </div>
-                  <div class="row mb-5">
+                  <div class="row mb-4">
                     <div class="col-12">
                       <span
                       class="small Color-white bgColor-primary mr-2 border-radius-2 px-2"

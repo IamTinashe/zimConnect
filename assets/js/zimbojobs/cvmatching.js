@@ -179,7 +179,7 @@ class CVmatching {
   static getRankedCVs(cvs, filteredCVs){
     let index = 0, rankedCVs = [];
     for(index in filteredCVs){
-      let img = cvs[filteredCVs[index].index].userimage.length < 0? cvs[filteredCVs[index].index].userimage : '/images/smiling-woman-potrait.jpg';
+      let img = this.genderBasedPlaceholderImages(cvs[filteredCVs[index].index]);
       let description;
       if(cvs[filteredCVs[index].index].education.length == 0 || cvs[filteredCVs[index].index].education[0].length == 0){
         description = this.reFormatArray(cvs[filteredCVs[index].index].education_title);
@@ -268,6 +268,13 @@ class CVmatching {
     a = this.removeDups(a);
     a = this.removeUselessValues(a);
     return a;
+  }
+
+  static genderBasedPlaceholderImages(cv){
+    if(cv.gender == 'female')
+      return '/images/placeholder-female.png'
+    else
+      return '/images/placeholder-male.png'
   }
 }
 
