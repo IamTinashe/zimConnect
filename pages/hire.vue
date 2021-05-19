@@ -8,7 +8,7 @@
             <div class="float-right position-relative">
               <button
                 class="button button-primary float-right text-right Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mt-4 position-fixed z-index-10"
-                @click="search = !search"
+                @click="search = !search, max = 5"
                 v-if="!search"
               >Back to Search</button>
             </div>

@@ -119,7 +119,7 @@ class CVmatching {
 
       if(lowerDate != 0 && upperDate != 0 && lowerDate != 'Invalid Date' && upperDate != 'Invalid Date'){
         let experience = this.dateDifference(new Date(lowerDate), new Date(upperDate));
-        let weight = experience*0.2;
+        let weight = experience*0.3;
         if(cvs[index].email == filterArr[index].email){
           filterArr[index].weight = filterArr[index].weight + weight;
           filterArr[index].experience = experience;
@@ -201,7 +201,6 @@ class CVmatching {
         weight: filteredCVs[index].weight
       })
     }
-
     return rankedCVs;
   }
 
@@ -214,7 +213,8 @@ class CVmatching {
   }
 
   static sortFilters(filterArr) {
-    return filterArr.sort((a, b) => (a.weight < b.weight) ? 1 : -1);
+    filterArr = filterArr.sort((a, b) => (a.weight > b.weight) ? 1 : -1);
+    return filterArr.reverse();
   }
 
   static removeDups(a) {
