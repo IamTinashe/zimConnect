@@ -242,13 +242,13 @@
                 </div>
                 <div class="col-md-9">
                   <p class="paragraph-large mb-0 pb-0">{{rankedCVs[index].fullname}} </p>
-                  <div class="row mb-2" v-if="rankedCVs[index].qualifications.length > 0 || rankedCVs[index].qualifications[0] != '' || rankedCVs[index].qualifications != ''">
+                  <div class="row mb-2" v-if="rankedCVs[index].description.length > 0">
                     <div class="col-12">
                       <span
                       class="small Color-black mr-2"
-                      v-for="(qualification, index) in rankedCVs[index].qualifications"
+                      v-for="(descript, index) in rankedCVs[index].description"
                       :key="index"
-                    >{{qualification.toUpperCase()}} </span>
+                    >{{descript.toUpperCase()}} </span>
                     </div>
                   </div>
                   <div class="row mb-5">
@@ -260,7 +260,10 @@
                     >{{skill.toUpperCase()}} </span>
                     </div>
                   </div>
-                  <button class="button button-primary bgColor-primary py-1 px-4 border-radius-8 float-left borderColor-primary text-regular">MORE</button>
+                  <button
+                    class="button button-primary bgColor-primary py-1 px-4 border-radius-8 float-left borderColor-primary text-regular"
+                    @click="activateModal(rankedCVs[index])"
+                  >MORE</button>
                   <button class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2">WATCH</button>
                 </div>
               </div>
@@ -269,6 +272,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="modal" v-if="modalActive">
+      {{activeCV}}
     </div>
   </div>
 </template>
@@ -280,6 +287,9 @@ import skills from "@/assets/js/zimconnect/skills";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
 export default {
+  components: {
+    'CandidateModal': () => import('@/components/CandidateModal')
+  },
   data() {
     return {
       allCompanies: [],
@@ -298,7 +308,9 @@ export default {
       search: true,
       rankedCVs: [],
       max: 5,
-      loading: false
+      loading: false,
+      modalActive: false,
+      activeCV: {}
     };
   },
   async mounted() {
@@ -380,6 +392,11 @@ export default {
         this.profile.workdays.splice(this.profile.workdays.indexOf(day), this.profile.workdays.indexOf(day) + 1);
       else
         this.profile.workdays.push(day);
+    },
+    activateModal(cv){
+      console.log(cv);
+      this.activeCV = cv;
+      this.modalActive = true;
     }
   },
   head() {

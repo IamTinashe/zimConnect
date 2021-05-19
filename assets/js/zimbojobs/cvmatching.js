@@ -34,26 +34,26 @@ class CVmatching {
     for (index in cvs) {
       let weight = 0;
       if (!(cvs[index].education_academy.length === 0 || cvs[index].education_academy === "" || cvs[index].education_academy[0] === "")) {
-        let educationAcademy = this.removeDups(cvs[index].education_academy);
+        let educationAcademy = this.reFormatArray(cvs[index].education_academy);
         for (i in educationAcademy) {
-          if (educationAcademy[i].toLowerCase().includes('polytech') || educationAcademy[i].toLowerCase().includes('training')) {
+          if (educationAcademy[i].includes('polytech') || educationAcademy[i].includes('training')) {
             educationAcademy.splice(i, 1);
             weight = weight + 1;
-          } else if (educationAcademy[i].toLowerCase().includes('university') || educationAcademy[i].toLowerCase().includes('institute')) {
+          } else if (educationAcademy[i].includes('university') || educationAcademy[i].includes('institute')) {
             if (cvs[index].education.length > 0) {
-              let education = this.removeDups(cvs[index].education);
+              let education_title = this.reFormatArray(cvs[index].education_title);
               let j = 0;
-              for (j in education) {
-                if (education[j].toLowerCase().includes('bachelor') || education[j].toLowerCase().includes('b.sc') || education[j].toLowerCase().includes('b.a') || education[j].toLowerCase().includes('ba')) {
+              for (j in education_title) {
+                if (this.educationTitle(education_title[j])) {
                   weight = weight + 2;
-                } else if (education[j].toLowerCase().includes('master')) {
+                } else if (education_title[j].toLowerCase().includes('master')) {
                   weight = weight + 2.5;
-                } else if (education[j].toLowerCase().includes('phd')) {
+                } else if (education_title[j].toLowerCase().includes('phd')) {
                   weight = weight + 3;
                 } else {
                   weight = weight + 1;
                 }
-                education.splice(j, 1);
+                education_title.splice(j, 1);
               }
               educationAcademy.splice(i, 1);
             }
@@ -119,7 +119,7 @@ class CVmatching {
 
       if(lowerDate != 0 && upperDate != 0 && lowerDate != 'Invalid Date' && upperDate != 'Invalid Date'){
         let experience = this.dateDifference(new Date(lowerDate), new Date(upperDate));
-        let weight = experience*0.3;
+        let weight = experience*0.2;
         if(cvs[index].email == filterArr[index].email){
           filterArr[index].weight = filterArr[index].weight + weight;
           filterArr[index].experience = experience;
@@ -138,16 +138,13 @@ class CVmatching {
   }
 
   static filterByGoodName(cvs) {
-    let index = 0, i = 0;
-    for (index in cvs)
+    let index = 0;
+    for (index in cvs){
       if (!cvs[index].fullname.includes(' ') || cvs[index].fullname.includes('@')) {
         cvs.splice(index, 1);
         index--;
       }
-
-    for (i in cvs)
-      while (!cvs[index].fullname.includes(' ') || cvs[index].fullname.includes('@'))
-        this.filterByGoodName(cvs)
+    }
     return cvs;
   }
 
@@ -183,17 +180,23 @@ class CVmatching {
     let index = 0, rankedCVs = [];
     for(index in filteredCVs){
       let img = cvs[filteredCVs[index].index].userimage.length < 0? cvs[filteredCVs[index].index].userimage : '/images/smiling-woman-potrait.jpg';
+      let description;
+      if(cvs[filteredCVs[index].index].education.length == 0 || cvs[filteredCVs[index].index].education[0].length == 0){
+        description = this.reFormatArray(cvs[filteredCVs[index].index].education_title);
+      }else{
+        description = this.reFormatArray(cvs[filteredCVs[index].index].education);
+      }
       rankedCVs.push({
         fullname: cvs[filteredCVs[index].index].fullname,
-        skills: this.removeDups(cvs[filteredCVs[index].index].skills),
-        description: '',
+        skills: this.reFormatArray(cvs[filteredCVs[index].index].skills),
+        description: description,
         image: img,
         gender: cvs[filteredCVs[index].index].gender,
         sector: cvs[filteredCVs[index].index].sector,
         dob: cvs[filteredCVs[index].index].dob,
         yoe: filteredCVs[index].experience,
-        attendedSchools: this.removeDups(cvs[filteredCVs[index].index].education_academy),
-        qualifications: this.removeDups(cvs[filteredCVs[index].index].education),
+        attendedSchools: this.reFormatArray(cvs[filteredCVs[index].index].education_academy),
+        qualifications: this.reFormatArray(cvs[filteredCVs[index].index].education_title),
         cvUrl: cvs[filteredCVs[index].index].cv_url.file_url,
         weight: filteredCVs[index].weight
       })
@@ -222,6 +225,49 @@ class CVmatching {
     }else{
       return a;
     }
+  }
+
+  static arrayToLowerCase(a){
+    if(Array.isArray(a)){
+      return a.map(name => name.toLowerCase());
+    }else{
+      return a;
+    }
+  }
+
+  static removeUselessValues(a){
+    if(Array.isArray(a)){
+      let index = 0;
+      for(index in a){
+        if(!isNaN(a[index]) || a[index].includes('high')){
+          a.splice(a.indexOf(a[index]), 1)
+          index--;
+        }
+      }
+    }
+
+    return a;
+  }
+
+  static educationTitle(value){
+    if(
+          value.includes('bachelor')
+      ||  value.includes('b.sc')
+      ||  value.includes('b.a')
+      ||  value.includes('ba')
+      ||  value.includes('honours')
+      ||  value.includes('honors')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  static reFormatArray(a){
+    a = this.arrayToLowerCase(a);
+    a = this.removeDups(a);
+    a = this.removeUselessValues(a);
+    return a;
   }
 }
 
