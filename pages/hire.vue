@@ -4,6 +4,14 @@
       <div class="container wrapper">
         <div class="row justify-content-md-center hero">
           <div class="col-12 middle-align mt-5">
+            <div class="float-right position-relative">
+              <button
+                class="button button-primary float-right text-right Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mt-4 position-fixed z-index-10"
+                @click="search = !search"
+                v-if="!search"
+              >Back to Search</button>
+            </div>
+            
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
               <br />
@@ -233,19 +241,8 @@
                 </div>
                 <div class="col-md-9">
                   <p class="paragraph-large mb-0 pb-0">{{rankedCVs[index].fullname}} </p>
-                  <div class="row">
-                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Skills:</p></div>
-                    <div class="col-8 col-sm-9 col-md-10">
-                      <span
-                      class="small Color-white bgColor-primary mx-1 border-radius-2 px-2"
-                      v-for="(skill, index) in rankedCVs[index].skills"
-                      :key="index"
-                    >{{skill.toUpperCase()}} </span>
-                    </div>
-                  </div>
-                  <div class="row" v-if="rankedCVs[index].qualifications.length > 0 || rankedCVs[index].qualifications[0] != '' || rankedCVs[index].qualifications != ''">
-                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Description:</p></div>
-                    <div class="col-8 col-sm-9 col-md-10">
+                  <div class="row mb-2" v-if="rankedCVs[index].qualifications.length > 0 || rankedCVs[index].qualifications[0] != '' || rankedCVs[index].qualifications != ''">
+                    <div class="col-12">
                       <span
                       class="small Color-black mr-2"
                       v-for="(qualification, index) in rankedCVs[index].qualifications"
@@ -253,24 +250,17 @@
                     >{{qualification.toUpperCase()}} </span>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Education:</p></div>
-                    <div class="col-8 col-sm-9 col-md-10">
+                  <div class="row mb-5">
+                    <div class="col-12">
                       <span
-                      class="p-small Color-black mr-4"
-                      v-for="(school, index) in rankedCVs[index].attendedSchools"
+                      class="small Color-white bgColor-primary mr-2 border-radius-2 px-2"
+                      v-for="(skill, index) in rankedCVs[index].skills"
                       :key="index"
-                    >{{school.toUpperCase()}} </span>
+                    >{{skill.toUpperCase()}} </span>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-4 col-sm-3 col-md-2"><p class="text-regular my-2">Weight:</p></div>
-                    <div class="col-8 col-sm-9 col-md-10">
-                      <span
-                      class="p-small Color-black mr-4"
-                    >{{rankedCVs[index].weight}} </span>
-                    </div>
-                  </div>
+                  <button class="button button-primary bgColor-primary py-1 px-4 border-radius-8 float-left borderColor-primary text-regular">MORE</button>
+                  <button class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2">WATCH</button>
                 </div>
               </div>
             </div>
