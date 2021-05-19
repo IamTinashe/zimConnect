@@ -1,6 +1,7 @@
 <template>
   <div class="w-100 hire">
     <div class="container-fluid bg-image">
+      <div class="loading" v-if="loading">Loading&#8230;</div>
       <div class="container wrapper">
         <div class="row justify-content-md-center hero">
           <div class="col-12 middle-align mt-5">
@@ -296,7 +297,8 @@ export default {
       workdays: [],
       search: true,
       rankedCVs: [],
-      max: 5
+      max: 5,
+      loading: false
     };
   },
   async mounted() {
@@ -355,6 +357,7 @@ export default {
       this.previousParentID = parentID;
     },
     async submitForm (){
+      this.loading = true;
       let cvs = await cvmatching.getCVs();
       cvs = cvmatching.filterByGoodName(cvs);
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
@@ -363,6 +366,7 @@ export default {
       this.rankedCVs = cvmatching.getRankedCVs(cvs, filteredCVs);
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
       this.search = false;
+      this.loading = false;
     },
     chooseSkill(skill){
       if(this.profile.skill.includes(skill)){
