@@ -8,9 +8,11 @@
             <div class="w-100 position-absolute mt-5">
               <button
                 class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 position-fixed z-index-10 p-small"
-                @click="search = !search, max = 5"
+                @click="(search = !search), (max = 5)"
                 v-if="!search"
-              >BACK TO SEARCH</button>
+              >
+                BACK TO SEARCH
+              </button>
             </div>
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
@@ -24,7 +26,7 @@
         </div>
       </div>
     </div>
-    <form  v-if="search">
+    <form v-if="search">
       <div class="container-fluid bgColor-gray-10 py-5">
         <div class="container bgColor-white py-5">
           <div class="row justify-content-md-center">
@@ -62,7 +64,7 @@
                     <label
                       class="mb-2"
                       v-for="(company, index) in allCompanies"
-                      :key="index"
+                      :key="'com'+index"
                     >
                       <input
                         v-model="profile.company"
@@ -93,7 +95,7 @@
                 <div
                   class="col-sm-12 col-md-6 col-lg-3"
                   v-for="(position, index) in positions"
-                  :key="index"
+                  :key="'pos' + index"
                 >
                   <div class="w-100 mb-3">
                     <div
@@ -105,7 +107,7 @@
                       class="positions bgColor-gray-20 Color-black text-regular p-3 w-100"
                     >
                       <ul class="ul">
-                        <li v-for="(role, i) in position.positions" :key="i">
+                        <li v-for="(role, i) in position.positions" :key="'pos2'+ i">
                           <input
                             type="radio"
                             v-model="profile.position"
@@ -139,7 +141,7 @@
                 <div
                   class="col-sm-12 col-md-6 col-lg-2 px-1"
                   v-for="(skill, index) in skills"
-                  :key="index"
+                  :key="'skill' + index"
                 >
                   <div class="w-100 mb-3">
                     <div
@@ -156,7 +158,7 @@
                       class="z-index-5 skills display-none position-absolute bgColor-gray-20 Color-black small p-2"
                     >
                       <ul class="ul">
-                        <li v-for="(role, i) in skill.skills" :key="i">
+                        <li v-for="(role, i) in skill.skills" :key="'role' + i">
                           <input
                             type="checkbox"
                             @change="chooseSkill(role)"
@@ -189,7 +191,11 @@
                     (40hrs Standard)
                   </h3>
                   <div class="row">
-                    <div class="col-sm-12 col-md-6" v-for="(day, index) in workdays" :key="index">
+                    <div
+                      class="col-sm-12 col-md-6"
+                      v-for="(day, index) in workdays"
+                      :key="'work'+ index"
+                    >
                       <input
                         type="checkbox"
                         @change="chooseDay(day.name)"
@@ -197,10 +203,9 @@
                         :name="day.name"
                         :value="day.name"
                       />
-                      <label
-                        class="small Color-black"
-                        :for="'day' + index"
-                      >{{ day.name }}</label>
+                      <label class="small Color-black" :for="'day' + index">{{
+                        day.name
+                      }}</label>
                     </div>
                   </div>
                 </div>
@@ -217,7 +222,10 @@
 
               <div class="row justify-content-sm-center position-relative my-5">
                 <div class="col-sm-10 col-md-8">
-                  <button class="button button-primary bgColor-primary borderColor-primary border-radius-12 w-100 py-3" @click.prevent="submitForm()">
+                  <button
+                    class="button button-primary bgColor-primary borderColor-primary border-radius-12 w-100 py-3"
+                    @click.prevent="submitForm()"
+                  >
                     <span class="body-detail Color-white">SUBMIT</span>
                   </button>
                 </div>
@@ -232,99 +240,296 @@
       <div class="container">
         <div class="row hero justify-content-md-center my-4">
           <div class="col-sm-12">
-            <div class="card border-radius-2 box-shadow-1 text-left py-4 px-2 px-lg-5 my-3" v-for='index in max' :key='index'>
+            <div
+              class="card border-radius-2 box-shadow-1 text-left py-4 px-2 px-lg-5 my-3"
+              v-for="index in max"
+              :key="'max' + index"
+            >
               <div class="row">
                 <div class="col-md-3 col-lg-2">
                   <div class="circular-portrait">
-                    <img :src="rankedCVs[index].image" :alt="rankedCVs[index].fullname" class="img"/>
+                    <img
+                      :src="rankedCVs[index].image"
+                      :alt="rankedCVs[index].fullname"
+                      class="img"
+                    />
                   </div>
                 </div>
                 <div class="col-md-9 col-lg-10">
-                  <p class="paragraph-large mb-0 pb-0">{{rankedCVs[index].fullname}} </p>
-                  <div class="row mb-2" v-if="rankedCVs[index].description.length > 0">
+                  <p class="paragraph-large mb-0 pb-0">
+                    {{ rankedCVs[index].fullname }}
+                  </p>
+                  <div
+                    class="row mb-2"
+                    v-if="rankedCVs[index].description.length > 0"
+                  >
                     <div class="col-12">
                       <span
-                      class="small Color-black mr-2"
-                      v-for="(descript, index) in rankedCVs[index].description"
-                      :key="index"
-                    >{{descript.toUpperCase()}} </span>
+                        class="small Color-black mr-2"
+                        v-for="(descript, index) in rankedCVs[index]
+                          .description"
+                        :key="'desc' + index"
+                        >{{ descript.toUpperCase() }}
+                      </span>
                     </div>
                   </div>
                   <div class="row mb-4">
                     <div class="col-12">
                       <span
-                      class="small Color-white bgColor-primary mr-2 border-radius-2 px-2"
-                      v-for="(skill, index) in rankedCVs[index].skills"
-                      :key="index"
-                    >{{skill.toUpperCase()}} </span>
+                        class="small Color-white bgColor-primary mr-2 border-radius-2 px-2"
+                        v-for="(skill, index) in rankedCVs[index].skills"
+                        :key="'ski' + index"
+                        >{{ skill.toUpperCase() }}
+                      </span>
                     </div>
                   </div>
                   <button
                     class="button button-primary bgColor-primary py-1 px-4 border-radius-8 float-left borderColor-primary text-regular"
                     @click="activateModal(rankedCVs[index])"
-                  >MORE</button>
-                  <button class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2">WATCH</button>
+                  >
+                    MORE
+                  </button>
+                  <button
+                    class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2"
+                  >
+                    WATCH
+                  </button>
                 </div>
               </div>
             </div>
             <p class="text-right cursor-pointer" @click="max = max + 5">More</p>
             <div class="z-index-10 candidate-modal" v-if="modalActive">
-              <span @click="modalActive = false" class="close"></span>
+              <span @click="modalActive = false, quoteActive = false" class="close"></span>
               <div class="container">
-                <div class="card bgColor-white border-radius-2 box-shadow-1 my-4 py-5 px-5">
-                  <h2 class="text-left title-large mb-1">{{activeCV.fullname.toUpperCase()}}</h2>
-                  <p class="text-left body-detail mb-5 pb-3 Color-gray-40">{{activeCV.sector.toUpperCase()}}</p>
-                  <div class="row">
+                <div
+                  class="card bgColor-white border-radius-2 box-shadow-1 my-4 py-5 px-5"
+                >
+                  <h2 class="text-left title-large mb-1">
+                    {{ activeCV.fullname.toUpperCase() }}
+                  </h2>
+                  <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
+                    {{ activeCV.sector.toUpperCase() }}
+                  </p>
+                  <div class="row mb-5">
                     <div class="col-sm-12 col-md-7">
                       <p class="text-regular text-left Color-gray-60 mb-1">
-                        <span v-for="(descript, index) in activeCV.description" :key="index">
-                          {{descript.toUpperCase()}}.
+                        <span
+                          v-for="(descript, index) in activeCV.description"
+                          :key="'des' + index"
+                        >
+                          {{ descript.toUpperCase() }}.
                         </span>
                       </p>
-                      <br><br>
-                      <p class="text-left body-detail mb-1 Color-black">SKILLS</p>
-                      <p class="text-regular text-left Color-gray-60 mb-1" v-for="(skill, index) in activeCV.skills" :key="index">
-                        {{skill.toUpperCase()}}
+                      <br /><br />
+                      <p class="text-left body-detail mb-1 Color-black">
+                        SKILLS
                       </p>
-                      <br><br>
-                      <p class="text-left body-detail mb-1 Color-black">QUALIFICATIONS</p>
-                      <p class="text-regular text-left Color-gray-60 mb-1" v-for="(qualification, index) in activeCV.qualifications" :key="index">
-                        {{qualification.toUpperCase()}}
+                      <p
+                        class="text-regular text-left Color-gray-60 mb-1"
+                        v-for="(skill, index) in activeCV.skills"
+                        :key="'skil'+index"
+                      >
+                        {{ skill.toUpperCase() }}
+                      </p>
+                      <br /><br />
+                      <p class="text-left body-detail mb-1 Color-black">
+                        QUALIFICATIONS
+                      </p>
+                      <p
+                        class="text-regular text-left Color-gray-60 mb-1"
+                        v-for="(
+                          qualification, index
+                        ) in activeCV.qualifications"
+                        :key="'qual'+index"
+                      >
+                        {{ qualification.toUpperCase() }}
                       </p>
                     </div>
                     <div class="col-sm-12 col-md-5">
                       <div class="row">
                         <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-calendar" aria-hidden="true"></i> Age</p>
+                          <p class="small-thick text-left Color-black mb-1">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            Age
+                          </p>
                         </div>
                         <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">{{getAge(activeCV.dob)}}</p>
+                          <p class="text-regular text-left Color-gray-60 mb-1">
+                            {{ getAge(activeCV.dob) }}
+                          </p>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1"> <i class="fa fa-envelope" aria-hidden="true"></i> Email</p>
+                          <p class="small-thick text-left Color-black mb-1">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            Email
+                          </p>
                         </div>
                         <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">{{activeCV.email.toLowerCase()}}</p>
+                          <p class="text-regular text-left Color-gray-60 mb-1">
+                            {{ activeCV.email.toLowerCase() }}
+                          </p>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-briefcase" aria-hidden="true"></i> Experience</p>
+                          <p class="small-thick text-left Color-black mb-1">
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+                            Experience
+                          </p>
                         </div>
                         <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">{{activeCV.yoe}} YEARS</p>
+                          <p class="text-regular text-left Color-gray-60 mb-1">
+                            {{ activeCV.yoe }} YEARS
+                          </p>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-balance-scale" aria-hidden="true"></i> CV Weight</p>
+                          <p class="small-thick text-left Color-black mb-1">
+                            <i
+                              class="fa fa-balance-scale"
+                              aria-hidden="true"
+                            ></i>
+                            CV Weight
+                          </p>
                         </div>
                         <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">{{(Math.round(activeCV.weight * 10) / 10)}}</p>
+                          <p class="text-regular text-left Color-gray-60 mb-1">
+                            {{ Math.round(activeCV.weight * 10) / 10 }}
+                          </p>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center my-5">
+                    <div class="col-10 col-md-8">
+                      <button
+                        class="button button-primary border-radius-8 borderColor-primary bgColor-primary Color-white w-100"
+                        @click="showQuote(activeCV)"
+                      >
+                        REQUEST ESTIMATED QUOTE
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center my-5 quote" v-if="quoteActive">
+                    <div class="col-12 col-md-10">
+                      <table class="body-wrap">
+                        <tbody>
+                          <tr>
+                            <td></td>
+                            <td class="container" width="600">
+                              <div class="content">
+                                <table
+                                  class="main"
+                                  width="100%"
+                                  cellpadding="0"
+                                  cellspacing="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td class="content-wrap aligncenter">
+                                        <table
+                                          width="100%"
+                                          cellpadding="0"
+                                          cellspacing="0"
+                                        >
+                                          <tbody>
+                                            <tr>
+                                              <td class="content-block">
+                                                <table class="invoice">
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>
+                                                        {{activeCV.fullname}}<br/>
+                                                        {{today}}
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>
+                                                        <table
+                                                          class="invoice-items"
+                                                          cellpadding="0"
+                                                          cellspacing="0"
+                                                        >
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Services</td>
+                                                              <td
+                                                                class="alignright"
+                                                              >
+                                                                $ 1600.00
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Bandwidth</td>
+                                                              <td
+                                                                class="alignright"
+                                                              >
+                                                                $ 1200.00
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Telephony</td>
+                                                              <td
+                                                                class="alignright"
+                                                              >
+                                                                $ 500.00
+                                                              </td>
+                                                            </tr>
+                                                            <tr class="total">
+                                                              <td
+                                                                class="alignright"
+                                                                width="80%"
+                                                              >
+                                                                Total
+                                                              </td>
+                                                              <td
+                                                                class="alignright"
+                                                              >
+                                                                $ 3300.00
+                                                              </td>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td class="content-block">
+                                                Global BP Solutions, Texas, United States
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <div class="footer">
+                                  <table width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td class="aligncenter content-block">
+                                          Questions? Email
+                                          <a href="mailto:"
+                                            >info@zimworx.com</a
+                                          >
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -345,7 +550,7 @@ import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
 export default {
   components: {
-    'CandidateModal': () => import('@/components/CandidateModal')
+    CandidateModal: () => import("@/components/CandidateModal"),
   },
   data() {
     return {
@@ -354,7 +559,7 @@ export default {
         company: "",
         position: "",
         skill: [],
-        workdays: []
+        workdays: [],
       },
       positions: {},
       skills: {},
@@ -367,14 +572,16 @@ export default {
       max: 5,
       loading: false,
       modalActive: false,
-      activeCV: {}
+      activeCV: {},
+      quote: {},
+      today : '',
+      quoteActive: false
     };
   },
   async mounted() {
-    if (localStorage.getItem("loggedIn") === null) 
-      window.location.href = '/login';
-    else
-      this.token = window.localStorage.getItem("accessToken");
+    if (localStorage.getItem("loggedIn") === null)
+      window.location.href = "/login";
+    else this.token = window.localStorage.getItem("accessToken");
     await this.getCompanies();
     await this.getPositions();
     await this.getSkills();
@@ -390,7 +597,7 @@ export default {
     async getSkills() {
       this.skills = await skills.getSkills(this.token);
     },
-    async getWorkdays(){
+    async getWorkdays() {
       this.workdays = await workdays.getWorkdays(this.token);
     },
     showSkills(id, parentID) {
@@ -425,7 +632,7 @@ export default {
       this.previousSkillID = id;
       this.previousParentID = parentID;
     },
-    async submitForm (){
+    async submitForm() {
       this.loading = true;
       let cvs = await cvmatching.getCVs();
       cvs = cvmatching.filterByGoodName(cvs);
@@ -437,32 +644,41 @@ export default {
       this.search = false;
       this.loading = false;
     },
-    chooseSkill(skill){
-      if(this.profile.skill.includes(skill)){
-        this.profile.skill.splice(this.profile.skill.indexOf(skill), this.profile.skill.indexOf(skill) + 1);
-      }else{
+    chooseSkill(skill) {
+      if (this.profile.skill.includes(skill)) {
+        this.profile.skill.splice(
+          this.profile.skill.indexOf(skill),
+          this.profile.skill.indexOf(skill) + 1
+        );
+      } else {
         this.profile.skill.push(skill);
       }
     },
-    chooseDay(day){
-      if(this.profile.workdays.includes(day))
-        this.profile.workdays.splice(this.profile.workdays.indexOf(day), this.profile.workdays.indexOf(day) + 1);
-      else
-        this.profile.workdays.push(day);
+    chooseDay(day) {
+      if (this.profile.workdays.includes(day))
+        this.profile.workdays.splice(
+          this.profile.workdays.indexOf(day),
+          this.profile.workdays.indexOf(day) + 1
+        );
+      else this.profile.workdays.push(day);
     },
-    activateModal(cv){
+    activateModal(cv) {
       console.log(cv);
       this.activeCV = cv;
       this.modalActive = true;
     },
-    getAge(dob){
+    getAge(dob) {
       let date = new Date();
-      let year =  date.getFullYear();
-      let month =  date.getMonth()
-      month = month < 10 ? '0' + month : '' + month;
-      let today = year +"-"+ month +"-01";
-      return cvmatching.dateDifference(new Date(dob), new Date(today));
-    }
+      let year = date.getFullYear();
+      let month = date.getMonth();
+      month = month < 10 ? "0" + month : "" + month;
+      this.today = year + "-" + month + "-01";
+      return cvmatching.dateDifference(new Date(dob), new Date(this.today));
+    },
+    showQuote(cv) {
+      console.log(cv);
+      this.quoteActive = true;
+    },
   },
   head() {
     return {
