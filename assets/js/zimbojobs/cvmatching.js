@@ -198,7 +198,8 @@ class CVmatching {
         attendedSchools: this.reFormatArray(cvs[filteredCVs[index].index].education_academy),
         qualifications: this.reFormatArray(cvs[filteredCVs[index].index].education_title),
         cvUrl: cvs[filteredCVs[index].index].cv_url.file_url,
-        weight: filteredCVs[index].weight
+        weight: filteredCVs[index].weight,
+        email: filteredCVs[index].email
       })
     }
     return rankedCVs;

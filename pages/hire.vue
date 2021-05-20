@@ -270,8 +270,64 @@
             <p class="text-right cursor-pointer" @click="max = max + 5">More</p>
             <div class="z-index-10 candidate-modal" v-if="modalActive">
               <span @click="modalActive = false" class="close"></span>
-              <div class="container bgColor-white">
-                Hello
+              <div class="container">
+                <div class="card bgColor-white border-radius-2 box-shadow-1 my-4 py-5 px-5">
+                  <h2 class="text-left title-large mb-1">{{activeCV.fullname.toUpperCase()}}</h2>
+                  <p class="text-left body-detail mb-5 pb-3 Color-gray-40">{{activeCV.sector.toUpperCase()}}</p>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-7">
+                      <p class="text-regular text-left Color-gray-60 mb-1">
+                        <span v-for="(descript, index) in activeCV.description" :key="index">
+                          {{descript.toUpperCase()}}.
+                        </span>
+                      </p>
+                      <br><br>
+                      <p class="text-left body-detail mb-1 Color-black">SKILLS</p>
+                      <p class="text-regular text-left Color-gray-60 mb-1" v-for="(skill, index) in activeCV.skills" :key="index">
+                        {{skill.toUpperCase()}}
+                      </p>
+                      <br><br>
+                      <p class="text-left body-detail mb-1 Color-black">QUALIFICATIONS</p>
+                      <p class="text-regular text-left Color-gray-60 mb-1" v-for="(qualification, index) in activeCV.qualifications" :key="index">
+                        {{qualification.toUpperCase()}}
+                      </p>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                      <div class="row">
+                        <div class="col-5">
+                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-calendar" aria-hidden="true"></i> Age</p>
+                        </div>
+                        <div class="col-7">
+                          <p class="text-regular text-left Color-gray-60 mb-1">{{getAge(activeCV.dob)}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-5">
+                          <p class="small-thick text-left Color-black mb-1"> <i class="fa fa-envelope" aria-hidden="true"></i> Email</p>
+                        </div>
+                        <div class="col-7">
+                          <p class="text-regular text-left Color-gray-60 mb-1">{{activeCV.email.toLowerCase()}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-5">
+                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-briefcase" aria-hidden="true"></i> Experience</p>
+                        </div>
+                        <div class="col-7">
+                          <p class="text-regular text-left Color-gray-60 mb-1">{{activeCV.yoe}} YEARS</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-5">
+                          <p class="small-thick text-left Color-black mb-1"><i class="fa fa-balance-scale" aria-hidden="true"></i> CV Weight</p>
+                        </div>
+                        <div class="col-7">
+                          <p class="text-regular text-left Color-gray-60 mb-1">{{(Math.round(activeCV.weight * 10) / 10)}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -398,6 +454,14 @@ export default {
       console.log(cv);
       this.activeCV = cv;
       this.modalActive = true;
+    },
+    getAge(dob){
+      let date = new Date();
+      let year =  date.getFullYear();
+      let month =  date.getMonth()
+      month = month < 10 ? '0' + month : '' + month;
+      let today = year +"-"+ month +"-01";
+      return cvmatching.dateDifference(new Date(dob), new Date(today));
     }
   },
   head() {
