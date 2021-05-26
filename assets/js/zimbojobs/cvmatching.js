@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 const BASEUrl = 'https://www.zimbojobs.com';
+import pattern from '../../json/weights/pattern.json';
 
 class CVmatching {
   static getCVs() {
@@ -13,6 +14,76 @@ class CVmatching {
         reject(error.response)
       }
     })
+  }
+
+  static eliminateUnwanted(cvs, pool){
+    let patternPool = this.getPool(pool);
+    let i, j;
+    for(i in cvs){
+      let patternMatch = true;
+      for(j in patternPool){
+        if(
+            !this.testPattern(cvs[i].skills, patternPool[j]) &&
+            !this.testPattern(cvs[i].description, patternPool[j]) &&
+            !this.testPattern(cvs[i].qualifications, patternPool[j]) &&
+            !this.testPattern(cvs[i].sector, patternPool[j])){
+          patternMatch = false;
+        }
+      }
+      if(patternMatch == false){
+        cvs[i].weight = cvs[i].weight * 0.5
+      }
+    }
+
+    return cvs;
+  }
+
+  static findPattern(cvs, pool, filter){
+    let patternPool = this.getPool(pool);
+    let i, j;
+    for(i in cvs){
+      let patternMatch = false;
+      for(j in patternPool){
+        if(
+            this.testPattern(cvs[i].skills, patternPool[j]) ||
+            this.testPattern(cvs[i].description, patternPool[j]) ||
+            this.testPattern(cvs[i].qualifications, patternPool[j]) ||
+            this.testPattern(cvs[i].sector, patternPool[j])){
+          patternMatch = true;
+        }
+      }
+      if(patternMatch == true){
+        if(cvs[i].email == filter[i].email){
+          filter[i].weight = filter[i].weight + 10;
+        }else{
+          let k = 0;
+          for(k in filter){
+            if(filter[k].email == cvs[i].email){
+              filter[k].weight = filter[k].weight + 10;
+            }
+          }
+        }
+      } 
+    }
+
+    return filter;
+  }
+
+  static testPattern(a, key){
+    let pattern = false;
+    if(Array.isArray(a))a.filter(s => { if(s.includes(key)) pattern = true});
+    else if (Object.prototype.toString.call(a) === '[object String]')
+      if(a.includes(key)) pattern = true;
+
+      return pattern;
+  }
+
+  static getPool(pool){
+    if(pool == 'dental') return pattern.dental
+    else if(pool == 'sales') return pattern.sales
+    else if(pool == 'accounting') return pattern.accounting
+    else if(pool == 'hr') return pattern.hr
+    else return pattern.it.concat(pattern.hr).concat(pattern.accounting).concat(pattern.sales).concat(pattern.dental)
   }
 
   static filterByEducation2(cvs) {
@@ -46,7 +117,7 @@ class CVmatching {
               for (j in education_title) {
                 if (this.educationTitle(education_title[j])) {
                   weight = weight + 2;
-                } else if (education_title[j].toLowerCase().includes('master')) {
+                } else if (education_title[j].toLowerCase().includes('master') || education_title[j].toLowerCase().includes('msc')) {
                   weight = weight + 2.5;
                 } else if (education_title[j].toLowerCase().includes('phd')) {
                   weight = weight + 3;
@@ -119,7 +190,7 @@ class CVmatching {
 
       if(lowerDate != 0 && upperDate != 0 && lowerDate != 'Invalid Date' && upperDate != 'Invalid Date'){
         let experience = this.dateDifference(new Date(lowerDate), new Date(upperDate));
-        let weight = experience*0.3;
+        let weight = experience*0.2;
         if(cvs[index].email == filterArr[index].email){
           filterArr[index].weight = filterArr[index].weight + weight;
           filterArr[index].experience = experience;

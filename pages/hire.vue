@@ -242,7 +242,7 @@
           <div class="col-sm-12">
             <div
               class="card border-radius-2 box-shadow-1 text-left py-4 px-2 px-lg-5 my-3"
-              v-for="index in max"
+              v-for="(value, index) in max"
               :key="'max' + index"
             >
               <div class="row">
@@ -356,19 +356,6 @@
                         <div class="col-7">
                           <p class="text-regular text-left Color-gray-60 mb-1">
                             {{ getAge(activeCV.dob) }}
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                            Email
-                          </p>
-                        </div>
-                        <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ activeCV.email.toLowerCase() }}
                           </p>
                         </div>
                       </div>
@@ -575,7 +562,7 @@ export default {
       activeCV: {},
       quote: {},
       today : '',
-      quoteActive: false
+      quoteActive: false,
     };
   },
   async mounted() {
@@ -635,11 +622,14 @@ export default {
     async submitForm() {
       this.loading = true;
       let cvs = await cvmatching.getCVs();
+      let pool = this.getPositionRole();
       cvs = cvmatching.filterByGoodName(cvs);
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
       filteredCVs = cvmatching.filterByEducation(cvs, filteredCVs);
       filteredCVs = cvmatching.filterByExperience(cvs, filteredCVs);
+      filteredCVs = await cvmatching.findPattern(cvs, pool, filteredCVs);
       this.rankedCVs = cvmatching.getRankedCVs(cvs, filteredCVs);
+      this.rankedCVs = cvmatching.eliminateUnwanted(this.rankedCVs, pool);
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
       this.search = false;
       this.loading = false;
@@ -663,7 +653,6 @@ export default {
       else this.profile.workdays.push(day);
     },
     activateModal(cv) {
-      console.log(cv);
       this.activeCV = cv;
       this.modalActive = true;
     },
@@ -676,9 +665,20 @@ export default {
       return cvmatching.dateDifference(new Date(dob), new Date(this.today));
     },
     showQuote(cv) {
-      console.log(cv);
       this.quoteActive = true;
     },
+    getPositionRole(){
+      let index = 0;
+      for(index in this.positions){
+        if(this.positions[index].positions.includes(this.profile.position)){
+          if(this.positions[index].name == 'Dental5 | Medical | Healthcare') return 'dental'
+          else if(this.positions[index].name == 'Sales') return 'sales'
+          else if(this.positions[index].name == 'Accounting') return 'accounting'
+          else if(this.positions[index].name == 'Human Resources') return 'hr'
+          else return 'it'
+        }
+      }
+    }
   },
   head() {
     return {

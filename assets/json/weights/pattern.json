@@ -1,0 +1,11 @@
+{
+  "accounting": ["accounting", "accounts", "accountant", "bookkeeper", "bookkeeping", "budget", "budget preparation", "cash flow control", "financial forecast",
+    "financial forecasting", "gaap", "management accounts", "financial management", "financial analysis", "risk management", "budgeting and forecasting",
+    "budgeting & forecasting", "accounts and finance", "accounts & finance", "payable officer", "acca", "chartered accountant"],
+
+  "hr": ["hr", "human resources", "ipmz", "psychology", "industrial relations", "trainer", "payrol", "recruiter", "recruitment", "sociology", "labour relations",
+    "office administration"],
+  "sales": ["sales", "product support", "account support", "technical sales specialist", "business management", "marketing", "commerce"],
+  "dental": ["dental", "medical", "health", "patient care", "treatment plans", "hygiene", "dentistry", "insurance verification"],
+  "it": ["it", "java"]
+}
