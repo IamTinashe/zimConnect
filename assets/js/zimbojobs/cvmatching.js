@@ -25,8 +25,7 @@ class CVmatching {
         if(
             !this.testPattern(cvs[i].skills, patternPool[j]) &&
             !this.testPattern(cvs[i].description, patternPool[j]) &&
-            !this.testPattern(cvs[i].qualifications, patternPool[j]) &&
-            !this.testPattern(cvs[i].sector, patternPool[j])){
+            !this.testPattern(cvs[i].qualifications, patternPool[j])){
           patternMatch = false;
         }
       }
