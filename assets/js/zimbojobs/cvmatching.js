@@ -31,7 +31,7 @@ class CVmatching {
         }
       }
       if(patternMatch == false){
-        cvs[i].weight = cvs[i].weight * 0.5
+        cvs[i].weight = cvs[i].weight * 0.2
       }
     }
 
