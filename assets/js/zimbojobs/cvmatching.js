@@ -20,16 +20,16 @@ class CVmatching {
     let patternPool = this.getPool(pool);
     let i, j;
     for(i in cvs){
-      let patternMatch = true;
+      let patternMatch = false;
       for(j in patternPool){
         if(
-            !this.testPattern(cvs[i].skills, patternPool[j]) &&
-            !this.testPattern(cvs[i].description, patternPool[j]) &&
-            !this.testPattern(cvs[i].qualifications, patternPool[j])){
-          patternMatch = false;
+          !(this.testPattern(cvs[i].skills, patternPool[j]) ||
+            this.testPattern(cvs[i].description, patternPool[j]) ||
+            this.testPattern(cvs[i].qualifications, patternPool[j]))){
+          patternMatch = true;
         }
       }
-      if(patternMatch == false){
+      if(patternMatch == true){
         cvs[i].weight = cvs[i].weight * 0.2
       }
     }
@@ -53,12 +53,12 @@ class CVmatching {
       }
       if(patternMatch == true){
         if(cvs[i].email == filter[i].email){
-          filter[i].weight = filter[i].weight + 10;
+          filter[i].weight = filter[i].weight + 20;
         }else{
           let k = 0;
           for(k in filter){
             if(filter[k].email == cvs[i].email){
-              filter[k].weight = filter[k].weight + 10;
+              filter[k].weight = filter[k].weight + 20;
             }
           }
         }
@@ -108,20 +108,20 @@ class CVmatching {
         for (i in educationAcademy) {
           if (educationAcademy[i].includes('polytech') || educationAcademy[i].includes('training')) {
             educationAcademy.splice(i, 1);
-            weight = weight + 1;
+            weight = weight + 2;
           } else if (educationAcademy[i].includes('university') || educationAcademy[i].includes('institute')) {
             if (cvs[index].education.length > 0) {
               let education_title = this.reFormatArray(cvs[index].education_title);
               let j = 0;
               for (j in education_title) {
                 if (this.educationTitle(education_title[j])) {
-                  weight = weight + 2;
+                  weight = weight + 4;
                 } else if (education_title[j].toLowerCase().includes('master') || education_title[j].toLowerCase().includes('msc')) {
-                  weight = weight + 2.5;
+                  weight = weight + 5;
                 } else if (education_title[j].toLowerCase().includes('phd')) {
-                  weight = weight + 3;
+                  weight = weight + 6;
                 } else {
-                  weight = weight + 1;
+                  weight = weight + 2;
                 }
                 education_title.splice(j, 1);
               }
