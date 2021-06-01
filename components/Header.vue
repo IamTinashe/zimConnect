@@ -39,11 +39,6 @@
                 </NuxtLink>
               </li>
               <li class="display-inline mx-2">
-                <a class="text-decoration-none" href="https://zimbojobs.com" target="_blank" title="Jobs" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  Jobs
-                </a>
-              </li>
-              <li class="display-inline mx-2">
                 <NuxtLink class="text-decoration-none" to="/hire" title="Candidates" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
                   Candidates
                 </NuxtLink>
@@ -52,6 +47,11 @@
                 <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" title="Employers" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
                   Employers
                 </a>
+              </li>
+              <li class="display-inline mx-2">
+                <NuxtLink class="text-decoration-none" to="/faq" title="FAQ" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  FAQ
+                </NuxtLink>
               </li>
               <li class="display-inline mx-2">
                 <NuxtLink class="text-decoration-none" to="/contact" title="Contact Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">

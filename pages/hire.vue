@@ -257,7 +257,7 @@
                 </div>
                 <div class="col-md-9 col-lg-10">
                   <p class="paragraph-large mb-0 pb-0">
-                    {{ rankedCVs[index].fullname }}
+                    {{ rankedCVs[index].fullname.toUpperCase() }}
                   </p>
                   <div
                     class="row mb-2"
@@ -384,7 +384,7 @@
                         </div>
                         <div class="col-7">
                           <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ Math.round(activeCV.weight * 10) / 10 }}
+                            {{ Math.round(activeCV.weight * 10) / 10 }} %
                           </p>
                         </div>
                       </div>
@@ -629,8 +629,10 @@ export default {
       filteredCVs = cvmatching.filterByExperience(cvs, filteredCVs);
       filteredCVs = await cvmatching.findPattern(cvs, pool, filteredCVs);
       this.rankedCVs = cvmatching.getRankedCVs(cvs, filteredCVs);
-      this.rankedCVs = cvmatching.eliminateUnwanted(this.rankedCVs, pool);
+      this.rankedCVs = cvmatching.eliminateUnwanted(this.rankedCVs);
+      this.rankedCVs = cvmatching.advancedFilter(this.rankedCVs, pool)
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
+      this.rankedCVs = cvmatching.setScore(this.rankedCVs, this.profile.skill.length);
       this.search = false;
       this.loading = false;
     },
@@ -671,7 +673,7 @@ export default {
       let index = 0;
       for(index in this.positions){
         if(this.positions[index].positions.includes(this.profile.position)){
-          if(this.positions[index].name == 'Dental5 | Medical | Healthcare') return 'dental'
+          if(this.positions[index].name == 'Dental | Medical | Healthcare') return 'dental'
           else if(this.positions[index].name == 'Sales') return 'sales'
           else if(this.positions[index].name == 'Accounting') return 'accounting'
           else if(this.positions[index].name == 'Human Resources') return 'hr'

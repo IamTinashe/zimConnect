@@ -16,20 +16,46 @@ class CVmatching {
     })
   }
 
-  static eliminateUnwanted(cvs, pool){
-    let patternPool = this.getPool(pool);
+  static setScore(cvs, skillCount){
+    let x = cvs[0].weight + ((skillCount - cvs[0].skillScore) * 3);
+    let i;
+    for(i in cvs){
+      cvs[i].weight = (cvs[i].weight/x) * 100
+    }
+
+    return cvs;
+  }
+
+  static advancedFilter(cvs, pool){
+    let patternPool = this.getAdvancedPool(pool);
     let i, j;
     for(i in cvs){
       let patternMatch = false;
       for(j in patternPool){
-        if(
-          !(this.testPattern(cvs[i].skills, patternPool[j]) ||
-            this.testPattern(cvs[i].description, patternPool[j]) ||
-            this.testPattern(cvs[i].qualifications, patternPool[j]))){
+        if(cvs[i].skills.includes(patternPool[j]) || cvs[i].qualifications.includes(patternPool[j])){
           patternMatch = true;
         }
       }
       if(patternMatch == true){
+        cvs[i].weight = cvs[i].weight + 15
+      }
+    }
+
+    return cvs;
+  }
+
+  static getAdvancedPool(pool){
+    if(pool == 'dental') return pattern.advanceddental
+    else if(pool == 'sales') return pattern.advancedsales
+    else if(pool == 'accounting') return pattern.advancedaccounting
+    else if(pool == 'hr') return pattern.advancedhr
+    else return pattern.it.concat(pattern.advancedhr).concat(pattern.advancedaccounting).concat(pattern.advancedsales).concat(pattern.advanceddental)
+  }
+
+  static eliminateUnwanted(cvs){
+    let i, j;
+    for(i in cvs){
+      if(cvs[i].skills.length == 0 || cvs[i].qualifications.length == 0 || cvs[i].yoe < 1){
         cvs[i].weight = cvs[i].weight * 0.2
       }
     }
@@ -53,12 +79,12 @@ class CVmatching {
       }
       if(patternMatch == true){
         if(cvs[i].email == filter[i].email){
-          filter[i].weight = filter[i].weight + 20;
+          filter[i].weight = filter[i].weight + 15;
         }else{
           let k = 0;
           for(k in filter){
             if(filter[k].email == cvs[i].email){
-              filter[k].weight = filter[k].weight + 20;
+              filter[k].weight = filter[k].weight + 15;
             }
           }
         }
@@ -83,20 +109,6 @@ class CVmatching {
     else if(pool == 'accounting') return pattern.accounting
     else if(pool == 'hr') return pattern.hr
     else return pattern.it.concat(pattern.hr).concat(pattern.accounting).concat(pattern.sales).concat(pattern.dental)
-  }
-
-  static filterByEducation2(cvs) {
-    let index = 0, i = 0;
-    for (index in cvs)
-      if (cvs[index].education_academy.length === 0 || cvs[index].education_academy === "" || cvs[index].education_academy[0] === "") {
-        cvs.splice(index, 1);
-        index--;
-      }
-
-    for (i in cvs)
-      while (cvs[i].education_academy.length === 0 || cvs[i].education_academy === "" || cvs[i].education_academy[0] === "")
-        this.filterByEducation2(cvs)
-    return cvs;
   }
 
   static filterByEducation(cvs, filterArr) {
@@ -142,10 +154,6 @@ class CVmatching {
       }
     }
     return filterArr;
-  }
-
-  static filterByField(cvs, filterArr, profile){
-
   }
 
   static filterByExperience(cvs, filterArr){
@@ -240,7 +248,8 @@ class CVmatching {
       filteredCVs.push({
         "index": j,
         "email": cvs[j].email,
-        "weight": weight
+        "weight": weight,
+        "skillScore": weight/3
       })
     }
     return filteredCVs;
@@ -269,7 +278,8 @@ class CVmatching {
         qualifications: this.reFormatArray(cvs[filteredCVs[index].index].education_title),
         cvUrl: cvs[filteredCVs[index].index].cv_url.file_url,
         weight: filteredCVs[index].weight,
-        email: filteredCVs[index].email
+        email: filteredCVs[index].email,
+        skillScore: filteredCVs[index].skillScore
       })
     }
     return rankedCVs;

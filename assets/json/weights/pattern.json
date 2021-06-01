@@ -7,5 +7,12 @@
     "office administration"],
   "sales": ["sales", "product support", "account support", "technical sales specialist", "business management", "marketing", "commerce"],
   "dental": ["dental", "medical", "health", "patient care", "treatment plans", "hygiene", "dentistry", "insurance verification"],
-  "it": ["it", "java"]
+  "it": ["it", "java"],
+
+
+  "advancedaccounting": ["acca", "chartered accountant"],
+  "advancedhr": ["ipmz", "belina"],
+  "advancedsales": [],
+  "advanceddental": [],
+  "advancedit": ["certified java"]
 }
