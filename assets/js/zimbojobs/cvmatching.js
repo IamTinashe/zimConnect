@@ -17,7 +17,7 @@ class CVmatching {
   }
 
   static setScore(cvs, skillCount){
-    let x = cvs[0].weight + ((skillCount - cvs[0].skillScore) * 3);
+    let x = cvs[0].weight + ((skillCount - cvs[0].skillScore) * 4);
     let i;
     for(i in cvs){
       cvs[i].weight = (cvs[i].weight/x) * 100
@@ -31,13 +31,16 @@ class CVmatching {
     let i, j;
     for(i in cvs){
       let patternMatch = false;
+      loop:
       for(j in patternPool){
         if(cvs[i].skills.includes(patternPool[j]) || cvs[i].qualifications.includes(patternPool[j])){
           patternMatch = true;
+          continue loop;
         }
       }
       if(patternMatch == true){
         cvs[i].weight = cvs[i].weight + 15
+        cvs[i].weight = cvs[i].weight * 2
       }
     }
 
@@ -79,12 +82,12 @@ class CVmatching {
       }
       if(patternMatch == true){
         if(cvs[i].email == filter[i].email){
-          filter[i].weight = filter[i].weight + 15;
+          filter[i].weight = filter[i].weight + 12;
         }else{
           let k = 0;
           for(k in filter){
             if(filter[k].email == cvs[i].email){
-              filter[k].weight = filter[k].weight + 15;
+              filter[k].weight = filter[k].weight + 12;
             }
           }
         }
@@ -129,9 +132,9 @@ class CVmatching {
                 if (this.educationTitle(education_title[j])) {
                   weight = weight + 4;
                 } else if (education_title[j].toLowerCase().includes('master') || education_title[j].toLowerCase().includes('msc')) {
-                  weight = weight + 5;
-                } else if (education_title[j].toLowerCase().includes('phd')) {
                   weight = weight + 6;
+                } else if (education_title[j].toLowerCase().includes('phd')) {
+                  weight = weight + 7;
                 } else {
                   weight = weight + 2;
                 }
@@ -197,7 +200,7 @@ class CVmatching {
 
       if(lowerDate != 0 && upperDate != 0 && lowerDate != 'Invalid Date' && upperDate != 'Invalid Date'){
         let experience = this.dateDifference(new Date(lowerDate), new Date(upperDate));
-        let weight = experience*0.2;
+        let weight = experience*0.25;
         if(cvs[index].email == filterArr[index].email){
           filterArr[index].weight = filterArr[index].weight + weight;
           filterArr[index].experience = experience;
@@ -240,7 +243,7 @@ class CVmatching {
               || (profile.skill[i].toLowerCase() == 'java' && cvs[j].skills[k].toLowerCase() == 'javascript')
               || (profile.skill[i].toLowerCase() == 'word' && cvs[j].skills[k].toLowerCase().includes('wordpress'))
               || (cvs[j].skills[k].toLowerCase() == 'r'))) {
-              weight = 3 + weight;
+              weight = 4 + weight;
             }
           }
         }
