@@ -292,7 +292,7 @@
                   <button
                     class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2"
                   >
-                    WATCH
+                    LISTEN
                   </button>
                 </div>
               </div>
@@ -385,6 +385,21 @@
                         <div class="col-7">
                           <p class="text-regular text-left Color-gray-60 mb-1">
                             {{ Math.round(activeCV.weight * 10) / 10 }} %
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="text-regular text-left Color-gray-60 mb-1">
+                            CV weight is calculated based on the candidate's qualifications, skills selected
+                            as well as work experience. For each selected skill that a candidate has, the system
+                            adds a weight to their CV. For each year of experience that a candidate has, a weight
+                            is added to it. On qualifications, weights are added based on level of education e.g.
+                            someone with a Masters will have a higher weight than a someone with a Bachelors. And then
+                            there are special qualifications for instance in accounts, ACCA is a prestigious
+                            qualification and that will carry a significant amount of weight.<br>
+                            Each person's weights will be added together to come up with a final score and then CVs will
+                            will be ranked. This is done through an algorithm that I named "THE HEAVY WEIGHT ALGORITHM"
                           </p>
                         </div>
                       </div>
