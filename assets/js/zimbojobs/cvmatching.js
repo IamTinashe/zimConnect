@@ -243,7 +243,7 @@ class CVmatching {
               || (profile.skill[i].toLowerCase() == 'java' && cvs[j].skills[k].toLowerCase() == 'javascript')
               || (profile.skill[i].toLowerCase() == 'word' && cvs[j].skills[k].toLowerCase().includes('wordpress'))
               || (cvs[j].skills[k].toLowerCase() == 'r'))) {
-              weight = 4 + weight;
+              weight = 5 + weight;
             }
           }
         }
@@ -252,7 +252,7 @@ class CVmatching {
         "index": j,
         "email": cvs[j].email,
         "weight": weight,
-        "skillScore": weight/3
+        "skillScore": weight/5
       })
     }
     return filteredCVs;
@@ -282,7 +282,8 @@ class CVmatching {
         cvUrl: cvs[filteredCVs[index].index].cv_url.file_url,
         weight: filteredCVs[index].weight,
         email: filteredCVs[index].email,
-        skillScore: filteredCVs[index].skillScore
+        skillScore: filteredCVs[index].skillScore,
+        considered: false
       })
     }
     return rankedCVs;

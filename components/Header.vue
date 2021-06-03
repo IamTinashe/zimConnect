@@ -3,7 +3,7 @@
     <div class="container-fluid px-4 py-4 bgColor-primary">
       <div class="row justify-content-md-center mx-lg-2">
         <div class="show-large-only col-md-6 Color-white">
-          <span>PHONE: +75 8746 958</span>
+          <span>PHONE: +1 940 757 0022</span>
           <span class="ml-2">EMAIL: ZIMCONNECT@ZIMWORX.COM</span>
         </div>
         <div class="show-large-only col-md-3 col-lg-4"></div>

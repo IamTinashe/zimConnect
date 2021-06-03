@@ -306,6 +306,8 @@
                 >
                   <h2 class="text-left title-large mb-1">
                     {{ activeCV.fullname.toUpperCase() }}
+                    <span v-if="activeCV.considered" @click="activeCV.considered = true" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
+                    <span v-else @click="activeCV.considered = false" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
                   <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
                     {{ activeCV.sector.toUpperCase() }}
@@ -461,23 +463,7 @@
                                                               <td
                                                                 class="alignright"
                                                               >
-                                                                $ 1600.00
-                                                              </td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>Bandwidth</td>
-                                                              <td
-                                                                class="alignright"
-                                                              >
-                                                                $ 1200.00
-                                                              </td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>Telephony</td>
-                                                              <td
-                                                                class="alignright"
-                                                              >
-                                                                $ 500.00
+                                                                $ {{ Math.ceil(Math.round(activeCV.weight * 35)/100) *100 }}
                                                               </td>
                                                             </tr>
                                                             <tr class="total">
@@ -490,7 +476,7 @@
                                                               <td
                                                                 class="alignright"
                                                               >
-                                                                $ 3300.00
+                                                                $ {{ Math.ceil(Math.round(activeCV.weight * 35)/100) *100 }}
                                                               </td>
                                                             </tr>
                                                           </tbody>
@@ -678,7 +664,7 @@ export default {
       let year = date.getFullYear();
       let month = date.getMonth();
       month = month < 10 ? "0" + month : "" + month;
-      this.today = year + "-" + month + "-01";
+      this.today = year + "-" + month+1 + "-01";
       return cvmatching.dateDifference(new Date(dob), new Date(this.today));
     },
     showQuote(cv) {
