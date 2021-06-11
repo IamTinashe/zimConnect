@@ -27,11 +27,12 @@
               class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
             >
               <h3 class="Color-primary group-header mb-4 px-4">
-                Competitive Salary & Benefits
+                Cost Saving
               </h3>
               <p class="text-regular px-4 Color-gray-60">
-                Receive US Dollars as part of your salary. Safe transportation
-                is offered should you need and is subsidised by the company.
+                When you get a virtual team member you stand to save up to 80% on your current expenditure.
+                That’s not all, because you will have a fully equipped team member handling your offices processes
+                you have more time to focus on growing your business and elevating your team. 
               </p>
             </div>
           </div>
@@ -75,6 +76,36 @@
                 Ted Talks, Workshops and other interesting self improvement
                 activities are offered weekly. Be part of one of the fastest
                 growing companies.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-sm-10 col-md-6 col-lg-4">
+            <div
+              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+            >
+              <h3 class="Color-primary group-header mb-4 px-4">
+                HIPPA Certified
+              </h3>
+              <p class="text-regular px-4 Color-gray-60">
+                We pride ourselves in having up-to-date policy adherence in all we
+                do. This means our security and conduct is strictly by united states
+                standards. 
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-10 col-md-6 col-lg-4">
+            <div
+              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+            >
+              <h3 class="Color-primary group-header mb-4 px-4">
+                No Contracts 
+              </h3>
+              <p class="text-regular px-4 Color-gray-60">
+                We make sure you get the services you want, when you, for as long as you need them.
+                With our no contract obligation you are able to select only the services you need and
+                you can cancel at any time.   
               </p>
             </div>
           </div>

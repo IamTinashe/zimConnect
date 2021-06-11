@@ -2,7 +2,7 @@
   <footer class="footer bgColor-gray-80 py-5">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-3 pr-5">
+        <div class="col-sm-12 col-md-4 pr-5">
           <h3 class="Color-primary feature-paragraph">WHO WE ARE</h3>
           <p class="Color-white footer-small">
             ZimConnect is part of GlobalBP Solutions, LLC Group. We provide
@@ -11,7 +11,7 @@
             in the lives of a people ranked the most literate in Africa.
           </p>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 pr-5">
+        <div class="col-sm-12 col-md-4 pr-5">
           <h3 class="Color-primary feature-paragraph">FOR CANDIDATES</h3>
           <ul class="Color-white footer-small pl-3">
             <li>Add Resume</li>
@@ -23,19 +23,7 @@
             <li>Your Jobs</li>
           </ul>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 pr-5">
-          <h3 class="Color-primary feature-paragraph">FOR EMPLOYERS</h3>
-          <ul class="Color-white footer-small pl-3">
-            <li>Browse Candidates</li>
-            <li>Employer Dashboard</li>
-            <li>Add Job</li>
-            <li>Job Page</li>
-            <li>Job Packages</li>
-            <li>Work Processes</li>
-            <li>My Account</li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 pr-5">
+        <div class="col-sm-12 col-md-4 pr-5">
           <h3 class="Color-primary feature-paragraph">INFORMATION</h3>
           <ul class="Color-white footer-small pl-3">
             <li>About Us</li>

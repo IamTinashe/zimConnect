@@ -5,10 +5,10 @@
         <div class="row hero">
           <div class="col-lg-12 middle-align">
             <p class="text-center text-hero Color-white pb-1">
-              <strong style="font-weight: 600;">Browse Jobs</strong>
+              <strong style="font-weight: 600;">Browse Candidates </strong>
             </p>
             <p class="text-center paragraph-large Color-white pb-5">
-              Find Jobs, Employment & Career Opportunities
+              Find Potential Candidates by Job Post and Qualification 
             </p>
             <div class="row justify-content-md-center">
               <div class="col-lg-10">
