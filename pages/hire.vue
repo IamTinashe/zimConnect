@@ -250,14 +250,14 @@
                   <div class="circular-portrait">
                     <img
                       :src="rankedCVs[index].image"
-                      :alt="rankedCVs[index].fullname"
+                      :alt="'Candidate ' + rankedCVs[index].id"
                       class="img"
                     />
                   </div>
                 </div>
                 <div class="col-md-9 col-lg-10">
                   <p class="paragraph-large mb-0 pb-0">
-                    {{ rankedCVs[index].fullname.toUpperCase() }}
+                    Candidate {{ rankedCVs[index].id }}
                   </p>
                   <div
                     class="row mb-2"
@@ -305,7 +305,7 @@
                   class="card bgColor-white border-radius-2 box-shadow-1 my-4 py-5 px-5"
                 >
                   <h2 class="text-left title-large mb-1">
-                    {{ activeCV.fullname.toUpperCase() }}
+                    Candidate {{ activeCV.id }}
                     <span v-if="activeCV.considered" @click="activeCV.considered = true" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
                     <span v-else @click="activeCV.considered = false" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
@@ -446,7 +446,7 @@
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        {{activeCV.fullname}}<br/>
+                                                        Candidate {{activeCV.id}}<br/>
                                                         {{today}}
                                                       </td>
                                                     </tr>

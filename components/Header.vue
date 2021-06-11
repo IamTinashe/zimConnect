@@ -44,8 +44,8 @@
                 </NuxtLink>
               </li>
               <li class="display-inline mx-2">
-                <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" title="Employers" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  Employers
+                <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" title="About Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  About Us
                 </a>
               </li>
               <li class="display-inline mx-2">

@@ -269,6 +269,7 @@ class CVmatching {
         description = this.reFormatArray(cvs[filteredCVs[index].index].education);
       }
       rankedCVs.push({
+        id: rankedCVs.length,
         fullname: cvs[filteredCVs[index].index].fullname,
         skills: this.reFormatArray(cvs[filteredCVs[index].index].skills),
         description: description,
