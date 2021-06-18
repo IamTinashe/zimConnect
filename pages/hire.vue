@@ -306,7 +306,7 @@
                 >
                   <h2 class="text-left title-large mb-1">
                     Candidate {{ activeCV.id }}
-                    <span v-if="activeCV.considered" @click="activeCV.considered = true" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
+                    <span v-if="activeCV.considered == false" @click="activeCV.considered = true" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
                     <span v-else @click="activeCV.considered = false" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
                   <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
