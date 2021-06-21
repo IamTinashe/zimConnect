@@ -294,6 +294,12 @@
                   >
                     LISTEN
                   </button>
+                  <button
+                    class="button button-primary bgColor-red py-1 px-4 mx-2 border-radius-8 float-left borderColor-red text-regular"
+                    v-if="rankedCVs[index].considered == true"
+                  >
+                    ALREADY SHORTLISTED
+                  </button>
                 </div>
               </div>
             </div>
@@ -306,8 +312,8 @@
                 >
                   <h2 class="text-left title-large mb-1">
                     Candidate {{ activeCV.id }}
-                    <span v-if="activeCV.considered == false" @click="activeCV.considered = true" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
-                    <span v-else @click="activeCV.considered = false" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
+                    <span v-if="activeCV.considered == false" @click="shortlistCandidate(activeCV)" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
+                    <span v-else @click="removeShortlistCandidate(activeCV)" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
                   <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
                     {{ activeCV.sector.toUpperCase() }}
@@ -536,6 +542,7 @@ import positions from "@/assets/js/zimconnect/positions";
 import skills from "@/assets/js/zimconnect/skills";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
+import shortlist from "@/assets/js/zimconnect/shortlist";
 export default {
   components: {
     CandidateModal: () => import("@/components/CandidateModal"),
@@ -564,6 +571,7 @@ export default {
       quote: {},
       today : '',
       quoteActive: false,
+      shortListed: []
     };
   },
   async mounted() {
@@ -574,6 +582,7 @@ export default {
     await this.getPositions();
     await this.getSkills();
     await this.getWorkdays();
+    this.shortListed = await shortlist.getAllShortlisted();
   },
   methods: {
     async getCompanies() {
@@ -634,6 +643,7 @@ export default {
       this.rankedCVs = cvmatching.advancedFilter(this.rankedCVs, pool)
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
       this.rankedCVs = cvmatching.setScore(this.rankedCVs, this.profile.skill.length);
+      this.findShortlisted();
       this.search = false;
       this.loading = false;
     },
@@ -679,6 +689,38 @@ export default {
           else if(this.positions[index].name == 'Accounting') return 'accounting'
           else if(this.positions[index].name == 'Human Resources') return 'hr'
           else return 'it'
+        }
+      }
+    },
+    async shortlistCandidate(cv){
+      await shortlist.shortlist({
+        userID: window.localStorage.getItem('id'),
+        candidateID: cv.id,
+        email: cv.email,
+        considered: true
+      }).then(() => {
+        this.activeCV.considered = true;
+      })
+    },
+    async removeShortlistCandidate(cv){
+      this.shortListed = await shortlist.getAllShortlisted();
+      let index = 0;
+      for(index in this.shortListed){
+        console.log(this.shortListed[index])
+        if(this.shortListed[index].email == cv.email){
+          await shortlist.removeShortlist(this.shortListed[index].id).then(() => {
+            this.activeCV.considered = false;
+          })
+        }
+      }
+    },
+    findShortlisted(){
+      let i, j;
+      for(i in this.rankedCVs){
+        for(j in this.shortListed){
+          if(this.rankedCVs[i].email == this.shortListed[j].email){
+            this.rankedCVs[i].considered = true;
+          }
         }
       }
     }
