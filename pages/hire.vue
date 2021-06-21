@@ -7,11 +7,17 @@
           <div class="col-12 middle-align mt-5">
             <div class="w-100 position-absolute mt-5">
               <button
-                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 position-fixed z-index-10 p-small"
+                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mb-5 position-fixed z-index-10 p-small"
                 @click="(search = !search), (max = 5)"
                 v-if="!search"
               >
                 BACK TO SEARCH
+              </button>
+              <button
+                v-if="!search"
+                class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 p-2 mt-5 position-fixed z-index-10 p-small"
+              >
+                {{shortlistOnMyAccount.length}} Candidates Listed
               </button>
             </div>
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
@@ -549,6 +555,7 @@ export default {
   },
   data() {
     return {
+      userID: '',
       allCompanies: [],
       profile: {
         company: "",
@@ -571,12 +578,17 @@ export default {
       quote: {},
       today : '',
       quoteActive: false,
-      shortListed: []
+      shortListed: [],
+      shortlistOnMyAccount: []
     };
   },
   async mounted() {
-    if (localStorage.getItem("loggedIn") === null)
+    if (localStorage.getItem("loggedIn") === null){
       window.location.href = "/login";
+      if(window.localStorage.getItem('id') != null){
+        this.userID = window.localStorage.getItem('id');
+      }
+    }
     else this.token = window.localStorage.getItem("accessToken");
     await this.getCompanies();
     await this.getPositions();
@@ -699,6 +711,7 @@ export default {
         email: cv.email,
         considered: true
       }).then(() => {
+        this.shortlistOnMyAccount.push(cv);
         this.activeCV.considered = true;
       })
     },
@@ -706,7 +719,6 @@ export default {
       this.shortListed = await shortlist.getAllShortlisted();
       let index = 0;
       for(index in this.shortListed){
-        console.log(this.shortListed[index])
         if(this.shortListed[index].email == cv.email){
           await shortlist.removeShortlist(this.shortListed[index].id).then(() => {
             this.activeCV.considered = false;
@@ -720,9 +732,14 @@ export default {
         for(j in this.shortListed){
           if(this.rankedCVs[i].email == this.shortListed[j].email){
             this.rankedCVs[i].considered = true;
+            this.rankedCVs[i].employerID = this.shortListed[j].userID;
+            this.shortlistOnMyAccount.push(this.shortListed[j]);
           }
         }
       }
+    },
+    findShortlistOnMyAccount(){
+
     }
   },
   head() {

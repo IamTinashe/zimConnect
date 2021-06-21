@@ -284,7 +284,8 @@ class CVmatching {
         weight: filteredCVs[index].weight,
         email: filteredCVs[index].email,
         skillScore: filteredCVs[index].skillScore,
-        considered: false
+        considered: false,
+        employerID: ''
       })
     }
     return rankedCVs;
