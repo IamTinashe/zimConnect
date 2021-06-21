@@ -246,6 +246,7 @@
             <input v-model="searchValue" type="text" id="searchValue" class="form-input border-none w-80 px-3 py-3 float-left"/>
             <button
                 class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 w-20 mb-5 p-small float-left"
+                @click="searchCandidates()"
               >
                 SEARCH
               </button>
@@ -573,6 +574,7 @@ export default {
       userID: '',
       searchValue: '',
       allCompanies: [],
+      preservedList: [],
       profile: {
         company: "",
         position: "",
@@ -671,6 +673,7 @@ export default {
       this.rankedCVs = cvmatching.advancedFilter(this.rankedCVs, pool)
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
       this.rankedCVs = cvmatching.setScore(this.rankedCVs, this.profile.skill.length);
+      this.preservedList = this.rankedCVs;
       this.findShortlisted();
       this.search = false;
       this.loading = false;
@@ -754,8 +757,15 @@ export default {
         }
       }
     },
-    findShortlistOnMyAccount(){
-
+    searchCandidates(){
+      this.rankedCVs = this.preservedList;
+      let index;
+      for(index in this.rankedCVs){
+        if(this.rankedCVs[index].description.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].sector.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].skills.includes(this.searchValue.toLowerCase())){
+          this.rankedCVs[index].weight = this.rankedCVs[index].weight * 10;
+        }
+      }
+      this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
     }
   },
   head() {
