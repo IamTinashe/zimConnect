@@ -571,6 +571,7 @@ export default {
   },
   data() {
     return {
+      allCVS: {},
       userID: '',
       searchValue: '',
       allCompanies: [],
@@ -613,6 +614,7 @@ export default {
     await this.getSkills();
     await this.getWorkdays();
     this.shortListed = await shortlist.getAllShortlisted();
+    this.allCVS = await cvmatching.getCVs();
   },
   methods: {
     async getCompanies() {
@@ -661,7 +663,8 @@ export default {
     },
     async submitForm() {
       this.loading = true;
-      let cvs = await cvmatching.getCVs();
+      console.log(this.allCVS)
+      let cvs = this.allCVS;
       let pool = this.getPositionRole();
       cvs = cvmatching.filterByGoodName(cvs);
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);

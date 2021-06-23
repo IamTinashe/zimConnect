@@ -4,7 +4,7 @@
       <div class="row justify-content-md-center mx-lg-2">
         <div class="show-large-only col-md-6 Color-white">
           <span>PHONE: +1 940 757 0022</span>
-          <span class="ml-2">EMAIL: INFO@SUPPORTDDS.COM</span>
+          <span class="ml-2">EMAIL: info@zimconnect.org</span>
         </div>
         <div class="show-large-only col-md-3 col-lg-4"></div>
         <div class="col-sm-12 col-md-3 col-lg-2 text-right">
