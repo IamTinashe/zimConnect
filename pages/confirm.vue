@@ -3,23 +3,32 @@
     <div class="w-100 banner">
       <img class="w-100 banner-image" src="/images/living-room-interior-with-blue-velvet-armchair-cabinet.jpg" alt="Living room interior with blue velvet armchair cabinet"/>
     </div>
-    <div class="container-fluid bgColor-gray-10 pb-5">
+    <div class="container-fluid bgColor-gray-10 pb-5" v-if="confirmed == false">
       <div class="container">
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">LOGIN</h2>
+            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">CONFIRM YOUR EMAIL</h2>
             <small class="text-center Color-error" v-if="error.length > 0">{{error}} </small>
-            <form class="form pt-3 pb-5" @submit.prevent="userLogin()">
-              <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
-              <input v-model="login.username" type="text" id="username" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+            <form class="form pt-3 pb-5" @submit.prevent="userConfirm()">
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email*</label>
+              <input v-model="confirm.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
-              <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
-              <input v-model="login.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="confirmationCode">Confirmation Code*</label>
+              <input v-model="confirm.confirmationCode" type="text" id="confirmationCode" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
               <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3">
-                LOGIN
+                CONFIRM
               </button>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bgColor-gray-10 pb-5" v-else>
+      <div class="container">
+        <div class="row hero justify-content-md-center">
+          <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
+            <h2 class="text-center Color-gray-80 group-header mt-5 mt-lg-0 py-4">YOUR ACCOUNT WAS SUCCESSFULLY CONFIRMED</h2>
           </div>
         </div>
       </div>
@@ -31,40 +40,39 @@
 </template>
 
 <script>
+import auth from "@/assets/js/zimconnect/auth";
 export default {
-  middleware: ["auth"],
   data() {
     return {
-      login: {
-        username: '',
-        password: ''
+      confirm: {
+        email: '',
+        confirmationCode: ''
       },
       error: '',
-      loggedIn: false
+      loggedIn: false,
+      confirmed: false
     }
   },
   mounted(){
     this.loggedIn = this.$store.state.auth.loggedIn;
     if(window.localStorage.getItem('id') != null) window.location.href = '/hire';
+    
   },
   methods: {
-    async userLogin() {
+    async userConfirm() {
       try {
-        await this.$store.dispatch("login", {username: this.login.username, password: this.login.password})
-        .then((user)=>{
-          if(user){
-            window.location.href = '/hire';
-          }else
-            this.error = "Failed to connect";
+        await auth.confirm(this.confirm)
+        .then(()=>{
+          this.confirmed = true;
         });
       } catch (error) {
-        this.error = ((typeof error.data.message === "undefined") && (error.data.message.length > 0))? error.data.message : 'Login credentials mismatch';
+        this.error = ((typeof error.data.message === "undefined") && (error.data.message.length > 0))? error.data.message : 'Error while confirming';
       }
     },
   },
   head() {
     return {
-      title: `${process.env.title} | Login`,
+      title: `${process.env.title} | Confirm`,
       meta: [
         {
           hid: 'description',
@@ -74,7 +82,7 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: `${process.env.title} | Login`
+          content: `${process.env.title} | Confirm`
         },
         {
           hid: 'og:description',
@@ -84,7 +92,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/login`
+          content: `${process.env.BASE}/confirm`
         },
         {
           hid: 'og:image',
@@ -94,7 +102,7 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: `${process.env.title} | Login`
+          content: `${process.env.title} | Confirm`
         },
         {
           hid: 'twitter:description',
@@ -110,7 +118,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/login`,
+          href: `${process.env.BASE}/confirm`,
         }
       ],
     }

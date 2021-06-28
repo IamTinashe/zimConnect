@@ -20,11 +20,7 @@
               <input v-model="user.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="company">Company*</label>
-              <select id="company" v-model="user.companyID" class="px-3 select feature-paragraph Color-gray-60 py-2 py-lg-3 mb-3" required>
-                <option v-for="(company, index) in allCompanies" :key="index" :value="company.id">
-                  {{company.name}}
-                </option>
-              </select>
+              <input v-model="user.companyID" type="text" id="company" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
               <input  v-model="user.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-lg-3 mb-4" required/>
@@ -40,7 +36,7 @@
         </div>
         <div class="row justify-content-md-center pt-5 pt-lg-0 hero" v-else>
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead mt-5">Your Account was successfully created!</h2>
+            <h2 class="text-center Color-gray-80 group-header mt-5">Your Account was successfully created! We have sent a confirmation email to {{user.email}}</h2>
           </div>
         </div>
       </div>
