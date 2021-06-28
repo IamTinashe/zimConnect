@@ -19,6 +19,7 @@
               <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3">
                 LOGIN
               </button>
+              <NuxtLink class="Color-primary float-right mt-3" to="/forgotpassword" title="Forgot Password">Forgot Password </NuxtLink>
             </form>
           </div>
         </div>
