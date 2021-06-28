@@ -8,7 +8,7 @@
               <strong style="font-weight: 600;">Browse Candidates </strong>
             </p>
             <p class="text-center paragraph-large Color-white pb-5">
-              Find Potential Candidates by Job Post and Qualification 
+              Connecting First Class Virtual Teams to the World
             </p>
             <div class="row justify-content-md-center">
               <div class="col-lg-10">

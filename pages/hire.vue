@@ -6,19 +6,7 @@
         <div class="row justify-content-md-center hero">
           <div class="col-12 middle-align mt-5">
             <div class="w-100 position-absolute mt-5">
-              <button
-                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mb-5 position-fixed z-index-10 p-small"
-                @click="(search = !search), (max = 5)"
-                v-if="!search"
-              >
-                BACK TO SEARCH
-              </button>
-              <button
-                v-if="!search"
-                class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 p-2 mt-5 position-fixed z-index-10 p-small"
-              >
-                {{shortlistOnMyAccount.length}} Candidates Listed
-              </button>
+        
             </div>
             <p class="text-center text-hero Color-white pt-5 mt-5 pb-1">
               HIRE A
@@ -244,6 +232,34 @@
 
     <div class="container-fluid bgColor-gray-10 py-5" v-else>
       <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-2">
+            <button
+                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mb-5 p-small"
+                @click="(search = !search), (max = 5)"
+                v-if="!search"
+              >
+                BACK TO SEARCH
+              </button>
+          </div>
+          <div class="col-12 col-sm-8">
+            <input v-model="searchValue" type="text" id="searchValue" class="form-input border-none w-80 px-3 py-3 float-left"/>
+            <button
+                class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 w-20 mb-5 p-small float-left"
+                @click="searchCandidates()"
+              >
+                SEARCH
+              </button>
+          </div>
+          <div class="col-12 col-sm-2">
+            <button
+                v-if="!search"
+                class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 p-small"
+              >
+                {{shortlistOnMyAccount.length}} Candidates Listed
+              </button>
+          </div>
+        </div>
         <div class="row hero justify-content-md-center my-4">
           <div class="col-sm-12">
             <div
@@ -301,7 +317,7 @@
                     LISTEN
                   </button>
                   <button
-                    class="button button-primary bgColor-red py-1 px-4 mx-2 border-radius-8 float-left borderColor-red text-regular"
+                    class="button button-primary bgColor-light-blue py-1 px-4 mx-2 border-radius-8 float-left borderColor-light-blue text-regular"
                     v-if="rankedCVs[index].considered == true"
                   >
                     ALREADY SHORTLISTED
@@ -555,8 +571,11 @@ export default {
   },
   data() {
     return {
+      allCVS: {},
       userID: '',
+      searchValue: '',
       allCompanies: [],
+      preservedList: [],
       profile: {
         company: "",
         position: "",
@@ -595,6 +614,7 @@ export default {
     await this.getSkills();
     await this.getWorkdays();
     this.shortListed = await shortlist.getAllShortlisted();
+    this.allCVS = await cvmatching.getCVs();
   },
   methods: {
     async getCompanies() {
@@ -643,7 +663,8 @@ export default {
     },
     async submitForm() {
       this.loading = true;
-      let cvs = await cvmatching.getCVs();
+      console.log(this.allCVS)
+      let cvs = this.allCVS;
       let pool = this.getPositionRole();
       cvs = cvmatching.filterByGoodName(cvs);
       let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
@@ -655,6 +676,7 @@ export default {
       this.rankedCVs = cvmatching.advancedFilter(this.rankedCVs, pool)
       this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
       this.rankedCVs = cvmatching.setScore(this.rankedCVs, this.profile.skill.length);
+      this.preservedList = this.rankedCVs;
       this.findShortlisted();
       this.search = false;
       this.loading = false;
@@ -738,8 +760,15 @@ export default {
         }
       }
     },
-    findShortlistOnMyAccount(){
-
+    searchCandidates(){
+      this.rankedCVs = this.preservedList;
+      let index;
+      for(index in this.rankedCVs){
+        if(this.rankedCVs[index].description.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].sector.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].skills.includes(this.searchValue.toLowerCase())){
+          this.rankedCVs[index].weight = this.rankedCVs[index].weight * 10;
+        }
+      }
+      this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
     }
   },
   head() {
