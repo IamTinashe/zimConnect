@@ -86,7 +86,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/forgotpassword`
+          content: `https://zimconnect.org/forgotpassword`
         },
         {
           hid: 'twitter:title',
@@ -102,7 +102,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/forgotpassword`,
+          href: `https://zimconnect.org/forgotpassword`,
         }
       ],
     }

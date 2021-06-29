@@ -166,7 +166,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/register`
+          content: `https://zimconnect.org/register`
         },
         {
           hid: 'twitter:title',
@@ -182,7 +182,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/register`,
+          href: `https://zimconnect.org/register`,
         }
       ],
     }

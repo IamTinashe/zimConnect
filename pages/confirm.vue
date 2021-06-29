@@ -92,7 +92,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/confirm`
+          content: `https://zimconnect.org/confirm`
         },
         {
           hid: 'twitter:title',
@@ -108,7 +108,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/confirm`,
+          href: `https://zimconnect.org/confirm`,
         }
       ],
     }

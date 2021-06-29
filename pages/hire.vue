@@ -793,7 +793,7 @@ export default {
         {
           hid: "og:url",
           property: "og:url",
-          content: `${process.env.BASE}/hire`,
+          content: `https://zimconnect.org/hire`,
         },
         {
           hid: "twitter:title",
@@ -809,7 +809,7 @@ export default {
       link: [
         {
           rel: "canonical",
-          href: `${process.env.BASE}/hire`,
+          href: `https://zimconnect.org/hire`,
         },
       ],
     };

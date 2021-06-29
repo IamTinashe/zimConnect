@@ -85,7 +85,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/login`
+          content: `https://zimconnect.org/login`
         },
         {
           hid: 'twitter:title',
@@ -101,7 +101,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/login`,
+          href: `https://zimconnect.org/login`,
         }
       ],
     }

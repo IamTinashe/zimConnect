@@ -100,7 +100,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/reset`
+          content: `https://zimconnect.org/reset`
         },
         {
           hid: 'twitter:title',
@@ -116,7 +116,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/reset`,
+          href: `https://zimconnect.org/reset`,
         }
       ],
     }

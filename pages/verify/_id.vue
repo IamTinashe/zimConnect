@@ -91,12 +91,12 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/verify`
+          content: `https://zimconnect.org/verify`
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: `${process.env.BASE}/images/test.png`
+          content: `https://zimconnect.org/images/test.png`
         },
         {
           hid: 'twitter:title',
@@ -111,13 +111,13 @@ export default {
         {
           hid: 'twitter:image',
           property: 'twitter:image',
-          content: `${process.env.BASE}/images/test.png`
+          content: `https://zimconnect.org/images/test.png`
         },
       ],
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/verify`,
+          href: `https://zimconnect.org/verify`,
         }
       ],
     }
