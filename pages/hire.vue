@@ -778,7 +778,7 @@ export default {
         {
           hid: "description",
           property: "description",
-          content: "",
+          content: "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
         },
         {
           hid: "og:title",
@@ -788,17 +788,12 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content: "",
+          content: "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
         },
         {
           hid: "og:url",
           property: "og:url",
           content: `${process.env.BASE}/hire`,
-        },
-        {
-          hid: "og:image",
-          property: "og:image",
-          content: `${process.env.BASE}/images/test.png`,
         },
         {
           hid: "twitter:title",
@@ -808,13 +803,8 @@ export default {
         {
           hid: "twitter:description",
           property: "twitter:description",
-          content: ``,
-        },
-        {
-          hid: "twitter:image",
-          property: "twitter:image",
-          content: `${process.env.BASE}/images/test.png`,
-        },
+          content: 'Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.',
+        }
       ],
       link: [
         {

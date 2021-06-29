@@ -85,7 +85,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: ''
+          content: 'Reset you password and get started on Zimconnect'
         },
         {
           hid: 'og:title',
@@ -95,17 +95,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: ''
+          content: 'Reset you password and get started on Zimconnect'
         },
         {
           hid: 'og:url',
           property: 'og:url',
           content: `${process.env.BASE}/reset`
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: `${process.env.BASE}/images/test.png`
         },
         {
           hid: 'twitter:title',
@@ -115,12 +110,7 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: ``
-        },
-        {
-          hid: 'twitter:image',
-          property: 'twitter:image',
-          content: `${process.env.BASE}/images/test.png`
+          content: 'Reset you password and get started on Zimconnect'
         },
       ],
       link: [

@@ -33,10 +33,12 @@
                   </div>
                   <div class="row justify-content-md-center">
                     <div class="col-lg-3">
-                      <div class="button bgColor-primary borderColor-primary button-primary border-radius-8 w-75 py-1">
-                        <i class="fa fa-search fa-1x Color-white"></i>
-                        <span class="px-2">Search</span>
-                      </div>
+                      <NuxtLink to="/hire" title="Find Candidates">
+                        <div class="button bgColor-primary borderColor-primary button-primary border-radius-8 w-75 py-1">
+                          <i class="fa fa-search fa-1x Color-white"></i>
+                          <span class="px-2">Search</span>
+                        </div>
+                      </NuxtLink>
                     </div>
                   </div>
                 </form>

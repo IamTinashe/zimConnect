@@ -30,7 +30,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: ''
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
         },
         {
           hid: 'og:title',
@@ -40,17 +40,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: ''
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
         },
         {
           hid: 'og:url',
           property: 'og:url',
           content: `${process.env.BASE}/home`
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: `${process.env.BASE}/images/test.png`
         },
         {
           hid: 'twitter:title',
@@ -60,13 +55,8 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: ``
-        },
-        {
-          hid: 'twitter:image',
-          property: 'twitter:image',
-          content: `${process.env.BASE}/images/test.png`
-        },
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
+        }
       ],
       link: [
         {

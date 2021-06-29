@@ -36,7 +36,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: ''
+          content: 'We only recruit the best candidates, giving you resume/CV options to go through before we set video interviews.'
         },
         {
           hid: 'og:title',
@@ -46,17 +46,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: ''
+          content: 'We only recruit the best candidates, giving you resume/CV options to go through before we set video interviews.'
         },
         {
           hid: 'og:url',
           property: 'og:url',
           content: `${process.env.BASE}/faq`
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: `${process.env.BASE}/images/test.png`
         },
         {
           hid: 'twitter:title',
@@ -66,12 +61,7 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: ``
-        },
-        {
-          hid: 'twitter:image',
-          property: 'twitter:image',
-          content: `${process.env.BASE}/images/test.png`
+          content: 'We only recruit the best candidates, giving you resume/CV options to go through before we set video interviews.'
         },
       ],
       link: [
