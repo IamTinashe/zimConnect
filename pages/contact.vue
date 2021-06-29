@@ -7,7 +7,7 @@
       <div class="container">
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">FAQ</h2>
+            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">CONTACT US</h2>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@ export default {
   },
   head() {
     return {
-      title: `${process.env.title} | FAQ`,
+      title: `${process.env.title} | Contact Us`,
       meta: [
         {
           hid: 'description',
@@ -41,7 +41,7 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: `${process.env.title} | FAQ`
+          content: `${process.env.title} | Contact Us`
         },
         {
           hid: 'og:description',
@@ -51,7 +51,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `${process.env.BASE}/faq`
+          content: `${process.env.BASE}/contact`
         },
         {
           hid: 'og:image',
@@ -61,7 +61,7 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: `${process.env.title} | FAQ`
+          content: `${process.env.title} | Contact Us`
         },
         {
           hid: 'twitter:description',
@@ -77,7 +77,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE}/faq`,
+          href: `${process.env.BASE}/contact`,
         }
       ],
     }
