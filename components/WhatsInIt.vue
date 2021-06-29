@@ -133,7 +133,7 @@
           <p class="text-regular Color-white mb-5">
             Register and upload your CV.
           </p>
-          <a href="https://zimbojobs.com" target="_blank" title="Register as a Candidate" class="text-decoration-none">
+          <a href="https://zimbojobs.com" target="_blank" rel="noopener" title="Register as a Candidate" class="text-decoration-none">
             <div class="button button-primary bgColor-white Color-black borderColor-white border-radius-4 button-size-200 mb-4 py-2">
               <span class="text-regular">REGISTER AS A CANDIDATE</span>
             </div>

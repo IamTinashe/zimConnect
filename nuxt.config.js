@@ -39,6 +39,9 @@ module.exports = {
   },
   manifest: manifest,
   head: {
+    htmlAttrs: {
+      lang: 'en'
+    },
     title: 'ZimConnect',
     meta: [
       { charset: 'utf-8' },
