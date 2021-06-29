@@ -1,13 +1,30 @@
 <template>
   <div class="w-100 login">
     <div class="w-100 banner">
-      <img class="w-100 banner-image" src="/images/living-room-interior-with-blue-velvet-armchair-cabinet.jpg" alt="Living room interior with blue velvet armchair cabinet"/>
+      <img class="w-100 banner-image" src="/images/smiling-woman.jpg" alt="Smiling Woman"/>
     </div>
     <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
         <div class="row hero justify-content-md-center">
-          <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">CONTACT US</h2>
+          <div class="col-sm-12 col-md-5 col-lg-4">
+            <p class="small mt-5">
+              <br>  <span class="p-small">Corporate Office</span>
+              <br>  440 US Hwy 377 Suite 1140
+              <br>  Argyle, TX 76226
+              <br>  (940) 757-0022 Office
+              <br>  (940) 757-0045 Fax
+              <br>  info@zimconnect.org
+            </p>
+          </div>
+          <div class="col-sm-12 col-md-5 col-lg-4">
+            <p class="small mt-5">
+              <br>  <span class="p-small">International Office</span>
+              <br>  8th Floor Joina City
+              <br>  Harare, Zimbabwe
+              <br>  (940) 757-0022 Office
+              <br>  (940) 757-0045 Fax
+              <br>  info@zimconnect.org
+            </p>
           </div>
         </div>
       </div>
