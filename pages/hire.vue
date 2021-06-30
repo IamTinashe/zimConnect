@@ -252,12 +252,14 @@
               </button>
           </div>
           <div class="col-12 col-sm-2">
-            <button
-                v-if="!search"
-                class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 p-small"
-              >
-                {{shortlistOnMyAccount.length}} Candidates Listed
-              </button>
+            <NuxtLink to="/candidates" title="My Candidates">
+              <button
+                  v-if="!search"
+                  class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 p-small"
+                >
+                  {{shortlistOnMyAccount.length}} Candidates Listed
+                </button>
+            </NuxtLink>
           </div>
         </div>
         <div class="row hero justify-content-md-center my-4">
@@ -663,7 +665,6 @@ export default {
     },
     async submitForm() {
       this.loading = true;
-      console.log(this.allCVS)
       let cvs = this.allCVS;
       let pool = this.getPositionRole();
       cvs = cvmatching.filterByGoodName(cvs);

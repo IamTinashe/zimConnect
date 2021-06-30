@@ -37,6 +37,18 @@ class Shortlist {
       }
     })
   }
+
+  static sendCVs(cvs){
+    let api = '/api/shortlisted/submit';
+    return new Promise(async (resolve, reject) => {
+      try {
+        let response = await axios.post(BASEUrl + api, cvs)
+        resolve(response.data);
+      } catch (error) {
+        reject(error.response)
+      }
+    })
+  }
 }
 
 export default Shortlist;
