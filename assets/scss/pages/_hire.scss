@@ -90,7 +90,7 @@
       width: 100%;
     }
     
-    .ul li input[type=radio]{
+    .ul li input[type=checkbox]{
       position: absolute;
       visibility: hidden;
     }
@@ -123,15 +123,15 @@
       margin: auto;
     }
     
-    input[type=radio]:checked ~ .check {
+    input[type=checkbox]:checked ~ .check {
       border: 5px solid $primary;
     }
     
-    input[type=radio]:checked ~ .check::before{
+    input[type=checkbox]:checked ~ .check::before{
       background: $primary;
     }
     
-    input[type=radio]:checked ~ label{
+    input[type=checkbox]:checked ~ label{
       color: $gray-80;
     }
   }

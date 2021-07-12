@@ -25,26 +25,22 @@
         <div class="container bgColor-white py-5">
           <div class="row justify-content-md-center">
             <div class="col-sm-12 col-md-11">
-              <div class="meter mb-5">
+              <div class="meter mb-2">
                 <span style="width: 20%"><span class="progress"></span></span>
               </div>
-              <div class="sectionFocus w-100 position-relative pb-5 mb-5">
-                <span
-                  class="bgColor-gray group-header Color-white left ml-2 py-2 py-sm-3 px-3 px-sm-4"
-                  >1</span
-                >
-                <span
-                  class="bgColor-gray-10 group-header Color-gray left ml-2 py-2 py-sm-3 px-3 px-sm-4"
-                  >2</span
-                >
-                <span
-                  class="bgColor-gray-10 group-header Color-gray left ml-2 py-2 py-sm-3 px-3 px-sm-4"
-                  >3</span
-                >
-                <span
-                  class="bgColor-gray-10 group-header Color-gray left ml-2 py-2 py-sm-3 px-3 px-sm-4"
-                  >4</span
-                >
+              <div class="sectionFocus w-100 position-relative pb-5">
+                <div class="row">
+                  <div class="col-12 col-sm-3">
+                    <NuxtLink to="/candidates" title="My Candidates">
+                      <button
+                          v-if="search"
+                          class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 ml-0 p-small "
+                        >
+                          {{shortlistOnMyAccount.length}} Candidates Selected
+                        </button>
+                    </NuxtLink>
+                  </div>
+                </div>
               </div>
               <div class="row position-relative mb-0 text-center-md-left">
                 <div class="col-sm-12 col-md-7 col-lg-8 mb-5">
@@ -103,11 +99,11 @@
                       <ul class="ul">
                         <li v-for="(role, i) in position.positions" :key="'pos2'+ i">
                           <input
-                            type="radio"
-                            v-model="profile.position"
+                            type="checkbox"
                             :id="'position' + index + i"
-                            name="position"
+                            :name="role"
                             :value="role"
+                            @change="choosePosition(role)"
                           />
                           <label
                             class="text-regular Color-black"
@@ -236,7 +232,7 @@
           <div class="col-12 col-sm-2">
             <button
                 class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mb-5 p-small"
-                @click="(search = !search), (max = 5)"
+                @click="(search = !search), (max = 5), (rankedCVs = [])"
                 v-if="!search"
               >
                 BACK TO SEARCH
@@ -337,7 +333,7 @@
                   <h2 class="text-left title-large mb-1">
                     Candidate {{ activeCV.id }}
                     <span v-if="activeCV.considered == false" @click="shortlistCandidate(activeCV)" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
-                    <span v-else @click="removeShortlistCandidate(activeCV)" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
+                    <span v-else-if="activeCV.myaccount == true" @click="removeShortlistCandidate(activeCV)" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
                   <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
                     {{ activeCV.sector.toUpperCase() }}
@@ -580,7 +576,7 @@ export default {
       preservedList: [],
       profile: {
         company: "",
-        position: "",
+        position: [],
         skill: [],
         workdays: [],
       },
@@ -609,14 +605,16 @@ export default {
       if(window.localStorage.getItem('id') != null){
         this.userID = window.localStorage.getItem('id');
       }
+    } else{
+      this.token = window.localStorage.getItem("accessToken");
+      this.userID = window.localStorage.getItem('id');
+      await this.getCompanies();
+      await this.getPositions();
+      await this.getSkills();
+      await this.getWorkdays();
+      await this.setShortlisted()
+      this.allCVS = await cvmatching.getCVs();
     }
-    else this.token = window.localStorage.getItem("accessToken");
-    await this.getCompanies();
-    await this.getPositions();
-    await this.getSkills();
-    await this.getWorkdays();
-    this.shortListed = await shortlist.getAllShortlisted();
-    this.allCVS = await cvmatching.getCVs();
   },
   methods: {
     async getCompanies() {
@@ -692,6 +690,17 @@ export default {
         this.profile.skill.push(skill);
       }
     },
+
+    choosePosition(position){
+      if (this.profile.position.includes(position)) {
+        this.profile.position.splice(
+          this.profile.position.indexOf(position),
+          this.profile.position.indexOf(position) + 1
+        );
+      } else {
+        this.profile.position.push(position);
+      }
+    },
     chooseDay(day) {
       if (this.profile.workdays.includes(day))
         this.profile.workdays.splice(
@@ -716,14 +725,16 @@ export default {
       this.quoteActive = true;
     },
     getPositionRole(){
-      let index = 0;
+      let index = 0, j = 0;
       for(index in this.positions){
-        if(this.positions[index].positions.includes(this.profile.position)){
-          if(this.positions[index].name == 'Dental | Medical | Healthcare') return 'dental'
-          else if(this.positions[index].name == 'Sales') return 'sales'
-          else if(this.positions[index].name == 'Accounting') return 'accounting'
-          else if(this.positions[index].name == 'Human Resources') return 'hr'
-          else return 'it'
+        for(j in this.profile.position){
+          if(this.positions[index].positions.includes(this.profile.position[j])){
+            if(this.positions[index].name == 'Dental | Medical | Healthcare') return 'dental'
+            else if(this.positions[index].name == 'Sales') return 'sales'
+            else if(this.positions[index].name == 'Accounting') return 'accounting'
+            else if(this.positions[index].name == 'Human Resources') return 'hr'
+            else return 'it'
+          }
         }
       }
     },
@@ -736,6 +747,7 @@ export default {
       }).then(() => {
         this.shortlistOnMyAccount.push(cv);
         this.activeCV.considered = true;
+        this.activeCV.myaccount = true;
       })
     },
     async removeShortlistCandidate(cv){
@@ -745,6 +757,7 @@ export default {
         if(this.shortListed[index].email == cv.email){
           await shortlist.removeShortlist(this.shortListed[index].id).then(() => {
             this.activeCV.considered = false;
+            this.activeCV.myaccount = false;
           })
         }
       }
@@ -756,8 +769,23 @@ export default {
           if(this.rankedCVs[i].email == this.shortListed[j].email){
             this.rankedCVs[i].considered = true;
             this.rankedCVs[i].employerID = this.shortListed[j].userID;
-            this.shortlistOnMyAccount.push(this.shortListed[j]);
+            if(this.shortListed[j].userID == this.userID){
+              this.shortlistOnMyAccount.push(this.shortListed[j])
+              this.rankedCVs[i].myaccount = true;
+            }else{
+              this.rankedCVs[i].myaccount = false;
+            }
           }
+        }
+      }
+    },
+    async setShortlisted(){
+      this.shortListed = await shortlist.getAllShortlisted();
+      this.shortlistOnMyAccount = [];
+      let index;
+      for(index in this.shortListed){
+        if(this.shortListed[index].userID == this.userID){
+          this.shortlistOnMyAccount.push(this.shortListed[index])
         }
       }
     },
