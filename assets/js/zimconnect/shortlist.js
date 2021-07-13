@@ -38,8 +38,9 @@ class Shortlist {
     })
   }
 
-  static sendCVs(cvs){
-    let api = '/api/shortlisted/submit';
+  static sendCVs(cvs, id){
+    console.log(cvs)
+    let api = '/api/shortlisted/submit/' + id;
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, cvs)
