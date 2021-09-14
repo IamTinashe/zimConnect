@@ -10,7 +10,13 @@
           products, services and company policies.
         </p>
         <div
-          class="button button-primary button-size-200 bgColor-white borderColor-white border-radius-4 py-2"
+          class="
+            button button-primary button-size-200
+            bgColor-white
+            borderColor-white
+            border-radius-4
+            py-2
+          "
         >
           <span class="text-regular Color-black">HOW IT WORKS</span>
         </div>
@@ -22,23 +28,39 @@
           <span class="text-underline-80">WHAT'S IN IT FOR YOU</span>
         </h2>
         <div class="row mt-5 justify-content-md-center">
-          <div class="col-sm-10 col-md-6 col-lg-4">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
-              <h3 class="Color-primary group-header mb-4 px-4">
-                Cost Saving
-              </h3>
+              <h3 class="Color-primary group-header mb-4 px-4">Cost Saving</h3>
               <p class="text-regular px-4 Color-gray-60">
-                When you get a virtual team member you stand to save up to 80% on your current expenditure.
-                That’s not all, because you will have a fully equipped team member handling your offices processes
-                you have more time to focus on growing your business and elevating your team. 
+                When you get a virtual team member you stand to save up to 80%
+                on your current expenditure. That’s not all, because you will
+                have a fully equipped team member handling your offices
+                processes you have more time to focus on growing your business
+                and elevating your team.
               </p>
             </div>
           </div>
-          <div class="col-sm-10 col-md-6 col-lg-4">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
               <h3 class="Color-primary group-header mb-4 px-4">
                 First World Office Setup
@@ -50,11 +72,17 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-md-center">
-          <div class="col-sm-10 col-md-6 col-lg-4">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
               <h3 class="Color-primary group-header mb-4 px-4">
                 Pastoral Care
@@ -65,9 +93,19 @@
               </p>
             </div>
           </div>
-          <div class="col-sm-10 col-md-6 col-lg-4">
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
               <h3 class="Color-primary group-header mb-4 px-4">
                 Self Improvement Activities
@@ -79,35 +117,61 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-md-center">
-          <div class="col-sm-10 col-md-6 col-lg-4">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
               <h3 class="Color-primary group-header mb-4 px-4">
                 HIPPA Certified
               </h3>
               <p class="text-regular px-4 Color-gray-60">
-                We pride ourselves in having up-to-date policy adherence in all we
-                do. This means our security and conduct is strictly by united states
-                standards. 
+                We pride ourselves in having up-to-date policy adherence in all
+                we do. This means our security and conduct is strictly by united
+                states standards.
               </p>
             </div>
           </div>
-          <div class="col-sm-10 col-md-6 col-lg-4">
+          <div class="col-sm-10 col-md-4">
             <div
-              class="bgColor-white wrapper h-90 border-radius-2 text-left py-4 mb-5"
+              class="
+                bgColor-white
+                wrapper
+                h-90
+                border-radius-2
+                text-left
+                py-4
+                mb-5
+              "
             >
-              <h3 class="Color-primary group-header mb-4 px-4">
-                No Contracts 
-              </h3>
+              <h3 class="Color-primary group-header mb-4 px-4">No Contracts</h3>
               <p class="text-regular px-4 Color-gray-60">
-                We make sure you get the services you want, when you, for as long as you need them.
-                With our no contract obligation you are able to select only the services you need and
-                you can cancel at any time.   
+                We make sure you get the services you want, when you, for as
+                long as you need them. With our no contract obligation you are
+                able to select only the services you need and you can cancel at
+                any time.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-12 col-md-10">
+            <iframe
+              width="745"
+              height="420"
+              src="https://www.youtube.com/embed/TI8BMatyWP8?controls=0"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
@@ -118,10 +182,25 @@
             <span class="text-underline-80">I'M AN EMPLOYER</span>
           </h3>
           <p class="text-regular Color-gray-60 mb-5 px-3">
-            Register as an employer to view potential candidates for your business
+            Register as an employer to view potential candidates for your
+            business
           </p>
-          <NuxtLink to='/register' title="Register as a Company" class="text-decoration-none">
-            <div class="button button-primary bgColor-primary borderColor-primary border-radius-4 button-size-200 mb-4 py-2">
+          <NuxtLink
+            to="/register"
+            title="Register as a Company"
+            class="text-decoration-none"
+          >
+            <div
+              class="
+                button button-primary
+                bgColor-primary
+                borderColor-primary
+                border-radius-4
+                button-size-200
+                mb-4
+                py-2
+              "
+            >
               <span class="text-regular">REGISTER AS A COMPANY</span>
             </div>
           </NuxtLink>
@@ -133,8 +212,25 @@
           <p class="text-regular Color-white mb-5">
             Register and upload your CV.
           </p>
-          <a href="https://zimbojobs.com" target="_blank" rel="noopener" title="Register as a Candidate" class="text-decoration-none">
-            <div class="button button-primary bgColor-white Color-black borderColor-white border-radius-4 button-size-200 mb-4 py-2">
+          <a
+            href="https://zimbojobs.com"
+            target="_blank"
+            rel="noopener"
+            title="Register as a Candidate"
+            class="text-decoration-none"
+          >
+            <div
+              class="
+                button button-primary
+                bgColor-white
+                Color-black
+                borderColor-white
+                border-radius-4
+                button-size-200
+                mb-4
+                py-2
+              "
+            >
               <span class="text-regular">REGISTER AS A CANDIDATE</span>
             </div>
           </a>

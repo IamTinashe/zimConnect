@@ -110,7 +110,9 @@ module.exports = {
   css: [
     '@/assets/scss/app.scss'
   ],
-  plugins: [],
+  plugins: [
+    '~/plugins/vue-excel-export'
+  ],
   modules: [
     "@nuxtjs/axios",
   ],
