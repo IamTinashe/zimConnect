@@ -322,7 +322,7 @@
                   >
                     {{allResumes[index].views}} Views
                   </button>
-                  <audio controls v-if="allResumes[index].audioclip_url">
+                  <audio class="audio mx-2" controls v-if="allResumes[index].audioclip_url">
                     <source :src="allResumes[index].audioclip_url" type="audio/mpeg">
                   </audio>
                 </div>
@@ -518,7 +518,7 @@
           </div>
         </div>
       </div>
-      <div class="container" v-else>
+      <div class="container text-center Color-red" v-else>
         Could not find any CVs
       </div>
     </div>
@@ -696,6 +696,8 @@ export default {
         this.max = this.allResumes.length;
       }
       }catch(error){
+        this.allResumes = [];
+        this.max = 0;
         console.error(error);
       }
     }
