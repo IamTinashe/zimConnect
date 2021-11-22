@@ -8,10 +8,10 @@
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
             <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">LOGIN</h2>
-            <small class="text-center Color-error" v-if="error.length > 0">{{error}} </small>
+            <small class="text-center feature-paragraph Color-error" v-if="error.length > 0">{{error}} </small>
             <form class="form pt-3 pb-5" @submit.prevent="userLogin()">
-              <label class="ml-2 Color-gray-80 feature-paragraph" for="username">Username*</label>
-              <input v-model="login.username" type="text" id="username" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email*</label>
+              <input v-model="login.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">Password*</label>
               <input v-model="login.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       login: {
-        username: '',
+        email: '',
         password: ''
       },
       error: '',
@@ -51,15 +51,12 @@ export default {
   methods: {
     async userLogin() {
       try {
-        await this.$store.dispatch("login", {username: this.login.username, password: this.login.password})
-        .then((user)=>{
-          if(user){
-            window.location.href = '/hire';
-          }else
-            this.error = "Failed to connect";
+        await this.$store.dispatch("login", {email: this.login.email, password: this.login.password})
+        .then(()=>{
+          window.location.href = '/hire';
         });
       } catch (error) {
-        this.error = ((typeof error.data.message === "undefined") && (error.data.message.length > 0))? error.data.message : 'Login credentials mismatch';
+        this.error = error.data.message;
       }
     },
   },

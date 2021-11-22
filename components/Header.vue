@@ -90,12 +90,12 @@ export default {
       loggedIn: false,
       error: '',
       user: {},
-      id: ''
+      email: ''
     }
   },
   async mounted () {
     if(window.localStorage.getItem('id') != null){
-      this.id = window.localStorage.getItem('id');
+      this.email = window.localStorage.getItem('email');
       await this.autoLogin();
       await this.getUser();
     }
@@ -106,15 +106,16 @@ export default {
       if(window.localStorage.getItem('id').length > 0){
         try {
           this.loggedIn = Boolean(window.localStorage.getItem('loggedIn'));
-          await this.$store.dispatch("autoLogin", {id: this.id, token: window.localStorage.getItem('accessToken')});
+          this.email = window.localStorage.getItem('email');
+          await this.$store.dispatch("autoLogin", {email: window.localStorage.getItem('email')});
         } catch (error) {
-          this.error = (error.data.message.length > 0)? error.data.message : 'Login credentials mismatch';
+          this.error = error.data.message;
         }
       }
     },
     async getUser(){
       if(this.loggedIn){
-        this.user = await users.getUserId(this.id);
+        this.user = await users.getUserByEmail(this.email);
       }
     },
     async logout() {

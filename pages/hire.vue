@@ -36,7 +36,7 @@
                           v-if="search"
                           class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 ml-0 p-small "
                         >
-                          {{shortlistOnMyAccount.length}} Candidates Selected
+                          {{myCandidatesLength}} Candidates Selected
                         </button>
                     </NuxtLink>
                   </div>
@@ -48,12 +48,12 @@
                     SELECT THE PROPER
                   </h3>
                   <h2 class="section-header Color-primary mb-4">
-                    CATEGORY COMPANY
+                    CATEGORIES
                   </h2>
                   <div class="companies">
                     <label
                       class="mb-2"
-                      v-for="(company, index) in allCompanies"
+                      v-for="(company, index) in companies"
                       :key="'com'+index"
                     >
                       <input
@@ -103,7 +103,7 @@
                             :id="'position' + index + i"
                             :name="role"
                             :value="role"
-                            @change="choosePosition(role)"
+                            @change="chooseField(position.name), chooseSkills(role)"
                           />
                           <label
                             class="text-regular Color-black"
@@ -151,7 +151,7 @@
                         <li v-for="(role, i) in skill.skills" :key="'role' + i">
                           <input
                             type="checkbox"
-                            @change="chooseSkill(role)"
+                            @change="chooseSkills(role)"
                             :id="'skill' + index + i"
                             :name="role"
                             :value="role"
@@ -227,12 +227,12 @@
     </form>
 
     <div class="container-fluid bgColor-gray-10 py-5" v-else>
-      <div class="container">
+      <div class="container" v-if="allResumes.length > 0">
         <div class="row">
           <div class="col-12 col-sm-2">
             <button
                 class="button button-primary Color-white bgColor-primary borderColor-primary border-radius-1 p-3 mb-5 p-small"
-                @click="(search = !search), (max = 5), (rankedCVs = [])"
+                @click="(search = !search), (max = 5), (allResumes = [])"
                 v-if="!search"
               >
                 BACK TO SEARCH
@@ -253,7 +253,7 @@
                   v-if="!search"
                   class="button button-primary Color-white bgColor-light-blue borderColor-light-blue border-radius-1 px-2 py-3 p-small"
                 >
-                  {{shortlistOnMyAccount.length}} Candidates Listed
+                  {{myCandidatesLength}} Candidates Listed
                 </button>
             </NuxtLink>
           </div>
@@ -269,27 +269,22 @@
                 <div class="col-md-3 col-lg-2">
                   <div class="circular-portrait">
                     <img
-                      :src="rankedCVs[index].image"
-                      :alt="'Candidate ' + rankedCVs[index].id"
+                      src="/images/placeholder-male.png"
+                      :alt="allResumes[index].candidateID"
                       class="img"
                     />
                   </div>
                 </div>
                 <div class="col-md-9 col-lg-10">
                   <p class="paragraph-large mb-0 pb-0">
-                    Candidate {{ rankedCVs[index].id }}
+                    {{ allResumes[index].candidateID }}
                   </p>
                   <div
                     class="row mb-2"
-                    v-if="rankedCVs[index].description.length > 0"
                   >
                     <div class="col-12">
-                      <span
-                        class="small Color-black mr-2"
-                        v-for="(descript, index) in rankedCVs[index]
-                          .description"
-                        :key="'desc' + index"
-                        >{{ descript.toUpperCase() }}
+                      <span class="small" v-for="(value, i) in allResumes[index].education" :key="i">
+                        {{allResumes[index].education[i].title.toUpperCase()}}<br>
                       </span>
                     </div>
                   </div>
@@ -297,7 +292,7 @@
                     <div class="col-12">
                       <span
                         class="small Color-white bgColor-primary mr-2 border-radius-2 px-2"
-                        v-for="(skill, index) in rankedCVs[index].skills"
+                        v-for="(skill, index) in allResumes[index].skills"
                         :key="'ski' + index"
                         >{{ skill.toUpperCase() }}
                       </span>
@@ -305,21 +300,31 @@
                   </div>
                   <button
                     class="button button-primary bgColor-primary py-1 px-4 border-radius-8 float-left borderColor-primary text-regular"
-                    @click="activateModal(rankedCVs[index])"
+                    @click="activateModal(allResumes[index])"
                   >
                     MORE
                   </button>
                   <button
-                    class="button button-primary bgColor-gray-40 py-1 px-4 border-radius-8 float-left borderColor-gray-40 text-regular ml-2"
+                    class="button button-primary bgColor-light-blue py-1 px-4 border-radius-8 float-left borderColor-light-blue text-regular ml-2"
+                    v-if="allResumes[index].cv_url"
                   >
-                    LISTEN
+                    <a :href="allResumes[index].cv_url" class="Color-white" download="resume">DOWNLOAD RESUME</a>
                   </button>
                   <button
                     class="button button-primary bgColor-light-blue py-1 px-4 mx-2 border-radius-8 float-left borderColor-light-blue text-regular"
-                    v-if="rankedCVs[index].considered == true"
+                    v-if="allResumes[index].availability == true"
                   >
                     ALREADY SHORTLISTED
                   </button>
+                  <button
+                    class="button button-primary bgColor-light-blue py-1 px-4 mx-2 border-radius-8 float-left borderColor-light-blue text-regular"
+                    v-if="allResumes[index].views"
+                  >
+                    {{allResumes[index].views}} Views
+                  </button>
+                  <audio controls v-if="allResumes[index].audioclip_url">
+                    <source :src="allResumes[index].audioclip_url" type="audio/mpeg">
+                  </audio>
                 </div>
               </div>
             </div>
@@ -331,24 +336,28 @@
                   class="card bgColor-white border-radius-2 box-shadow-1 my-4 py-5 px-5"
                 >
                   <h2 class="text-left title-large mb-1">
-                    Candidate {{ activeCV.id }}
-                    <span v-if="activeCV.considered == false" @click="shortlistCandidate(activeCV)" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
+                    {{ activeCV.id }}
+                    <span v-if="activeCV.availability == false" @click="shortlistCandidate(activeCV)" class="text-right float-right bgColor-primary Color-white text-regular p-3 border-radius-4 cursor-pointer">Consider For Interview</span>
                     <span v-else-if="activeCV.myaccount == true" @click="removeShortlistCandidate(activeCV)" class="text-right float-right bgColor-gray-20 Color-white text-regular p-3 border-radius-4 cursor-pointer">Remove From Interview List</span>
                   </h2>
-                  <p class="text-left body-detail mb-5 pb-3 Color-gray-40">
-                    {{ activeCV.sector.toUpperCase() }}
+                  <p class="text-left body-detail mb-5 Color-black">
+                    {{ activeCV.profession.toUpperCase() }}
                   </p>
                   <div class="row mb-5">
                     <div class="col-sm-12 col-md-7">
-                      <p class="text-regular text-left Color-gray-60 mb-1">
-                        <span
-                          v-for="(descript, index) in activeCV.description"
-                          :key="'des' + index"
-                        >
-                          {{ descript.toUpperCase() }}.
-                        </span>
+                      <p class="text-left body-detail mb-1 Color-black">
+                        EDUCATION
                       </p>
-                      <br /><br />
+                      <p
+                        class="text-regular text-left Color-gray-60 mb-1"
+                        v-for="(qualification, index) in activeCV.education"
+                        :key="'qual'+index"
+                      >
+                        <span class="feature-paragraph">{{ qualification.title.toUpperCase() }}</span><br>
+                        <span class="small-thick">{{ qualification.academy.toUpperCase() }}</span> <br>
+                        <span class="small">{{ qualification.description.toUpperCase() }}</span><br><br>
+                      </p><br><br>
+
                       <p class="text-left body-detail mb-1 Color-black">
                         SKILLS
                       </p>
@@ -360,18 +369,6 @@
                         {{ skill.toUpperCase() }}
                       </p>
                       <br /><br />
-                      <p class="text-left body-detail mb-1 Color-black">
-                        QUALIFICATIONS
-                      </p>
-                      <p
-                        class="text-regular text-left Color-gray-60 mb-1"
-                        v-for="(
-                          qualification, index
-                        ) in activeCV.qualifications"
-                        :key="'qual'+index"
-                      >
-                        {{ qualification.toUpperCase() }}
-                      </p>
                     </div>
                     <div class="col-sm-12 col-md-5">
                       <div class="row">
@@ -396,38 +393,7 @@
                         </div>
                         <div class="col-7">
                           <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ activeCV.yoe }} YEARS
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1">
-                            <i
-                              class="fa fa-balance-scale"
-                              aria-hidden="true"
-                            ></i>
-                            CV Weight
-                          </p>
-                        </div>
-                        <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ Math.round(activeCV.weight * 10) / 10 }} %
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12">
-                          <p class="text-regular text-left Color-gray-60 mb-1">
-                            CV weight is calculated based on the candidate's qualifications, skills selected
-                            as well as work experience. For each selected skill that a candidate has, the system
-                            adds a weight to their CV. For each year of experience that a candidate has, a weight
-                            is added to it. On qualifications, weights are added based on level of education e.g.
-                            someone with a Masters will have a higher weight than a someone with a Bachelors. And then
-                            there are special qualifications for instance in accounts, ACCA is a prestigious
-                            qualification and that will carry a significant amount of weight.<br>
-                            Each person's weights will be added together to come up with a final score and then CVs will
-                            will be ranked. This is done through an algorithm that I named "THE HEAVY WEIGHT ALGORITHM"
+                            {{ activeCV.yearsOfExp }} YEARS
                           </p>
                         </div>
                       </div>
@@ -472,7 +438,7 @@
                                                   <tbody>
                                                     <tr>
                                                       <td>
-                                                        Candidate {{activeCV.id}}<br/>
+                                                        {{activeCV.id}}<br/>
                                                         {{today}}
                                                       </td>
                                                     </tr>
@@ -552,14 +518,19 @@
           </div>
         </div>
       </div>
+      <div class="container" v-else>
+        Could not find any CVs
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import users from "@/assets/js/zimconnect/users";
 import company from "@/assets/js/zimconnect/company";
 import positions from "@/assets/js/zimconnect/positions";
 import skills from "@/assets/js/zimconnect/skills";
+import resumes from "@/assets/js/zimconnect/resumes";
 import cvmatching from "@/assets/js/zimbojobs/cvmatching";
 import workdays from "@/assets/js/zimconnect/workdays";
 import shortlist from "@/assets/js/zimconnect/shortlist";
@@ -569,26 +540,31 @@ export default {
   },
   data() {
     return {
-      allCVS: {},
-      userID: '',
-      searchValue: '',
-      allCompanies: [],
-      preservedList: [],
+      userEmail: '',
+      user: {},
+      myCandidatesLength: 0,
+      positions: [],
+      skills: [],
+      companies: [],
+      workdays: [],
       profile: {
         company: "",
-        position: [],
-        skill: [],
+        field: "",
+        skills: [],
         workdays: [],
       },
-      positions: {},
-      skills: {},
-      token: "",
+      allResumes: [],
+      search: true,
+      searchValue: '',
+
+
+
+      allCVS: {}, 
+      preservedList: [],
       previousSkillID: "",
       previousParentID: "",
-      workdays: [],
-      search: true,
-      rankedCVs: [],
-      max: 5,
+      allResumes: [],
+      max: 0,
       loading: false,
       modalActive: false,
       activeCV: {},
@@ -602,23 +578,19 @@ export default {
   async mounted() {
     if (localStorage.getItem("loggedIn") === null){
       window.location.href = "/login";
-      if(window.localStorage.getItem('id') != null){
-        this.userID = window.localStorage.getItem('id');
-      }
     } else{
-      this.token = window.localStorage.getItem("accessToken");
-      this.userID = window.localStorage.getItem('id');
+      this.userEmail = window.localStorage.getItem('email');
+      this.user = await users.getUserByEmail(this.userEmail);
+      this.myCandidatesLength = this.user.myCandidates.length;
       await this.getCompanies();
       await this.getPositions();
       await this.getSkills();
       await this.getWorkdays();
-      await this.setShortlisted()
-      this.allCVS = await cvmatching.getCVs();
     }
   },
   methods: {
     async getCompanies() {
-      this.allCompanies = await company.getCompanies();
+      this.companies = await company.getCompanies();
     },
     async getPositions() {
       this.positions = await positions.getPositions(this.token);
@@ -628,6 +600,31 @@ export default {
     },
     async getWorkdays() {
       this.workdays = await workdays.getWorkdays(this.token);
+    },
+    chooseSkills(skill) {
+      if (this.profile.skills.includes(skill)) {
+        this.profile.skills.splice(
+          this.profile.skills.indexOf(skill),
+          this.profile.skills.indexOf(skill) + 1
+        );
+      } else {
+        this.profile.skills.push(skill);
+      }
+    },
+    chooseField(field){
+      if(field == 'Dental | Medical | Healthcare') this.profile.field =  'dental'
+      else if(field == 'Sales') this.profile.field =  'marketing'
+      else if(field == 'Accounting') this.profile.field =  'accounting'
+      else if(field == 'Human Resources') this.profile.field =  'hr'
+      else this.profile.field =  'web'
+    },
+    chooseDay(day) {
+      if (this.profile.workdays.includes(day))
+        this.profile.workdays.splice(
+          this.profile.workdays.indexOf(day),
+          this.profile.workdays.indexOf(day) + 1
+        );
+      else this.profile.workdays.push(day);
     },
     showSkills(id, parentID) {
       if (this.previousSkillID == "" || this.previousParentID == "") {
@@ -663,141 +660,44 @@ export default {
     },
     async submitForm() {
       this.loading = true;
-      let cvs = this.allCVS;
-      let pool = this.getPositionRole();
-      cvs = cvmatching.filterByGoodName(cvs);
-      let filteredCVs = cvmatching.filterBySkills(cvs, this.profile);
-      filteredCVs = cvmatching.filterByEducation(cvs, filteredCVs);
-      filteredCVs = cvmatching.filterByExperience(cvs, filteredCVs);
-      filteredCVs = await cvmatching.findPattern(cvs, pool, filteredCVs);
-      this.rankedCVs = cvmatching.getRankedCVs(cvs, filteredCVs);
-      this.rankedCVs = cvmatching.eliminateUnwanted(this.rankedCVs);
-      this.rankedCVs = cvmatching.advancedFilter(this.rankedCVs, pool)
-      this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
-      this.rankedCVs = cvmatching.setScore(this.rankedCVs, this.profile.skill.length);
-      this.preservedList = this.rankedCVs;
-      this.findShortlisted();
-      this.search = false;
-      this.loading = false;
-    },
-    chooseSkill(skill) {
-      if (this.profile.skill.includes(skill)) {
-        this.profile.skill.splice(
-          this.profile.skill.indexOf(skill),
-          this.profile.skill.indexOf(skill) + 1
-        );
-      } else {
-        this.profile.skill.push(skill);
+      this.allResumes = await resumes.getBySkillset(this.profile);
+      if(this.allResumes.length > 5){
+        this.max = 5;
+      } else{
+        this.max = this.allResumes.length;
       }
+      this.loading = false;
+      this.search = false;
     },
 
-    choosePosition(position){
-      if (this.profile.position.includes(position)) {
-        this.profile.position.splice(
-          this.profile.position.indexOf(position),
-          this.profile.position.indexOf(position) + 1
-        );
-      } else {
-        this.profile.position.push(position);
-      }
-    },
-    chooseDay(day) {
-      if (this.profile.workdays.includes(day))
-        this.profile.workdays.splice(
-          this.profile.workdays.indexOf(day),
-          this.profile.workdays.indexOf(day) + 1
-        );
-      else this.profile.workdays.push(day);
-    },
     activateModal(cv) {
       this.activeCV = cv;
       this.modalActive = true;
     },
     getAge(dob) {
-      let date = new Date();
-      let year = date.getFullYear();
-      let month = date.getMonth();
-      month = month < 10 ? "0" + month : "" + month;
-      this.today = year + "-" + month+1 + "-01";
-      return cvmatching.dateDifference(new Date(dob), new Date(this.today));
+      let birthday = +new Date(dob);
+      return ~~((Date.now() - birthday) / (31557600000));
     },
     showQuote(cv) {
       this.quoteActive = true;
     },
-    getPositionRole(){
-      let index = 0, j = 0;
-      for(index in this.positions){
-        for(j in this.profile.position){
-          if(this.positions[index].positions.includes(this.profile.position[j])){
-            if(this.positions[index].name == 'Dental | Medical | Healthcare') return 'dental'
-            else if(this.positions[index].name == 'Sales') return 'sales'
-            else if(this.positions[index].name == 'Accounting') return 'accounting'
-            else if(this.positions[index].name == 'Human Resources') return 'hr'
-            else return 'it'
-          }
-        }
-      }
-    },
     async shortlistCandidate(cv){
-      await shortlist.shortlist({
-        userID: window.localStorage.getItem('id'),
-        candidateID: cv.id,
-        email: cv.email,
-        considered: true
-      }).then(() => {
-        this.shortlistOnMyAccount.push(cv);
-        this.activeCV.considered = true;
-        this.activeCV.myaccount = true;
-      })
+      console.log('hello')
     },
     async removeShortlistCandidate(cv){
-      this.shortListed = await shortlist.getAllShortlisted();
-      let index = 0;
-      for(index in this.shortListed){
-        if(this.shortListed[index].email == cv.email){
-          await shortlist.removeShortlist(this.shortListed[index].id).then(() => {
-            this.activeCV.considered = false;
-            this.activeCV.myaccount = false;
-          })
-        }
-      }
+      console.log('hello')
     },
-    findShortlisted(){
-      let i, j;
-      for(i in this.rankedCVs){
-        for(j in this.shortListed){
-          if(this.rankedCVs[i].email == this.shortListed[j].email){
-            this.rankedCVs[i].considered = true;
-            this.rankedCVs[i].employerID = this.shortListed[j].userID;
-            if(this.shortListed[j].userID == this.userID){
-              this.shortlistOnMyAccount.push(this.shortListed[j])
-              this.rankedCVs[i].myaccount = true;
-            }else{
-              this.rankedCVs[i].myaccount = false;
-            }
-          }
-        }
+    async searchCandidates(){
+      try{
+        this.allResumes = await resumes.getBySearchValue({ "skill": this.searchValue});
+        if(this.allResumes.length > 5){
+        this.max = 5;
+      } else{
+        this.max = this.allResumes.length;
       }
-    },
-    async setShortlisted(){
-      this.shortListed = await shortlist.getAllShortlisted();
-      this.shortlistOnMyAccount = [];
-      let index;
-      for(index in this.shortListed){
-        if(this.shortListed[index].userID == this.userID){
-          this.shortlistOnMyAccount.push(this.shortListed[index])
-        }
+      }catch(error){
+        console.error(error);
       }
-    },
-    searchCandidates(){
-      this.rankedCVs = this.preservedList;
-      let index;
-      for(index in this.rankedCVs){
-        if(this.rankedCVs[index].description.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].sector.includes(this.searchValue.toLowerCase()) || this.rankedCVs[index].skills.includes(this.searchValue.toLowerCase())){
-          this.rankedCVs[index].weight = this.rankedCVs[index].weight * 10;
-        }
-      }
-      this.rankedCVs = cvmatching.sortFilters(this.rankedCVs);
     }
   },
   head() {

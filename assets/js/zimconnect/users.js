@@ -19,10 +19,10 @@ class Users {
     })
   }
 
-  static getUserId(id){
+  static getUserByEmail(email){
     return new Promise(async (resolve, reject) => {
       try {
-        let api = '/api/user/' + id;
+        let api = '/users/email/' + email;
         let response = await axios.get(BASEUrl + api);
         resolve(response.data);
       } catch (error) {

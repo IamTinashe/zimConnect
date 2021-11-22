@@ -26,15 +26,17 @@ export const actions = {
     }
   },
 
-  async login({commit}, {username, password}) {
-    let api = '/api/auth/signin';
+  async login({commit}, {email, password}) {
+    let api = '/auth/login';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, {username, password});
-        let user = {id: response.data.id, accessToken: response.data.accessToken, loginState: true};
+        let response = await axios.post(BASEUrl + api, {email, password});
+        let user = response.data;
         commit('SET_USER', user);
-        window.localStorage.setItem('accessToken', 'Bearer ' + user.accessToken);
-        window.localStorage.setItem('id', user.id);
+        //window.localStorage.setItem('accessToken', 'Bearer ' + user.accessToken);
+        window.localStorage.setItem('id', response.data._id);
+        window.localStorage.setItem('userAuthID', response.data.userAuthID);
+        window.localStorage.setItem('email', response.data.email);
         window.localStorage.setItem('loggedIn', true);
         resolve(response.data);
       } catch (error) {
@@ -43,12 +45,12 @@ export const actions = {
     })
   },
 
-  async autoLogin({commit}, {id, token}){
+  async autoLogin({commit}, {email}){
     return new Promise(async (resolve, reject) => {
       try {
-        let api = '/api/user/' + id;
+        let api = '/users/email/' + email;
         let response = await axios.get(BASEUrl + api);
-        let user = {id: response.data.id, accessToken: token, loginState: true};
+        let user = response.data;
         commit('SET_USER', user);
         resolve(response.data);
       } catch (error) {
