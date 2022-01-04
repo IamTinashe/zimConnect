@@ -1,12 +1,12 @@
-import axios from 'axios'
+import axios from 'axios';
 const BASEUrl = process.env.baseUrl;
 
 class Shortlist {
-  static getAllShortlisted(){
-    let api = '/api/shortlisted/all';
+  static shortlist(data){
+    let api = '/resumes/select';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.get(BASEUrl + api)
+        let response = await axios.post(BASEUrl + api, data)
         resolve(response.data);
       } catch (error) {
         reject(error.response)
@@ -14,11 +14,11 @@ class Shortlist {
     })
   }
 
-  static shortlist(candidate){
-    let api = '/api/shortlisted/';
+  static removeShortlist(data){
+    let api = '/resumes/removeselected';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, candidate)
+        let response = await axios.post(BASEUrl + api, data)
         resolve(response.data);
       } catch (error) {
         reject(error.response)
@@ -26,24 +26,12 @@ class Shortlist {
     })
   }
 
-  static removeShortlist(id){
-    let api = '/api/shortlisted/' + id;
+  //update this
+  static viewCount(email){
+    let api = '/resumes/removeselected';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.delete(BASEUrl + api)
-        resolve(response.data);
-      } catch (error) {
-        reject(error.response)
-      }
-    })
-  }
-
-  static sendCVs(cvs, id){
-    console.log(cvs)
-    let api = '/api/shortlisted/submit/' + id;
-    return new Promise(async (resolve, reject) => {
-      try {
-        let response = await axios.post(BASEUrl + api, cvs)
+        let response = await axios.post(BASEUrl + api, data)
         resolve(response.data);
       } catch (error) {
         reject(error.response)

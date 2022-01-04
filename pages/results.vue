@@ -191,7 +191,7 @@
                       borderColor-light-blue
                       text-regular
                     "
-                    v-if="allResumes[index].availability == true"
+                    v-if="allResumes[index].availability == false"
                   >
                     ALREADY SHORTLISTED
                   </button>
@@ -221,6 +221,23 @@
                       type="audio/mpeg"
                     />
                   </audio>
+                  <button
+                    class="
+                      button button-primary
+                      bgColor-light-blue
+                      py-1
+                      px-4
+                      mx-2
+                      border-radius-8
+                      float-left
+                      borderColor-light-blue
+                      text-regular
+                    "
+                    v-if="allResumes[index].availability == true"
+                    @click="shortlist(allResumes[index].email)"
+                  >
+                    Shortlist
+                  </button>
                 </div>
               </div>
             </div>
@@ -383,8 +400,8 @@
 <script>
 import users from "@/assets/js/zimconnect/users";
 import resumes from "@/assets/js/zimconnect/resumes";
+import shortlist from "@/assets/js/zimconnect/shortlist";
 export default {
-  props: ["items"],
   data() {
     return {
       userEmail: "",
@@ -397,6 +414,7 @@ export default {
       modalActive: false,
       activeCV: {},
       search: false,
+      items: {}
     };
   },
   async mounted() {
@@ -410,7 +428,8 @@ export default {
         this.searchValue = "";
         await this.searchCandidates();
       } else {
-        await this.getResults(this.$route.params.items);
+        this.items = this.$route.params.items;
+        await this.getResults(this.items);
       }
     }
   },
@@ -443,6 +462,17 @@ export default {
         console.error(error);
       }
       this.loading == false;
+    },
+    async shortlist(candidateEmail){
+      console.log(candidateEmail);
+      try {
+        await shortlist.shortlist({'candidateEmail': candidateEmail, 'userEmail': this.userEmail});
+        this.user = await users.getUserByEmail(this.userEmail);
+        await this.getResults(this.items);
+        this.myCandidatesLength = this.user.myCandidates.length;
+      } catch (error) {
+        console.error(error);
+      }
     },
     activateModal(cv) {
       this.activeCV = cv;
