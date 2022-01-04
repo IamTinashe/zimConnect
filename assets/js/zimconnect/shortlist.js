@@ -18,7 +18,10 @@ class Shortlist {
     let api = '/resumes/removeselected';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, data)
+        let response = await axios.delete(BASEUrl + api, {
+        headers: {},
+        data: data
+      });
         resolve(response.data);
       } catch (error) {
         reject(error.response)
@@ -26,12 +29,11 @@ class Shortlist {
     })
   }
 
-  //update this
   static viewCount(email){
-    let api = '/resumes/removeselected';
+    let api = '/resumes/updateviewcount';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, data)
+        let response = await axios.put(BASEUrl + api, {candidateEmail: email});
         resolve(response.data);
       } catch (error) {
         reject(error.response)

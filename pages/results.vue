@@ -23,8 +23,7 @@
       <div class="container" v-if="allResumes.length > 0">
         <div class="row">
           <div class="col-12 col-sm-2">
-            <button
-              class="
+            <NuxtLink to="/hire" class="
                 button button-primary
                 Color-white
                 bgColor-primary
@@ -34,11 +33,9 @@
                 mb-5
                 p-small
               "
-              @click="(search = !search), (max = 5), (allResumes = [])"
-              v-if="!search"
             >
               BACK TO SEARCH
-            </button>
+            </NuxtLink>
           </div>
           <div class="col-12 col-sm-8">
             <input
@@ -156,7 +153,7 @@
                     "
                     @click="activateModal(allResumes[index])"
                   >
-                    MORE
+                    View CV
                   </button>
                   <button
                     class="
@@ -176,7 +173,7 @@
                       :href="allResumes[index].cv_url"
                       class="Color-white"
                       download="resume"
-                      >DOWNLOAD RESUME</a
+                      >Download CV</a
                     >
                   </button>
                   <button
@@ -191,9 +188,13 @@
                       borderColor-light-blue
                       text-regular
                     "
-                    v-if="allResumes[index].availability == false"
+                    v-if="
+                      allResumes[index].availability == false &&
+                      allResumes[index].selectionStatus[0].user == userEmail
+                    "
+                    @click="removeShortlisted(allResumes[index].email)"
                   >
-                    ALREADY SHORTLISTED
+                    REMOVE SHORTLISTED
                   </button>
                   <button
                     class="
@@ -207,10 +208,19 @@
                       borderColor-light-blue
                       text-regular
                     "
+                    v-else-if="
+                      allResumes[index].availability == false &&
+                      allResumes[index].selectionStatus[0].user != userEmail
+                    "
+                  >
+                    ALREADY SHORTLISTED
+                  </button>
+                  <p
+                    class="py-1 px-4 mx-2 float-left small"
                     v-if="allResumes[index].views"
                   >
                     {{ allResumes[index].views }} Views
-                  </button>
+                  </p>
                   <audio
                     class="audio mx-2"
                     controls
@@ -414,12 +424,12 @@ export default {
       modalActive: false,
       activeCV: {},
       search: false,
-      items: {}
+      items: {},
     };
   },
   async mounted() {
     if (localStorage.getItem("loggedIn") === null) {
-      this.$router.push({name: "login" });
+      this.$router.push({ name: "login" });
     } else {
       this.userEmail = window.localStorage.getItem("email");
       this.user = await users.getUserByEmail(this.userEmail);
@@ -463,10 +473,12 @@ export default {
       }
       this.loading == false;
     },
-    async shortlist(candidateEmail){
-      console.log(candidateEmail);
+    async shortlist(candidateEmail) {
       try {
-        await shortlist.shortlist({'candidateEmail': candidateEmail, 'userEmail': this.userEmail});
+        await shortlist.shortlist({
+          candidateEmail: candidateEmail,
+          userEmail: this.userEmail,
+        });
         this.user = await users.getUserByEmail(this.userEmail);
         await this.getResults(this.items);
         this.myCandidatesLength = this.user.myCandidates.length;
@@ -474,9 +486,31 @@ export default {
         console.error(error);
       }
     },
-    activateModal(cv) {
+    async removeShortlisted(candidateEmail) {
+      try {
+        await shortlist.removeShortlist({
+          candidateEmail: candidateEmail,
+          userEmail: this.userEmail,
+        });
+        this.user = await users.getUserByEmail(this.userEmail);
+        await this.getResults(this.items);
+        this.myCandidatesLength = this.user.myCandidates.length;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    async viewCount(email) {
+      try {
+        await shortlist.viewCount({ email: email });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async activateModal(cv) {
       this.activeCV = cv;
       this.modalActive = true;
+      await this.viewCount(this.activeCV.email);
     },
     getAge(dob) {
       let birthday = +new Date(dob);
