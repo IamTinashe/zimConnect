@@ -39,26 +39,25 @@
                 </NuxtLink>
               </li>
               <li class="display-inline mx-2">
-                <NuxtLink class="text-decoration-none" to="/hire" title="Candidates" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  Candidates
+                <NuxtLink class="text-decoration-none" to="/hire" title="Search" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  Search
+                </NuxtLink>
+              </li>
+              <li class="display-inline mx-2">
+                <NuxtLink class="text-decoration-none" to="/mycandidates" title="My Candidates" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                  My Candidates
                 </NuxtLink>
               </li>
               <li class="display-inline mx-2">
                 <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" rel="noopener" title="About Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  About Us
+                  About
                 </a>
               </li>
               <li class="display-inline mx-2">
-                <NuxtLink class="text-decoration-none" to="/faq" title="FAQ" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  FAQ
-                </NuxtLink>
-              </li>
-              <li class="display-inline mx-2">
                 <NuxtLink class="text-decoration-none" to="/contact" title="Contact Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
-                  Contact Us
+                  Contact
                 </NuxtLink>
               </li>
-              <li class="display-inline mx-2"><i class="fa fa-search"></i></li>
             </ul>
           </div>
           <div class="show-large-only col-lg-3">

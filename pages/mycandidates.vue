@@ -429,7 +429,7 @@ export default {
   async mounted() {
     this.loader = true;
     if (localStorage.getItem("loggedIn") === null) {
-      window.location.href = "/login";
+      this.$router.push({name: "login" });
     } else {
       if (window.localStorage.getItem("id") != null) {
         this.userID = window.localStorage.getItem("id");
