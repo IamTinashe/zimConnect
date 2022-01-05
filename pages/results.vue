@@ -23,7 +23,9 @@
       <div class="container" v-if="allResumes.length > 0">
         <div class="row">
           <div class="col-12 col-sm-2">
-            <NuxtLink to="/hire" class="
+            <NuxtLink
+              to="/hire"
+              class="
                 button button-primary
                 Color-white
                 bgColor-primary
@@ -176,51 +178,6 @@
                       >Download CV</a
                     >
                   </button>
-                  <button
-                    class="
-                      button button-primary
-                      bgColor-light-blue
-                      py-1
-                      px-4
-                      mx-2
-                      border-radius-8
-                      float-left
-                      borderColor-light-blue
-                      text-regular
-                    "
-                    v-if="
-                      allResumes[index].availability == false &&
-                      allResumes[index].selectionStatus[0].user == userEmail
-                    "
-                    @click="removeShortlisted(allResumes[index].email)"
-                  >
-                    REMOVE SHORTLISTED
-                  </button>
-                  <button
-                    class="
-                      button button-primary
-                      bgColor-light-blue
-                      py-1
-                      px-4
-                      mx-2
-                      border-radius-8
-                      float-left
-                      borderColor-light-blue
-                      text-regular
-                    "
-                    v-else-if="
-                      allResumes[index].availability == false &&
-                      allResumes[index].selectionStatus[0].user != userEmail
-                    "
-                  >
-                    ALREADY SHORTLISTED
-                  </button>
-                  <p
-                    class="py-1 px-4 mx-2 float-left small"
-                    v-if="allResumes[index].views"
-                  >
-                    {{ allResumes[index].views }} Views
-                  </p>
                   <audio
                     class="audio mx-2"
                     controls
@@ -243,11 +200,51 @@
                       borderColor-light-blue
                       text-regular
                     "
-                    v-if="allResumes[index].availability == true"
+                    v-if="
+                      allResumes[index].availability == true &&
+                      allResumes[index].selectionStatus.length > 0 &&
+                      allResumes[index].selectionStatus[0].user == userEmail
+                    "
+                    @click="removeShortlisted(allResumes[index].email)"
+                  >
+                    Remove Shortlisted
+                  </button>
+                  
+                  <button
+                    class="
+                      button button-primary
+                      bgColor-light-blue
+                      py-1
+                      px-4
+                      mx-2
+                      border-radius-8
+                      float-left
+                      borderColor-light-blue
+                      text-regular
+                    "
+                    v-if="
+                      allResumes[index].availability == true &&
+                      allResumes[index].selectionStatus.length > 0 &&
+                      allResumes[index].selectionStatus[0].user != userEmail ||
+                      allResumes[index].availability == true &&
+                      allResumes[index].selectionStatus.length == 0
+                    "
                     @click="shortlist(allResumes[index].email)"
                   >
                     Shortlist
                   </button>
+                  <p
+                    class="py-1 px-4 mx-2 float-left small"
+                    v-if="allResumes[index].availability == false"
+                  >
+                    Already Selected
+                  </p>
+                  <p
+                    class="py-1 px-4 mx-2 float-left small"
+                    v-if="allResumes[index].views"
+                  >
+                    {{ allResumes[index].views }} Views
+                  </p>
                 </div>
               </div>
             </div>
@@ -444,6 +441,10 @@ export default {
     }
   },
   methods: {
+    getVal(val) {
+      console.log(val);
+      return val;
+    },
     async getResults(skillset) {
       this.loading = true;
       this.allResumes = await resumes.getBySkillset(skillset);
