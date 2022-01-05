@@ -150,6 +150,8 @@ export default {
   methods: {
     async getCandidates() {
       this.user = await users.getUserByEmail(this.userEmail);
+      this.selected = [];
+      this.shortlisted = [];
       this.user.myCandidates.forEach((element) => {
         if (element.availability == true) {
           this.shortlisted.push(element);
