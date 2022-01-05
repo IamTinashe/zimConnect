@@ -6,5 +6,20 @@
   .short-profile{
     border-bottom: 1px solid #e6e6e6;
     position: relative;
+    display: inline-block;
   }
+
+  .remove-candidate{
+    color: $primary;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    &:hover{
+      color: $red;
+    }
+  }
+
+  .audio {
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    height: 25px;
+}
 }

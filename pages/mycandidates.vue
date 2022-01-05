@@ -29,26 +29,71 @@
               v-if="shortlisted.length > 0"
             >
               <div class="col-12">
-                <h3 class="title Color-black">Shortlisted Candidates</h3>
+                <h3 class="title Color-black">In Consideration</h3>
                 <div
-                  class="short-profile w-100"
+                  class="short-profile w-100 my-1"
                   v-for="(value, index) in shortlisted"
                   :key="index"
                 >
                   <div class="w-90 float-left">
                     <div class="w-100">
-                      <div class="float-left w-40">{{ value.fullname }}</div>
-                      <div class="float-left w-60">
+                      <div class="float-left w-50">{{ value.fullname }}</div>
+                      <div class="float-left w-50">
                         {{ getAge(value.dob) }} Years
                       </div>
                     </div>
                     <div class="w-100">
-                      <div class="float-left w-40">{{ value.profession }}</div>
-                      <div class="float-left w-60">{{ value.gender }}</div>
+                      <div class="float-left w-50" v-if="value.profession">{{ value.profession }}</div>
+                      <div class="float-left w-50" v-else>Profession Not Specified</div>
+                      <div class="float-left w-50" v-if="value.gender">{{ value.gender }}</div>
+                      <div class="float-left w-50" v-else>Gender Not Specified</div>
                     </div>
                     <div v-for="(education, i) in value.education" :key="i">
-                      <div class="float-left w-40">{{ education.title }}</div>
-                      <div class="float-left w-60">{{ education.academy }}</div>
+                      <div class="float-left w-50">{{ education.title }}</div>
+                      <div class="float-left w-50">{{ education.academy }}</div>
+                    </div>
+                    <div class="float-left w-50" v-if="value.audioclip_url">
+                      <audio
+                        class="audio float-left w-80 my-3"
+                        controls
+                      >
+                        <source :src="value.audioclip_url" type="audio/mpeg" />
+                      </audio>
+                    </div>
+                  </div>
+                  <div class="w-10 float-left">
+                    <p class="text-center"><i @click="removeShortlisted(value.email)" class="fa remove-candidate fa-2x fa-trash" aria-hidden="true"></i></p>
+                    <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
+                  </div>
+                </div>
+                <div class="total">
+                  <div class="float-left w-90">Total</div>
+                  <div class="float-left text-center w-10">${{ totalShortlistedValue }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row my-2 p-4 bgColor-white" v-if="selected.length > 0">
+              <div class="col-12">
+                <h3 class="title Color-black">Selected Candidates</h3>
+                <div
+                  class="short-profile w-100 my-1"
+                  v-for="(value, index) in selected"
+                  :key="index"
+                >
+                  <div class="w-90 float-left">
+                    <div class="w-100">
+                      <div class="float-left w-50">{{ value.fullname }}</div>
+                      <div class="float-left w-50">
+                        {{ getAge(value.dob) }} Years
+                      </div>
+                    </div>
+                    <div class="w-100">
+                      <div class="float-left w-50">{{ value.profession }}</div>
+                      <div class="float-left w-50">{{ value.gender }}</div>
+                    </div>
+                    <div v-for="(education, i) in value.education" :key="i">
+                      <div class="float-left w-50">{{ education.title }}</div>
+                      <div class="float-left w-50">{{ education.academy }}</div>
                     </div>
                     <audio
                       class="audio mx-2"
@@ -62,42 +107,9 @@
                     <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row my-2 p-4 bgColor-white" v-if="selected.length > 0">
-              <div class="col-12">
-                <h3 class="title Color-black">Selected Candidates</h3>
-                <div
-                  class="short-profile w-100"
-                  v-for="(value, index) in selected"
-                  :key="index"
-                >
-                  <div class="w-90 float-left">
-                    <div class="w-100">
-                      <div class="float-left w-40">{{ value.fullname }}</div>
-                      <div class="float-left w-60">
-                        {{ getAge(value.dob) }} Years
-                      </div>
-                    </div>
-                    <div class="w-100">
-                      <div class="float-left w-40">{{ value.profession }}</div>
-                      <div class="float-left w-60">{{ value.gender }}</div>
-                    </div>
-                    <div v-for="(education, i) in value.education" :key="i">
-                      <div class="float-left w-40">{{ education.title }}</div>
-                      <div class="float-left w-60">{{ education.academy }}</div>
-                    </div>
-                    <audio
-                      class="audio mx-2"
-                      controls
-                      v-if="value.audioclip_url"
-                    >
-                      <source :src="value.audioclip_url" type="audio/mpeg" />
-                    </audio>
-                  </div>
-                  <div class="w-10 float-left">
-                    <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
-                  </div>
+                <div class="total">
+                  <div class="float-left w-90">Total</div>
+                  <div class="float-left w-10 text-center">${{ totalSelectedValue }}</div>
                 </div>
               </div>
             </div>
@@ -120,8 +132,9 @@ export default {
       loader: false,
       userEmail: "",
       user: {},
-      myCandidatesLength: 0,
       error: "",
+      totalShortlistedValue: 0,
+      totalSelectedValue: 0
     };
   },
   async mounted() {
@@ -130,21 +143,36 @@ export default {
       this.$router.push({ name: "login" });
     } else {
       this.userEmail = window.localStorage.getItem("email");
-      this.user = await users.getUserByEmail(this.userEmail);
-      this.myCandidatesLength = this.user.myCandidates.length;
-      this.getShortList();
+      this.getCandidates();
     }
     this.loader = false;
   },
   methods: {
-    getShortList() {
+    async getCandidates() {
+      this.user = await users.getUserByEmail(this.userEmail);
       this.user.myCandidates.forEach((element) => {
         if (element.availability == true) {
           this.shortlisted.push(element);
+          this.totalShortlistedValue = this.getShortlistedTotal();
         } else {
           this.selected.push(element);
+          this.totalSelectedValue = this.getSelectedTotal();
         }
       });
+    },
+    getShortlistedTotal() {
+      let total = 0;
+      this.shortlisted.forEach((element) => {
+        total += element.value;
+      });
+      return total;
+    },
+    getSelectedTotal() {
+      let total = 0;
+      this.selected.forEach((element) => {
+        total += element.value;
+      });
+      return total;
     },
     async removeShortlisted(candidateEmail) {
       try {
@@ -153,8 +181,7 @@ export default {
           userEmail: this.userEmail,
         });
         this.user = await users.getUserByEmail(this.userEmail);
-        await this.getResults(this.items);
-        this.myCandidatesLength = this.user.myCandidates.length;
+        await this.getCandidates();
       } catch (error) {
         console.error(error);
       }
