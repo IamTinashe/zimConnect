@@ -4,7 +4,8 @@ const session = require('express-session');
 require('dotenv').config();
 const routes = require('./assets/json/routes.json');
 const manifest = require('./manifest.json');
-const BASE_URL = 'http://159.69.120.82';
+const BASE_URL = 'http://localhost:4000';
+//const BASE_URL = 'http://159.69.120.82';
 //const BASE_URL = 'https://zimconnect.org';
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreenfd
 module.exports = {
