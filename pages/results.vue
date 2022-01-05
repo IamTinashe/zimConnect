@@ -102,14 +102,14 @@
                   <div class="circular-portrait">
                     <img
                       src="/images/placeholder-male.png"
-                      :alt="allResumes[index].candidateID"
+                      :alt="allResumes[index].fullname"
                       class="img"
                     />
                   </div>
                 </div>
                 <div class="col-md-9 col-lg-10">
                   <p class="paragraph-large mb-0 pb-0">
-                    {{ allResumes[index].candidateID }}
+                    {{ allResumes[index].fullname }}
                   </p>
                   <div class="row mb-2">
                     <div class="col-12">
