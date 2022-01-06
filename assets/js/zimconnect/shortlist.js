@@ -33,7 +33,7 @@ class Shortlist {
     let api = '/resumes/select';
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(BASEUrl + api, data)
+        let response = await axios.post(BASEUrl + api, {user: data.email, candidates: data.candidates})
         resolve(response.data);
       } catch (error) {
         reject(error.response)

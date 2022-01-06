@@ -226,10 +226,9 @@ export default {
       return ~~((Date.now() - birthday) / 31557600000);
     },
     async getQuote(){
-      let candidates = this.shortlisted.map(a => a.email);
       let data = {
-        user: this.userEmail,
-        candidates: candidates
+        email: this.userEmail,
+        candidates: this.shortlisted.map(a => a.email)
       }
       await shortlist.select(data).then(async()=>{
         await this.getCandidates();
