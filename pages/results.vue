@@ -475,6 +475,7 @@ export default {
       this.loading == false;
     },
     async shortlist(candidateEmail) {
+      let max = this.max;
       try {
         await shortlist.shortlist({
           candidateEmail: candidateEmail,
@@ -486,8 +487,10 @@ export default {
       } catch (error) {
         console.error(error);
       }
+      this.max = max;
     },
     async removeShortlisted(candidateEmail) {
+      let max = this.max;
       try {
         await shortlist.removeShortlist({
           candidateEmail: candidateEmail,
@@ -499,6 +502,7 @@ export default {
       } catch (error) {
         console.error(error);
       }
+      this.max = max;
     },
 
     async viewCount(email) {
