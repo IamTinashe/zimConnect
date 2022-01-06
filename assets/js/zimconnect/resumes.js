@@ -3,7 +3,7 @@ const BASEUrl = process.env.baseUrl;
 
 class Resumes {
   static getBySkillset(profile){
-    let api = '/resumes/skillset';
+    let api = '/site/resumes/skillset';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, profile);
@@ -15,7 +15,7 @@ class Resumes {
   }
 
   static getBySearchValue(object){
-    let api = '/resumes/search';
+    let api = '/site/resumes/search';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, object);

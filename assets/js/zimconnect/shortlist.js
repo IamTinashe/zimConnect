@@ -3,7 +3,7 @@ const BASEUrl = process.env.baseUrl;
 
 class Shortlist {
   static shortlist(data){
-    let api = '/resumes/shortlist';
+    let api = '/site/resumes/shortlist';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, data)
@@ -15,7 +15,7 @@ class Shortlist {
   }
 
   static removeShortlist(data){
-    let api = '/resumes/removeshortlist';
+    let api = '/site/resumes/removeshortlist';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.delete(BASEUrl + api, {
@@ -30,7 +30,7 @@ class Shortlist {
   }
 
   static select(data){
-    let api = '/resumes/select';
+    let api = '/site/resumes/select';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, {user: data.email, candidates: data.candidates})
@@ -42,7 +42,7 @@ class Shortlist {
   }
 
   static viewCount(email){
-    let api = '/resumes/updateviewcount';
+    let api = '/site/resumes/updateviewcount';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, {candidateEmail: email});

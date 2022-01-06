@@ -27,7 +27,7 @@ export const actions = {
   },
 
   async login({commit}, {email, password}) {
-    let api = '/auth/login';
+    let api = '/site/auth/login';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, {email, password});
@@ -48,7 +48,7 @@ export const actions = {
   async autoLogin({commit}, {email}){
     return new Promise(async (resolve, reject) => {
       try {
-        let api = '/users/email/' + email;
+        let api = '/site/users/email/' + email;
         let response = await axios.get(BASEUrl + api);
         let user = response.data;
         commit('SET_USER', user);
