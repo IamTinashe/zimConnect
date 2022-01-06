@@ -55,7 +55,13 @@ export default {
   },
   mounted(){
     this.loggedIn = this.$store.state.auth.loggedIn;
-    if(window.localStorage.getItem('id') != null) window.location.href = '/hire';
+    if(window.localStorage.getItem('email') != null) window.location.href = '/hire';
+    else{
+      if(this.$route.query.email && this.$route.query.code){
+        this.confirm.email = this.$route.query.email;
+        this.confirm.confirmationCode = this.$route.query.code;
+      }
+    }
     
   },
   methods: {
