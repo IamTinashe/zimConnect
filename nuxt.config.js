@@ -2,7 +2,6 @@ const pkg = require('./package')
 const express = require('express');
 const session = require('express-session');
 require('dotenv').config();
-const routes = require('./assets/json/routes.json');
 const manifest = require('./manifest.json');
 //const BASE_URL = 'http://localhost:4000';
 const BASE_URL = 'http://159.69.120.82';
@@ -11,7 +10,7 @@ const BASE_URL = 'http://159.69.120.82';
 module.exports = {
   env: {
     Base: BASE_URL,
-    title: 'ZIMCONNECT',
+    title: 'ZimConnect',
     baseUrl: process.env.BASE_URL || BASE_URL
   },
   helmet: {
@@ -35,8 +34,7 @@ module.exports = {
       changefreq: 'daily',
       priority: 1,
       lastmod: new Date()
-    },
-    routes: routes
+    }
   },
   manifest: manifest,
   head: {
@@ -123,9 +121,6 @@ module.exports = {
   },
   serverMiddleware: [
     express.json(),
-    //'~/server/routes/users',
-    //'~/server/routes/authentication',
-    //'~/server/routes/roles'
   ],
   auth: {
   },
