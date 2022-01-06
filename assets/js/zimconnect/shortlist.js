@@ -29,6 +29,18 @@ class Shortlist {
     })
   }
 
+  static select(data){
+    let api = '/resumes/select';
+    return new Promise(async (resolve, reject) => {
+      try {
+        let response = await axios.post(BASEUrl + api, data)
+        resolve(response.data);
+      } catch (error) {
+        reject(error.response)
+      }
+    })
+  }
+
   static viewCount(email){
     let api = '/resumes/updateviewcount';
     return new Promise(async (resolve, reject) => {

@@ -43,33 +43,61 @@
                       </div>
                     </div>
                     <div class="w-100">
-                      <div class="float-left w-50" v-if="value.profession">{{ value.profession }}</div>
-                      <div class="float-left w-50" v-else>Profession Not Specified</div>
-                      <div class="float-left w-50" v-if="value.gender">{{ value.gender }}</div>
-                      <div class="float-left w-50" v-else>Gender Not Specified</div>
+                      <div class="float-left w-50" v-if="value.profession">
+                        {{ value.profession }}
+                      </div>
+                      <div class="float-left w-50" v-else>
+                        Profession Not Specified
+                      </div>
+                      <div class="float-left w-50" v-if="value.gender">
+                        {{ value.gender }}
+                      </div>
+                      <div class="float-left w-50" v-else>
+                        Gender Not Specified
+                      </div>
                     </div>
                     <div v-for="(education, i) in value.education" :key="i">
                       <div class="float-left w-50">{{ education.title }}</div>
                       <div class="float-left w-50">{{ education.academy }}</div>
                     </div>
                     <div class="float-left w-50" v-if="value.audioclip_url">
-                      <audio
-                        class="audio float-left w-80 my-3"
-                        controls
-                      >
+                      <audio class="audio float-left w-80 my-3" controls>
                         <source :src="value.audioclip_url" type="audio/mpeg" />
                       </audio>
                     </div>
                   </div>
                   <div class="w-10 float-left">
-                    <p class="text-center"><i @click="removeShortlisted(value.email)" class="fa remove-candidate fa-2x fa-trash" aria-hidden="true"></i></p>
+                    <p class="text-center">
+                      <i
+                        @click="removeShortlisted(value.email)"
+                        class="fa remove-candidate fa-2x fa-trash"
+                        aria-hidden="true"
+                      ></i>
+                    </p>
                     <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
                   </div>
                 </div>
                 <div class="total">
                   <div class="float-left w-90">Total</div>
-                  <div class="float-left text-center w-10">${{ totalShortlistedValue }}</div>
+                  <div class="float-left text-center w-10">
+                    ${{ totalShortlistedValue }}
+                  </div>
                 </div>
+                <button
+                    class="
+                      button button-primary
+                      bgColor-light-blue
+                      py-2
+                      px-5
+                      my-5
+                      border-radius-16
+                      borderColor-light-blue
+                      body-detail
+                    "
+                    @click="getQuote()"
+                  >
+                    Get Quote
+                  </button>
               </div>
             </div>
             <div class="row my-2 p-4 bgColor-white" v-if="selected.length > 0">
@@ -109,7 +137,9 @@
                 </div>
                 <div class="total">
                   <div class="float-left w-90">Total</div>
-                  <div class="float-left w-10 text-center">${{ totalSelectedValue }}</div>
+                  <div class="float-left w-10 text-center">
+                    ${{ totalSelectedValue }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,7 +152,6 @@
 
 <script>
 import users from "@/assets/js/zimconnect/users";
-import resumes from "@/assets/js/zimconnect/resumes";
 import shortlist from "@/assets/js/zimconnect/shortlist";
 export default {
   data() {
@@ -134,7 +163,7 @@ export default {
       user: {},
       error: "",
       totalShortlistedValue: 0,
-      totalSelectedValue: 0
+      totalSelectedValue: 0,
     };
   },
   async mounted() {
@@ -196,9 +225,16 @@ export default {
       let birthday = +new Date(dob);
       return ~~((Date.now() - birthday) / 31557600000);
     },
-    showQuote(cv) {
-      this.quoteActive = true;
-    },
+    async getQuote(){
+      let candidates = this.shortlisted.map(a => a.email);
+      let data = {
+        user: this.userEmail,
+        candidates: candidates
+      }
+      await shortlist.select(data).then(async()=>{
+        await this.getCandidates();
+      })
+    }
   },
   head() {
     return {
