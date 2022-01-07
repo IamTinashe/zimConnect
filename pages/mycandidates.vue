@@ -84,20 +84,48 @@
                   </div>
                 </div>
                 <button
+                  class="
+                    button button-primary
+                    bgColor-light-blue
+                    py-2
+                    px-5
+                    my-5
+                    border-radius-16
+                    borderColor-light-blue
+                    body-detail
+                  "
+                  @click="sendQuote()"
+                >
+                  Get Quote
+                </button>
+              </div>
+            </div>
+            <div
+              class="row hero justify-content-md-center bgColor-white my-4"
+              v-if="quoteSent"
+            >
+              <div class="col-8">
+                <p class="text-center paragraph-large my-5">
+                  Your quote has been sent to your email. Zimworx and the
+                  candidates will be notified that you are interested in the
+                  candidates' profiles.
+                </p>
+                <NuxtLink to="/hire" title="Search More">
+                  <button
                     class="
                       button button-primary
                       bgColor-light-blue
                       py-2
                       px-5
-                      my-5
+                      mb-5
                       border-radius-16
                       borderColor-light-blue
                       body-detail
                     "
-                    @click="getQuote()"
                   >
-                    Get Quote
+                    Search More
                   </button>
+                </NuxtLink>
               </div>
             </div>
             <div class="row my-2 p-4 bgColor-white" v-if="selected.length > 0">
@@ -164,6 +192,7 @@ export default {
       error: "",
       totalShortlistedValue: 0,
       totalSelectedValue: 0,
+      quoteSent: false,
     };
   },
   async mounted() {
@@ -225,15 +254,16 @@ export default {
       let birthday = +new Date(dob);
       return ~~((Date.now() - birthday) / 31557600000);
     },
-    async getQuote(){
+    async sendQuote() {
       let data = {
         email: this.userEmail,
-        candidates: this.shortlisted.map(a => a.email)
-      }
-      await shortlist.select(data).then(async()=>{
+        candidates: this.shortlisted.map((a) => a.email),
+      };
+      await shortlist.select(data).then(async () => {
         await this.getCandidates();
-      })
-    }
+      });
+      this.quoteSent = true;
+    },
   },
   head() {
     return {
