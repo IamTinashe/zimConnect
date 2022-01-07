@@ -49,7 +49,7 @@
                 </NuxtLink>
               </li>
               <li class="display-inline mx-2">
-                <a class="text-decoration-none" href="https://globalbpsolutions.com" target="_blank" rel="noopener" title="About Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
+                <a class="text-decoration-none" href="https://zimworx.com" target="_blank" rel="noopener" title="About Us" v-bind:class="{ ColorWhite: isActive, ColorGray: !isActive }">
                   About
                 </a>
               </li>

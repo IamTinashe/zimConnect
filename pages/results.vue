@@ -12,7 +12,7 @@
               <strong>TEAM MEMBER</strong>
             </p>
             <p class="text-center paragraph-large Color-white pb-5">
-              Find a Team Member Tailored to your specification
+              Find a Team Member tailored to your specification
             </p>
           </div>
         </div>
@@ -393,7 +393,7 @@
       </div>
       <div
         class="container text-center Color-red"
-        v-else-if="allResumes.length < 0 && loading == true"
+        v-else-if="allResumes.length == 0 && loading == true"
       >
         Loading
       </div>
@@ -428,6 +428,7 @@ export default {
     if (localStorage.getItem("loggedIn") === null) {
       this.$router.push({ name: "login" });
     } else {
+      this.loading = true;
       this.userEmail = window.localStorage.getItem("email");
       this.user = await users.getUserByEmail(this.userEmail);
       this.myCandidatesLength = this.user.myCandidates.length;
@@ -438,6 +439,7 @@ export default {
         this.items = this.$route.params.items;
         await this.getResults(this.items);
       }
+      this.loading == false;
     }
   },
   methods: {
@@ -446,7 +448,6 @@ export default {
       return val;
     },
     async getResults(skillset) {
-      this.loading = true;
       this.allResumes = await resumes.getBySkillset(skillset);
       if (this.allResumes.length > 5) {
         this.max = 5;
@@ -472,7 +473,6 @@ export default {
         this.max = 0;
         console.error(error);
       }
-      this.loading == false;
     },
     async shortlist(candidateEmail) {
       let max = this.max;
