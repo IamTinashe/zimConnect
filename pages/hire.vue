@@ -217,7 +217,7 @@
               </div>
               <hr class="w-100 Color-gray-40 bgColor-gray-40 border-line" />
 
-              <div class="row position-relative my-5">
+              <!--<div class="row position-relative my-5">
                 <div class="col-sm-12 col-md-6">
                   <h3 class="group-header Color-gray-60 mb-lg-2">
                     SELECT THE PROPER
@@ -255,6 +255,14 @@
                       alt="Agenda Showing Digital Tablet"
                     />
                   </div>
+                </div>
+              </div> -->
+
+              <div class="row position-relative my-5">
+                <div class="col-sm-12 col-md-6">
+                  <h2 class="section-header Color-primary">
+                    ADVANCED SEARCH
+                  </h2>
                 </div>
               </div>
 
@@ -311,6 +319,7 @@ export default {
       preservedList: [],
       previousSkillID: "",
       previousParentID: "",
+      advancedSearch: false,
     };
   },
   async mounted() {
