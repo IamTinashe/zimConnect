@@ -295,7 +295,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        :placeholder="profile.search"
+                        placeholder="SKILL"
                         v-model="profile.search"
                       />
                     </div>
@@ -354,7 +354,7 @@
                         >MIN</label
                       >
                       <input
-                        type="number"
+                        type="text"
                         class="form-control float-left"
                         :placeholder="profile.minYears"
                         v-model="profile.minYears"
@@ -368,7 +368,7 @@
                         >MAX</label
                       >
                       <input
-                        type="number"
+                        type="text"
                         class="form-control float-left"
                         :placeholder="profile.maxYears"
                         v-model="profile.maxYears"

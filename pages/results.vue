@@ -20,7 +20,7 @@
     </div>
 
     <div class="container-fluid bgColor-gray-10 py-5">
-      <div class="container" v-if="allResumes.length > 0">
+      <div class="container" v-if="allResumes.length > 0 && loading == false">
         <div class="row">
           <div class="col-12 col-sm-2">
             <NuxtLink
@@ -497,9 +497,17 @@ export default {
     },
     async getResults(skillset) {
       if (skillset.advancedSearch == true) {
-        this.allResumes = await resumes.advancedSearch(skillset);
+        try{
+          this.allResumes = await resumes.advancedSearch(skillset);
+        }catch(e){
+          console.log(e);
+        }
       } else {
-        this.allResumes = await resumes.getBySkillset(skillset);
+        try{
+          this.allResumes = await resumes.getBySkillset(skillset);
+        }catch(e){
+          console.log(e);
+        }
       }
       if (this.allResumes.length > 5) {
         this.max = 5;
@@ -525,6 +533,7 @@ export default {
         this.max = 0;
         console.error(error);
       }
+      this.loading = false;
     },
     async shortlist(candidateEmail) {
       let max = this.max;
