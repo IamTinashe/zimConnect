@@ -109,20 +109,20 @@
                     />
                   </div>
                 </div>
-                <div class="col-md-9 col-lg-10">
-                  <p class="paragraph-large mb-0 pb-0">
+                <div class="col-md-6 col-lg-7">
+                  <p class="paragraph-large mb-2 pb-0">
                     {{ allResumes[index].fullname }}
                   </p>
                   <div class="row mb-2">
                     <div class="col-12">
-                      <span
-                        class="small"
+                      <p
+                        class="small my-0 py-0"
                         v-for="(value, i) in allResumes[index].education"
                         :key="i"
                       >
                         {{ allResumes[index].education[i].title.toUpperCase()
                         }}<br />
-                      </span>
+                      </p>
                     </div>
                   </div>
                   <div class="row mb-4">
@@ -142,6 +142,26 @@
                       </span>
                     </div>
                   </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                  <p
+                    class="
+                      body-detail
+                      bgColor-primary
+                      Color-white
+                      text-center
+                      py-1
+                      border-radius-2
+                    "
+                  >
+                    MONTHLY RATE: ${{ allResumes[index].minSalary }} - ${{
+                      allResumes[index].maxSalary
+                    }}
+                  </p>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-12 col-md-9">
                   <button
                     class="
                       button button-primary
@@ -209,7 +229,7 @@
                   >
                     Remove Shortlisted
                   </button>
-                  
+
                   <button
                     class="
                       button button-primary
@@ -223,11 +243,12 @@
                       text-regular
                     "
                     v-if="
-                      allResumes[index].availability == true &&
-                      allResumes[index].selectionStatus.length > 0 &&
-                      allResumes[index].selectionStatus[0].user != userEmail ||
-                      allResumes[index].availability == true &&
-                      allResumes[index].selectionStatus.length == 0
+                      (allResumes[index].availability == true &&
+                        allResumes[index].selectionStatus.length > 0 &&
+                        allResumes[index].selectionStatus[0].user !=
+                          userEmail) ||
+                      (allResumes[index].availability == true &&
+                        allResumes[index].selectionStatus.length == 0)
                     "
                     @click="shortlist(allResumes[index].email)"
                   >
@@ -448,7 +469,11 @@ export default {
       return val;
     },
     async getResults(skillset) {
-      this.allResumes = await resumes.getBySkillset(skillset);
+      if (skillset.advancedSearch == true) {
+        this.allResumes = await resumes.advancedSearch(skillset);
+      } else {
+        this.allResumes = await resumes.getBySkillset(skillset);
+      }
       if (this.allResumes.length > 5) {
         this.max = 5;
       } else {

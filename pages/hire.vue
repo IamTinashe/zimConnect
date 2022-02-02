@@ -257,12 +257,125 @@
                   </div>
                 </div>
               </div> -->
-
-              <div class="row position-relative my-5">
-                <div class="col-sm-12 col-md-6">
-                  <h2 class="section-header Color-primary">
-                    ADVANCED SEARCH
-                  </h2>
+              <button
+                class="
+                  button button-primary
+                  bgColor-primary
+                  borderColor-primary
+                  border-radius-8
+                  py-0
+                  px-4
+                  small
+                  float-right
+                "
+                @click.prevent="
+                  profile.advancedSearch = !profile.advancedSearch
+                "
+              >
+                ADVANCED SEARCH
+              </button>
+              <div
+                class="row position-relative my-5"
+                v-if="profile.advancedSearch == true"
+              >
+                <div class="col-sm-12">
+                  <h2 class="section-header Color-primary">ADVANCED SEARCH</h2>
+                  <div class="row position-relative my-5">
+                    <div
+                      class="
+                        col-4 col-md-3 col-lg-2
+                        paragraph-large
+                        mt-2
+                        Color-gray-40
+                      "
+                    >
+                      SEARCH
+                    </div>
+                    <div class="col-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        :placeholder="profile.search"
+                        v-model="profile.search"
+                      />
+                    </div>
+                  </div>
+                  <div class="row position-relative my-5">
+                    <div
+                      class="
+                        col-4 col-md-3 col-lg-2
+                        paragraph-large
+                        mt-4
+                        Color-gray-40
+                      "
+                    >
+                      BUDGET
+                    </div>
+                    <div class="col-4 float-left">
+                      <label class="small Color-gray-60 float-left" for="min"
+                        >MIN</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control float-left"
+                        :placeholder="profile.minBudget"
+                        v-model="profile.minBudget"
+                        id="min"
+                      />
+                    </div>
+                    <div class="col-4 float-left">
+                      <label class="small Color-gray-60 float-left" for="max"
+                        >MAX</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control float-left"
+                        :placeholder="profile.maxBudget"
+                        v-model="profile.maxBudget"
+                        id="max"
+                      />
+                    </div>
+                  </div>
+                  <div class="row position-relative my-5">
+                    <div
+                      class="
+                        col-4 col-md-3 col-lg-2
+                        paragraph-large
+                        mt-4
+                        Color-gray-40
+                      "
+                    >
+                      YEARS OF EXPERIENCE
+                    </div>
+                    <div class="col-4 float-left">
+                      <label
+                        class="small Color-gray-60 float-left"
+                        for="minyears"
+                        >MIN</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control float-left"
+                        :placeholder="profile.minYears"
+                        v-model="profile.minYears"
+                        id="minyears"
+                      />
+                    </div>
+                    <div class="col-4 float-left">
+                      <label
+                        class="small Color-gray-60 float-left"
+                        for="maxyears"
+                        >MAX</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control float-left"
+                        :placeholder="profile.maxYears"
+                        v-model="profile.maxYears"
+                        id="maxyears"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -315,16 +428,21 @@ export default {
         field: "",
         skills: [],
         workdays: [],
+        advancedSearch: false,
+        minBudget: 0,
+        maxBudget: 1000000,
+        minYears: 0,
+        maxYears: 50,
+        search: "",
       },
       preservedList: [],
       previousSkillID: "",
       previousParentID: "",
-      advancedSearch: false,
     };
   },
   async mounted() {
     if (localStorage.getItem("loggedIn") === null) {
-      this.$router.push({name: "login" });
+      this.$router.push({ name: "login" });
     } else {
       this.userEmail = window.localStorage.getItem("email");
       this.user = await users.getUserByEmail(this.userEmail);

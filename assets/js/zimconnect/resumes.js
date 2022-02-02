@@ -14,6 +14,18 @@ class Resumes {
     })
   }
 
+  static advancedSearch(profile){
+    let api = '/site/resumes/advancedsearch';
+    return new Promise(async (resolve, reject) => {
+      try {
+        let response = await axios.post(BASEUrl + api, profile);
+        resolve(response.data);
+      } catch (error) {
+        reject(error.response);
+      }
+    })
+  }
+
   static getBySearchValue(object){
     let api = '/site/resumes/search';
     return new Promise(async (resolve, reject) => {
@@ -25,6 +37,7 @@ class Resumes {
       }
     })
   }
+  
 }
 
 export default Resumes;
