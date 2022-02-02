@@ -320,92 +320,101 @@
                       >Remove From Interview List</span
                     >
                   </h2>
-                  <p class="text-left body-detail mb-5 Color-black">
-                    {{ activeCV.profession.toUpperCase() }}
-                  </p>
-                  <div class="row mb-5">
-                    <div class="col-sm-12 col-md-7">
-                      <p class="text-left body-detail mb-1 Color-black">
-                        EDUCATION
+                  <div class="row justify-content-md-center">
+                    <div class="col-10">
+                      <img title="zimworx" src="/images/zimworx.png" class="img-fluid w-100 mb-5" />
+                      <p class="text-left group-header mb-0 Color-black">
+                        {{ activeCV.fullname.toUpperCase() }}
                       </p>
-                      <p
-                        class="text-regular text-left Color-gray-60 mb-1"
-                        v-for="(qualification, index) in activeCV.education"
-                        :key="'qual' + index"
-                      >
-                        <span class="feature-paragraph">{{
-                          qualification.title.toUpperCase()
-                        }}</span
-                        ><br />
-                        <span class="small-thick">{{
-                          qualification.academy.toUpperCase()
-                        }}</span>
-                        <br />
-                        <span class="small">{{
-                          qualification.description.toUpperCase()
-                        }}</span
-                        ><br /><br />
+                      <p class="text-left body-detail mb-5 Color-black">
+                        {{ activeCV.profession.toUpperCase() }}
                       </p>
-                      <br /><br />
+                      <hr class="bgColor-primary Color-primary" style="height: 2px;">
+                      <div class="row mb-5">
+                        <div class="col-sm-12 col-md-7">
+                          <p class="text-left body-detail mb-1 Color-black">
+                            EDUCATION
+                          </p>
+                          <p
+                            class="text-regular text-left Color-gray-60 mb-1"
+                            v-for="(qualification, index) in activeCV.education"
+                            :key="'qual' + index"
+                          >
+                            <span class="feature-paragraph">{{
+                              qualification.title.toUpperCase()
+                            }}</span
+                            ><br />
+                            <span class="small-thick">{{
+                              qualification.academy.toUpperCase()
+                            }}</span>
+                            <br />
+                            <span class="small">{{
+                              qualification.description.toUpperCase()
+                            }}</span
+                            ><br /><br />
+                          </p>
+                          <br /><br />
 
-                      <p class="text-left body-detail mb-1 Color-black">
-                        SKILLS
-                      </p>
-                      <p
-                        class="text-regular text-left Color-gray-60 mb-1"
-                        v-for="(skill, index) in activeCV.skills"
-                        :key="'skil' + index"
-                      >
-                        {{ skill.toUpperCase() }}
-                      </p>
-                      <br /><br />
-                    </div>
-                    <div class="col-sm-12 col-md-5">
-                      <div class="row">
-                        <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            Age
+                          <p class="text-left body-detail mb-1 Color-black">
+                            SKILLS
                           </p>
+                          <p
+                            class="text-regular text-left Color-gray-60 mb-1"
+                            v-for="(skill, index) in activeCV.skills"
+                            :key="'skil' + index"
+                          >
+                            {{ skill.toUpperCase() }}
+                          </p>
+                          <br /><br />
                         </div>
-                        <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ getAge(activeCV.dob) }}
-                          </p>
+                        <div class="col-sm-12 col-md-5">
+                          <div class="row">
+                            <div class="col-5">
+                              <p class="small-thick text-left Color-black mb-1">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                Age
+                              </p>
+                            </div>
+                            <div class="col-7">
+                              <p class="text-regular text-left Color-gray-60 mb-1">
+                                {{ getAge(activeCV.dob) }}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-5">
+                              <p class="small-thick text-left Color-black mb-1">
+                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                Experience
+                              </p>
+                            </div>
+                            <div class="col-7">
+                              <p class="text-regular text-left Color-gray-60 mb-1">
+                                {{ activeCV.yearsOfExp }} YEARS
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-5">
-                          <p class="small-thick text-left Color-black mb-1">
-                            <i class="fa fa-briefcase" aria-hidden="true"></i>
-                            Experience
-                          </p>
-                        </div>
-                        <div class="col-7">
-                          <p class="text-regular text-left Color-gray-60 mb-1">
-                            {{ activeCV.yearsOfExp }} YEARS
-                          </p>
+                      <div class="row justify-content-center my-5">
+                        <div class="col-10 col-md-8">
+                          <button
+                            class="
+                              button button-primary
+                              border-radius-8
+                              borderColor-primary
+                              bgColor-primary
+                              Color-white
+                              w-100
+                            "
+                            @click.prevent="shortlist(activeCV.email)"
+                          >
+                            SHORTLIST
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row justify-content-center my-5">
-                    <div class="col-10 col-md-8">
-                      <button
-                        class="
-                          button button-primary
-                          border-radius-8
-                          borderColor-primary
-                          bgColor-primary
-                          Color-white
-                          w-100
-                        "
-                        @click="showQuote(activeCV)"
-                      >
-                        REQUEST ESTIMATED QUOTE
-                      </button>
-                    </div>
-                  </div>
+                  </div>    
                 </div>
               </div>
             </div>
