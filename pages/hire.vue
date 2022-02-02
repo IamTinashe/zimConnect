@@ -51,7 +51,7 @@
               <div class="row position-relative mb-0 text-center-md-left">
                 <div class="col-sm-12 col-md-7 col-lg-8 mb-5">
                   <h3 class="group-header Color-gray-60 mb-lg-2">
-                    SELECT THE PROPER
+                    SELECT
                   </h3>
                   <h2 class="section-header Color-primary mb-4">CATEGORIES</h2>
                   <div class="companies">
@@ -151,7 +151,7 @@
               <div class="row position-relative my-5">
                 <div class="col-sm-12">
                   <h3 class="group-header Color-gray-60 mb-lg-2">
-                    SELECT THE PROPER
+                    SELECT
                   </h3>
                   <h2 class="section-header Color-primary mb-5">
                     CATEGORY SKILL
@@ -220,7 +220,7 @@
               <!--<div class="row position-relative my-5">
                 <div class="col-sm-12 col-md-6">
                   <h3 class="group-header Color-gray-60 mb-lg-2">
-                    SELECT THE PROPER
+                    SELECT
                   </h3>
                   <h2 class="section-header Color-primary">
                     CATEGORY SCHEDULE
