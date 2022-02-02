@@ -59,7 +59,7 @@
                 p-small
                 float-left
               "
-              @click="searchCandidates()"
+              @click="quickSearch()"
             >
               SEARCH
             </button>
@@ -146,7 +146,7 @@
                 <div class="col-md-3 col-lg-3">
                   <p
                     class="
-                      body-detail
+                      text-regular
                       bgColor-primary
                       Color-white
                       text-center
@@ -269,7 +269,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-right cursor-pointer" @click="max = max + 5">More</p>
+            <p class="text-right cursor-pointer" v-if="allResumes.length != max" @click="addMax()">More</p>
             <div class="z-index-10 candidate-modal" v-if="modalActive">
               <span
                 @click="(modalActive = false), (quoteActive = false)"
@@ -467,6 +467,33 @@ export default {
     getVal(val) {
       console.log(val);
       return val;
+    },
+    addMax(){
+      if(this.max < this.allResumes.length && this.allResumes.length -this.max > 5){
+        this.max = this.max + 5;
+      }else if(this.max < this.allResumes.length && this.allResumes.length - this.max < 5){
+        this.max = this.max + (this.allResumes.length - this.max);
+      }
+    },
+    async quickSearch(){
+      this.loading = true;
+      this.max = 0;
+      this.allResumes = [];
+      let skillset = {
+        company: "",
+        field: "",
+        skills: [],
+        workdays: [],
+        advancedSearch: false,
+        minBudget: 0,
+        maxBudget: 1000000,
+        minYears: 0,
+        maxYears: 50,
+        search: this.searchValue,
+      }
+      this.allResumes = await resumes.advancedSearch(skillset);
+      this.addMax();
+      this.loading = false;
     },
     async getResults(skillset) {
       if (skillset.advancedSearch == true) {
