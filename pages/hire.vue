@@ -312,21 +312,6 @@
                       BUDGET
                     </div>
                     <div class="col-4 float-left">
-                      <label class="small Color-gray-60 float-left" for="min"
-                        >MIN</label
-                      >
-                      <input
-                        type="number"
-                        class="form-control float-left"
-                        :placeholder="profile.minBudget"
-                        v-model="profile.minBudget"
-                        id="min"
-                      />
-                    </div>
-                    <div class="col-4 float-left">
-                      <label class="small Color-gray-60 float-left" for="max"
-                        >MAX</label
-                      >
                       <input
                         type="number"
                         class="form-control float-left"
@@ -359,20 +344,6 @@
                         :placeholder="profile.minYears"
                         v-model="profile.minYears"
                         id="minyears"
-                      />
-                    </div>
-                    <div class="col-4 float-left">
-                      <label
-                        class="small Color-gray-60 float-left"
-                        for="maxyears"
-                        >MAX</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control float-left"
-                        :placeholder="profile.maxYears"
-                        v-model="profile.maxYears"
-                        id="maxyears"
                       />
                     </div>
                   </div>
@@ -524,7 +495,21 @@ export default {
       this.previousSkillID = id;
       this.previousParentID = parentID;
     },
+    computeBudget(){
+      this.profile.maxBudget = parseFloat(this.profile.maxBudget.replace(/\$|,/g, ''));
+      if(this.profile.maxBudget > 0){
+        this.profile.maxBudget = this.profile.maxBudget*1.2;
+        this.profile.minBudget = this.profile.minBudget*0.8;
+      }
+    },
+    computeYears(){
+      if(this.profile.minYears > 0){
+        this.profile.maxYears = 100;
+      }
+    },
     async submitForm() {
+      this.computeBudget();
+      this.computeYears();
       this.$router.push({
         name: "results",
         params: {
@@ -541,7 +526,7 @@ export default {
           hid: "description",
           property: "description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:title",
@@ -552,12 +537,12 @@ export default {
           hid: "og:description",
           property: "og:description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://zimconnect.org/hire`,
+          content: `https://worxconnect.org/hire`,
         },
         {
           hid: "twitter:title",
@@ -568,13 +553,13 @@ export default {
           hid: "twitter:description",
           property: "twitter:description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
       ],
       link: [
         {
           rel: "canonical",
-          href: `https://zimconnect.org/hire`,
+          href: `https://worxconnect.org/hire`,
         },
       ],
     };

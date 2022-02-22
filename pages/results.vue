@@ -143,7 +143,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-lg-3">
+                <div class="col-md-3 col-lg-3" v-if="user.admin == true">
                   <p
                     class="
                       text-regular
@@ -603,7 +603,7 @@ export default {
           hid: "description",
           property: "description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:title",
@@ -614,12 +614,12 @@ export default {
           hid: "og:description",
           property: "og:description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://zimconnect.org/results`,
+          content: `https://worxconnect.org/results`,
         },
         {
           hid: "twitter:title",
@@ -630,13 +630,13 @@ export default {
           hid: "twitter:description",
           property: "twitter:description",
           content:
-            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through Zimconnect.",
+            "Make use of our job matrix to define the virtual role you need for your business. Insource your next virtual assistant through WorXconnect.",
         },
       ],
       link: [
         {
           rel: "canonical",
-          href: `https://zimconnect.org/results`,
+          href: `https://worxconnect.org/results`,
         },
       ],
     };

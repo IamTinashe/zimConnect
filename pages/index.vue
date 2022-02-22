@@ -30,7 +30,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through WorXconnect.'
         },
         {
           hid: 'og:title',
@@ -40,12 +40,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through WorXconnect.'
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/home`
+          content: `https://worxconnect.org/home`
         },
         {
           hid: 'twitter:title',
@@ -55,13 +55,13 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through Zimconnect.'
+          content: 'We are an insourcing company that helps companies find the best employees for their business. Insource your next virtual assistant through WorXconnect.'
         }
       ],
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org`,
+          href: `https://worxconnect.org`,
         }
       ],
     }

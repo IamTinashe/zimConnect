@@ -5,12 +5,12 @@ require('dotenv').config();
 const manifest = require('./manifest.json');
 //const BASE_URL = 'http://localhost:4000';
 const BASE_URL = 'http://159.69.120.82';
-//const BASE_URL = 'https://zimconnect.org';
+//const BASE_URL = 'https://worxconnect.org';
 //https://xd.adobe.com/view/fb087c35-f9bc-4a98-9a8f-61b1c78aee12-ae5b/?fullscreenfd
 module.exports = {
   env: {
     Base: BASE_URL,
-    title: 'ZimConnect',
+    title: 'WorXconnect',
     baseUrl: process.env.BASE_URL || BASE_URL
   },
   helmet: {
@@ -41,7 +41,7 @@ module.exports = {
     htmlAttrs: {
       lang: 'en'
     },
-    title: 'ZimConnect',
+    title: 'WorXconnect',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=5' },
@@ -54,7 +54,7 @@ module.exports = {
       { name: 'apple-mobile-web-app-status-bar-style', content: "white" },
       { name: 'apple-touch-fullscreen', content: 'yes' },
       { name: "format-detection", content: "telephone=no" },
-      { name: 'description', content: 'Zimconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
+      { name: 'description', content: 'WorXconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
       { name: 'keywords', content: 'Zimworx, Zimbojobs, GlobalBPSolutions' },
       { name: 'target', content: 'all' },
       { name: 'audience', content: 'all' },
@@ -65,16 +65,16 @@ module.exports = {
       { name: 'url', content: BASE_URL },
       { name: 'identifier-URL', content: BASE_URL },
       { name: 'author', content: 'Tinashe Zvihwati' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'ZIMCONNECT' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'WorXconnect' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'ZIMCONNECT' },
-      { property: 'og:description', content: 'Zimconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
+      { property: 'og:title', content: 'WorXconnect' },
+      { property: 'og:description', content: 'WorXconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
       { hid: 'og:url', property: 'og:url', content: BASE_URL },
       { hid: 'og:image', property: 'og:image', content: '/images/globalbpsolutions.jpg' },
       { hid: 'og:image:width', property: 'og:image:width', content: 1200 },
       { hid: 'og:image:height', property: 'og:image:height', content: 630 },
       { hid: 'og:locale', property: 'og:locale', content: 'en_GB' },
-      { hid: 'og:email', property: 'og:email', content: 'info@zimconnect.org' },
+      { hid: 'og:email', property: 'og:email', content: 'info@worxconnect.org' },
       { hid: 'og:phone_number', property: 'og:phone_number', content: '+1 940 757 0022' },
       { hid: 'og:latitude', property: 'og:latitude', content: '33.120605' },
       { hid: 'og:longitude', property: 'og:longitude', content: '-97.185202' },
@@ -82,8 +82,8 @@ module.exports = {
       { hid: 'og:locality', property: 'og:locality', content: 'Argyle' },
       { hid: 'og:region', property: 'og:region', content: 'Texas' },
       { hid: 'og:country-name', property: 'og:country-name', content: 'US' },
-      { property: 'twitter:title', content: 'ZIMCONNECT' },
-      { property: 'twitter:description', content: 'Zimconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
+      { property: 'twitter:title', content: 'WorXconnect' },
+      { property: 'twitter:description', content: 'WorXconnect helps companies find the best employees for their business and field. It enables small to mid-size businesses growth at an affordable and scalable environment whilst producing career opportunities.' },
       { property: 'twitter:image', content: '/images/globalbpsolutions.jpg' },
       { hid: 'twitter:card', property: 'twitter:card', content: '' },
       { hid: 'twitter:site', property: 'twitter:site', content: '' },

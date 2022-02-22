@@ -71,7 +71,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: 'Recover your password. Insource your next virtual assistant through Zimconnect.'
+          content: 'Recover your password. Insource your next virtual assistant through WorXconnect.'
         },
         {
           hid: 'og:title',
@@ -81,12 +81,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Recover your password. Insource your next virtual assistant through Zimconnect.'
+          content: 'Recover your password. Insource your next virtual assistant through WorXconnect.'
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/forgotpassword`
+          content: `https://worxconnect.org/forgotpassword`
         },
         {
           hid: 'twitter:title',
@@ -96,13 +96,13 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: 'Recover your password. Insource your next virtual assistant through Zimconnect.'
+          content: 'Recover your password. Insource your next virtual assistant through WorXconnect.'
         }
       ],
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org/forgotpassword`,
+          href: `https://worxconnect.org/forgotpassword`,
         }
       ],
     }

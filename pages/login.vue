@@ -77,12 +77,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Login and start insourcing your next virtual assistant through Zimconnect.'
+          content: 'Login and start insourcing your next virtual assistant through WorXconnect.'
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/login`
+          content: `https://worxconnect.org/login`
         },
         {
           hid: 'twitter:title',
@@ -92,13 +92,13 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: 'Login and start insourcing your next virtual assistant through Zimconnect.'
+          content: 'Login and start insourcing your next virtual assistant through WorXconnect.'
         }
       ],
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org/login`,
+          href: `https://worxconnect.org/login`,
         }
       ],
     }

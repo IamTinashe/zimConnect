@@ -1,4 +1,4 @@
-# zimConnect
+# worXconnect
 
 > Zimworx Project
 

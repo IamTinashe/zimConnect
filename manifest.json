@@ -1,8 +1,8 @@
 {
-  "name": "ZimConnect",
-  "short_name": "zimconnect",
+  "name": "WorXconnect",
+  "short_name": "WorXconnect",
   "lang": "en",
-  "start_url": "https://zimconnect.com",
+  "start_url": "https://worxconnect.org",
   "display": "standalone",
   "gcm_sender_id": "",
   "gcm_sender_id_comment": "",

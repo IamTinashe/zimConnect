@@ -136,7 +136,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/faq`
+          content: `https://worxconnect.org/faq`
         },
         {
           hid: 'twitter:title',
@@ -152,7 +152,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org/faq`,
+          href: `https://worxconnect.org/faq`,
         }
       ],
     }

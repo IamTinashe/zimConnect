@@ -91,12 +91,12 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/verify`
+          content: `https://worxconnect.org/verify`
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: `https://zimconnect.org/images/test.png`
+          content: `https://worxconnect.org/images/test.png`
         },
         {
           hid: 'twitter:title',
@@ -111,13 +111,13 @@ export default {
         {
           hid: 'twitter:image',
           property: 'twitter:image',
-          content: `https://zimconnect.org/images/test.png`
+          content: `https://worxconnect.org/images/test.png`
         },
       ],
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org/verify`,
+          href: `https://worxconnect.org/verify`,
         }
       ],
     }

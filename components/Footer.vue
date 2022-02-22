@@ -5,7 +5,7 @@
         <div class="col-sm-12 col-md-4 pr-5">
           <h3 class="Color-primary feature-paragraph">WHO WE ARE</h3>
           <p class="Color-white footer-small">
-            ZimConnect is part of GlobalBP Solutions, LLC Group. We provide
+            WorXconnect is part of GlobalBP Solutions, LLC Group. We provide
             employement for team members across all industry sectors. Through
             Our state of the art business center in Harare, Zimbabwe we invest
             in the lives of a people ranked the most literate in Africa.

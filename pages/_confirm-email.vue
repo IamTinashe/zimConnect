@@ -83,7 +83,7 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: 'Confirm your email and get started on Zimconnect'
+          content: 'Confirm your email and get started on WorXconnect'
         },
         {
           hid: 'og:title',
@@ -93,12 +93,12 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Confirm your email and get started on Zimconnect'
+          content: 'Confirm your email and get started on WorXconnect'
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://zimconnect.org/confirm`
+          content: `https://worxconnect.org/confirm`
         },
         {
           hid: 'twitter:title',
@@ -108,13 +108,13 @@ export default {
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: 'Confirm your email and get started on Zimconnect'
+          content: 'Confirm your email and get started on WorXconnect'
         },
       ],
       link: [
         {
           rel: 'canonical',
-          href: `https://zimconnect.org/confirm`,
+          href: `https://worxconnect.org/confirm`,
         }
       ],
     }

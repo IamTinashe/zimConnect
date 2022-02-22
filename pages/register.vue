@@ -157,7 +157,7 @@ export default {
             if (this.validateUsername(this.user.username)) {
               try {
                 if (
-                  this.user.email.includes("@zimconnect.org") ||
+                  this.user.email.includes("@worxconnect.org") ||
                   this.user.email.includes("@zimworx.com") ||
                   this.user.email.includes("@globalbpsolutions.com") ||
                   this.user.email.includes("@globalimagingusa.com")
@@ -239,7 +239,7 @@ export default {
           hid: "description",
           property: "description",
           content:
-            "Register and start insourcing your next virtual assistant through Zimconnect.",
+            "Register and start insourcing your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:title",
@@ -250,12 +250,12 @@ export default {
           hid: "og:description",
           property: "og:description",
           content:
-            "Register and start insourcing your next virtual assistant through Zimconnect.",
+            "Register and start insourcing your next virtual assistant through WorXconnect.",
         },
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://zimconnect.org/register`,
+          content: `https://worxconnect.org/register`,
         },
         {
           hid: "twitter:title",
@@ -266,13 +266,13 @@ export default {
           hid: "twitter:description",
           property: "twitter:description",
           content:
-            "Register and start insourcing your next virtual assistant through Zimconnect.",
+            "Register and start insourcing your next virtual assistant through WorXconnect.",
         },
       ],
       link: [
         {
           rel: "canonical",
-          href: `https://zimconnect.org/register`,
+          href: `https://worxconnect.org/register`,
         },
       ],
     };
