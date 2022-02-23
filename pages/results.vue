@@ -276,6 +276,8 @@
                 class="close"
               ></span>
               <div class="container">
+                <div class="row justify-content-lg-center">
+                  <div class="col-sm-12 col-lg-10">
                 <div
                   class="
                     card
@@ -291,9 +293,9 @@
                     {{ activeCV.id }}
                   </h2>
                   <div class="row justify-content-md-center">
-                    <div class="col-10">
+                    <div class="col-sm-12 col-lg-10">
                       <img title="zimworx" src="/images/zimworx.png" class="img-fluid w-100 mb-5" />
-                      <p class="text-left group-header mb-1 Color-black">
+                      <p class="text-left group-header mb-0 Color-black">
                         <label class="cv-label bgColor-primary Color-white body-detail w-10 mr-3 p-1">NAME</label>{{ activeCV.fullname.toUpperCase() }}
                       </p>
                       <p class="text-left body-detail mb-2 Color-black">
@@ -301,7 +303,7 @@
                       </p>
                       <hr class="bgColor-primary Color-primary" style="height: 2px;">
                       <div class="row mb-5">
-                        <div class="col-sm-12 col-md-7 cv-border-right">
+                        <div class="col-sm-12 col-lg-7 cv-border-right">
                           <p class="text-left body-detail mb-1 Color-black">
                             SKILLS
                           </p>
@@ -338,7 +340,7 @@
                           <br /><br />
                           
                         </div>
-                        <div class="col-sm-12 col-md-5">
+                        <div class="col-sm-12 col-lg-5">
                           <div class="row">
                             <div class="col-5">
                               <p class="small-thick text-left Color-black mb-1">
@@ -368,6 +370,7 @@
                         </div>
                       </div>
                       <div class="row justify-content-center my-5">
+                        {{activeCV}}
                         <div class="col-10 col-md-8">
                           <button
                             class="
@@ -379,13 +382,30 @@
                               w-100
                             "
                             @click.prevent="shortlist(activeCV.email)"
+                            v-if="activeCV.availability == true"
                           >
                             SHORTLIST
+                          </button>
+                          <button
+                            class="
+                              button button-primary
+                              border-radius-8
+                              borderColor-primary
+                              bgColor-primary
+                              Color-white
+                              w-100
+                            "
+                            @click.prevent="removeShortlisted(activeCV.email)"
+                            v-else
+                          >
+                            REMOVE FROM LIST
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>    
+                </div>
+              </div>
                 </div>
               </div>
             </div>

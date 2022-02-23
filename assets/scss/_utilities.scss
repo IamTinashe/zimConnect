@@ -158,10 +158,10 @@
   border-width: 0px;
 }
 
-.cv-label{
-  color: $white;
-}
+.cv-label{}
 
 .cv-border-right{
-  border-right: 2px solid $primary;
+  @include breakpoint(large){
+    border-right: 2px solid $primary;
+  }
 }
