@@ -496,7 +496,9 @@ export default {
       this.previousParentID = parentID;
     },
     computeBudget(){
-      this.profile.maxBudget = parseFloat(this.profile.maxBudget.replace(/\$|,/g, ''));
+      if(typeof this.profile.maxBudget === 'string' && this.profile.maxBudget.includes("$")){
+        this.profile.maxBudget = parseFloat(this.profile.maxBudget.replace(/\$|,/g, ''));
+      }
       if(this.profile.maxBudget > 0){
         this.profile.maxBudget = this.profile.maxBudget*1.2;
         this.profile.minBudget = this.profile.minBudget*0.8;

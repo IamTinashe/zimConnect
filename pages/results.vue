@@ -289,49 +289,31 @@
                 >
                   <h2 class="text-left title-large mb-1">
                     {{ activeCV.id }}
-                    <span
-                      v-if="activeCV.availability == false"
-                      @click="shortlistCandidate(activeCV)"
-                      class="
-                        text-right
-                        float-right
-                        bgColor-primary
-                        Color-white
-                        text-regular
-                        p-3
-                        border-radius-4
-                        cursor-pointer
-                      "
-                      >Consider For Interview</span
-                    >
-                    <span
-                      v-else-if="activeCV.myaccount == true"
-                      @click="removeShortlistCandidate(activeCV)"
-                      class="
-                        text-right
-                        float-right
-                        bgColor-gray-20
-                        Color-white
-                        text-regular
-                        p-3
-                        border-radius-4
-                        cursor-pointer
-                      "
-                      >Remove From Interview List</span
-                    >
                   </h2>
                   <div class="row justify-content-md-center">
                     <div class="col-10">
                       <img title="zimworx" src="/images/zimworx.png" class="img-fluid w-100 mb-5" />
-                      <p class="text-left group-header mb-0 Color-black">
-                        {{ activeCV.fullname.toUpperCase() }}
+                      <p class="text-left group-header mb-1 Color-black">
+                        <label class="cv-label bgColor-primary Color-white body-detail w-10 mr-3 p-1">NAME</label>{{ activeCV.fullname.toUpperCase() }}
                       </p>
-                      <p class="text-left body-detail mb-5 Color-black">
-                        {{ activeCV.profession.toUpperCase() }}
+                      <p class="text-left body-detail mb-2 Color-black">
+                        <label class="cv-label bgColor-primary Color-white body-detail w-10 mr-3 p-1">TITLE</label>{{ activeCV.profession.toUpperCase() }}
                       </p>
                       <hr class="bgColor-primary Color-primary" style="height: 2px;">
                       <div class="row mb-5">
-                        <div class="col-sm-12 col-md-7">
+                        <div class="col-sm-12 col-md-7 cv-border-right">
+                          <p class="text-left body-detail mb-1 Color-black">
+                            SKILLS
+                          </p>
+                          <p
+                            class="text-regular text-left Color-gray-60 mb-1"
+                            v-for="(skill, index) in activeCV.skills"
+                            :key="'skil' + index"
+                          >
+                            {{ skill.toUpperCase() }}
+                          </p>
+                          <br /><br />
+                          <hr class="bgColor-primary Color-primary" style="height: 1px;">
                           <p class="text-left body-detail mb-1 Color-black">
                             EDUCATION
                           </p>
@@ -354,18 +336,7 @@
                             ><br /><br />
                           </p>
                           <br /><br />
-
-                          <p class="text-left body-detail mb-1 Color-black">
-                            SKILLS
-                          </p>
-                          <p
-                            class="text-regular text-left Color-gray-60 mb-1"
-                            v-for="(skill, index) in activeCV.skills"
-                            :key="'skil' + index"
-                          >
-                            {{ skill.toUpperCase() }}
-                          </p>
-                          <br /><br />
+                          
                         </div>
                         <div class="col-sm-12 col-md-5">
                           <div class="row">
