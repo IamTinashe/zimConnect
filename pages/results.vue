@@ -79,7 +79,7 @@
                   p-small
                 "
               >
-                {{ myCandidatesLength }} Candidates Listed
+                {{ myCandidatesLength }} Candidates
               </button>
             </NuxtLink>
           </div>
