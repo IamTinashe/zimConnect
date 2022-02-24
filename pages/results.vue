@@ -488,11 +488,11 @@
                                   w-100
                                 "
                                 @click.prevent="shortlist(activeCV.email)"
-                                v-if="
+                                v-if="activeCV.availability == true && (
                                   activeCV.selectionStatus.length == 0 ||
                                   activeCV.selectionStatus.filter(
                                     (user) => user.user == userEmail
-                                  ).length == 0
+                                  ).length == 0)
                                 "
                               >
                                 SHORTLIST
