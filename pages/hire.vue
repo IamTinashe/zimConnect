@@ -118,24 +118,15 @@
                       "
                     >
                       <ul class="ul">
-                        <li
-                          v-for="(role, i) in position.positions"
-                          :key="'pos2' + i"
-                        >
+                        <li v-for="(role, i) in position.positions" :key="'pos2' + i">
                           <input
                             type="checkbox"
                             :id="'position' + index + i"
                             :name="role"
                             :value="role"
-                            @change="
-                              chooseField(position.name), chooseSkills(role)
-                            "
+                            @change="chooseField(position.name), chooseSkills(role)"
                           />
-                          <label
-                            class="text-regular Color-black"
-                            :for="'position' + index + i"
-                            >{{ role }}</label
-                          >
+                          <label class="text-regular Color-black" :for="'position' + index + i">{{ role }}</label>
                           <div class="check"><div class="inside"></div></div>
                         </li>
                       </ul>
@@ -211,50 +202,13 @@
               </div>
               <hr class="w-100 Color-gray-40 bgColor-gray-40 border-line" />
 
-              <!--<div class="row position-relative my-5">
-                <div class="col-sm-12 col-md-6">
-                  <h2 class="section-header Color-primary">
-                    CATEGORY SCHEDULE
-                  </h2>
-                  <h3 class="body-detail Color-gray-60 mb-5">
-                    (40hrs Standard)
-                  </h3>
-                  <div class="row">
-                    <div
-                      class="col-sm-12 col-md-6"
-                      v-for="(day, index) in workdays"
-                      :key="'work' + index"
-                    >
-                      <input
-                        type="checkbox"
-                        @change="chooseDay(day.name)"
-                        :id="'day' + index"
-                        :name="day.name"
-                        :value="day.name"
-                      />
-                      <label class="small Color-black" :for="'day' + index">{{
-                        day.name
-                      }}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="w-100 mb-3">
-                    <img
-                      class="w-100"
-                      src="/images/agenda-showing-digital-tablet.jpg"
-                      alt="Agenda Showing Digital Tablet"
-                    />
-                  </div>
-                </div>
-              </div> -->
               <button
                 class="
                   button button-primary
                   bgColor-primary
                   borderColor-primary
                   border-radius-8
-                  py-0
+                  py-2
                   px-4
                   small
                   float-right

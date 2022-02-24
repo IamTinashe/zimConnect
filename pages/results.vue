@@ -161,17 +161,18 @@
                 </div>
               </div>
               <div class="row justify-content-md-center">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-8">
                   <button
                     class="
                       button button-primary
                       bgColor-primary
                       py-1
                       px-4
-                      border-radius-8
+                      border-radius-4
                       float-left
                       borderColor-primary
                       text-regular
+                      button-wide-small
                     "
                     @click="activateModal(allResumes[index])"
                   >
@@ -183,11 +184,14 @@
                       bgColor-light-blue
                       py-1
                       px-4
-                      border-radius-8
+                      border-radius-4
                       float-left
                       borderColor-light-blue
                       text-regular
-                      ml-2
+                      mx-md-2
+                      my-md-0
+                      my-1
+                      button-wide-small
                     "
                     v-if="allResumes[index].cv_url"
                   >
@@ -198,27 +202,20 @@
                       >Download CV</a
                     >
                   </button>
-                  <audio
-                    class="audio mx-2"
-                    controls
-                    v-if="allResumes[index].audioclip_url"
-                  >
-                    <source
-                      :src="allResumes[index].audioclip_url"
-                      type="audio/mpeg"
-                    />
-                  </audio>
                   <button
                     class="
                       button button-primary
                       bgColor-light-blue
                       py-1
                       px-4
-                      mx-2
-                      border-radius-8
+                      mx-md-2
+                      my-md-0
+                      my-1
+                      border-radius-4
                       float-left
                       borderColor-light-blue
                       text-regular
+                      button-wide-small
                     "
                     v-if="
                       allResumes[index].availability == true &&
@@ -236,11 +233,14 @@
                       bgColor-light-blue
                       py-1
                       px-4
-                      mx-2
-                      border-radius-8
+                      mx-md-2
+                      my-md-0
+                      my-1
+                      border-radius-4
                       float-left
                       borderColor-light-blue
                       text-regular
+                      button-wide-small
                     "
                     v-if="
                       (allResumes[index].availability == true &&
@@ -254,14 +254,14 @@
                   >
                     Shortlist
                   </button>
-                  <p
-                    class="py-1 px-4 mx-2 float-left small"
+                  <div
+                    class="py-1 px-4 mx-2 my-3 my-md-0 float-left small button-wide-small"
                     v-if="allResumes[index].availability == false"
                   >
-                    Already Selected
-                  </p>
+                    <p class="text-center">Already Selected</p>
+                  </div>
                   <p
-                    class="py-1 px-4 mx-2 float-left small"
+                    class="py-1 px-4 float-right small"
                     v-if="allResumes[index].views"
                   >
                     {{ allResumes[index].views }} Views
@@ -269,7 +269,13 @@
                 </div>
               </div>
             </div>
-            <p class="text-right cursor-pointer" v-if="allResumes.length != max" @click="addMax()">More</p>
+            <p
+              class="text-right cursor-pointer"
+              v-if="allResumes.length != max"
+              @click="addMax()"
+            >
+              More
+            </p>
             <div class="z-index-10 candidate-modal" v-if="modalActive">
               <span
                 @click="(modalActive = false), (quoteActive = false)"
@@ -278,134 +284,244 @@
               <div class="container">
                 <div class="row justify-content-lg-center">
                   <div class="col-sm-12 col-lg-10">
-                <div
-                  class="
-                    card
-                    bgColor-white
-                    border-radius-2
-                    box-shadow-1
-                    my-4
-                    py-5
-                    px-5
-                  "
-                >
-                  <h2 class="text-left title-large mb-1">
-                    {{ activeCV.id }}
-                  </h2>
-                  <div class="row justify-content-md-center">
-                    <div class="col-sm-12 col-lg-10">
-                      <img title="zimworx" src="/images/zimworx.png" class="img-fluid w-100 mb-5" />
-                      <p class="text-left group-header mb-0 Color-black">
-                        <label class="cv-label bgColor-primary Color-white body-detail w-10 mr-3 p-1">NAME</label>{{ activeCV.fullname.toUpperCase() }}
-                      </p>
-                      <p class="text-left body-detail mb-2 Color-black">
-                        <label class="cv-label bgColor-primary Color-white body-detail w-10 mr-3 p-1">TITLE</label>{{ activeCV.profession.toUpperCase() }}
-                      </p>
-                      <hr class="bgColor-primary Color-primary" style="height: 2px;">
-                      <div class="row mb-5">
-                        <div class="col-sm-12 col-lg-7 cv-border-right">
-                          <p class="text-left body-detail mb-1 Color-black">
-                            SKILLS
+                    <div
+                      class="
+                        card
+                        bgColor-white
+                        border-radius-2
+                        box-shadow-1
+                        my-4
+                        py-5
+                        px-5
+                      "
+                    >
+                      <h2 class="text-left title-large mb-1">
+                        {{ activeCV.id }}
+                      </h2>
+                      <div class="row justify-content-md-center">
+                        <div class="col-sm-12 col-lg-10">
+                          <img
+                            title="zimworx"
+                            src="/images/zimworx.png"
+                            class="img-fluid w-100 mb-5"
+                          />
+                          <p class="text-left group-header mb-0 Color-black">
+                            <label
+                              class="
+                                cv-label
+                                bgColor-primary
+                                Color-white
+                                body-detail
+                                w-10
+                                mr-3
+                                p-1
+                              "
+                              >NAME</label
+                            >{{ activeCV.fullname.toUpperCase() }}
                           </p>
-                          <p
-                            class="text-regular text-left Color-gray-60 mb-1"
-                            v-for="(skill, index) in activeCV.skills"
-                            :key="'skil' + index"
-                          >
-                            {{ skill.toUpperCase() }}
+                          <p class="text-left body-detail mb-2 Color-black">
+                            <label
+                              class="
+                                cv-label
+                                bgColor-primary
+                                Color-white
+                                body-detail
+                                w-10
+                                mr-3
+                                p-1
+                              "
+                              >TITLE</label
+                            >{{ activeCV.profession.toUpperCase() }}
                           </p>
-                          <br /><br />
-                          <hr class="bgColor-primary Color-primary" style="height: 1px;">
-                          <p class="text-left body-detail mb-1 Color-black">
-                            EDUCATION
-                          </p>
-                          <p
-                            class="text-regular text-left Color-gray-60 mb-1"
-                            v-for="(qualification, index) in activeCV.education"
-                            :key="'qual' + index"
-                          >
-                            <span class="feature-paragraph">{{
-                              qualification.title.toUpperCase()
-                            }}</span
-                            ><br />
-                            <span class="small-thick">{{
-                              qualification.academy.toUpperCase()
-                            }}</span>
-                            <br />
-                            <span class="small">{{
-                              qualification.description.toUpperCase()
-                            }}</span
-                            ><br /><br />
-                          </p>
-                          <br /><br />
-                          
-                        </div>
-                        <div class="col-sm-12 col-lg-5">
-                          <div class="row">
-                            <div class="col-5">
-                              <p class="small-thick text-left Color-black mb-1">
-                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                Age
+                          <hr
+                            class="bgColor-primary Color-primary"
+                            style="height: 2px"
+                          />
+                          <div class="row mb-5">
+                            <div class="col-sm-12 col-lg-7 cv-border-right">
+                              <p class="text-left body-detail mb-1 Color-black">
+                                SKILLS
                               </p>
+                              <p
+                                class="
+                                  text-regular text-left
+                                  Color-gray-60
+                                  mb-1
+                                "
+                                v-for="(skill, index) in activeCV.skills"
+                                :key="'skil' + index"
+                              >
+                                {{ skill.toUpperCase() }}
+                              </p>
+                              <br /><br />
+                              <hr
+                                class="bgColor-primary Color-primary"
+                                style="height: 1px"
+                              />
+                              <p class="text-left body-detail mb-1 Color-black">
+                                EDUCATION
+                              </p>
+                              <p
+                                class="
+                                  text-regular text-left
+                                  Color-gray-60
+                                  mb-1
+                                "
+                                v-for="(
+                                  qualification, index
+                                ) in activeCV.education"
+                                :key="'qual' + index"
+                              >
+                                <span class="feature-paragraph">{{
+                                  qualification.title.toUpperCase()
+                                }}</span
+                                ><br />
+                                <span class="small-thick">{{
+                                  qualification.academy.toUpperCase()
+                                }}</span>
+                                <br />
+                                <span class="small">{{
+                                  qualification.description.toUpperCase()
+                                }}</span
+                                ><br /><br />
+                              </p>
+                              <br /><br />
                             </div>
-                            <div class="col-7">
-                              <p class="text-regular text-left Color-gray-60 mb-1">
-                                {{ getAge(activeCV.dob) }}
-                              </p>
+                            <div class="col-sm-12 col-lg-5">
+                              <div class="row">
+                                <div class="col-5">
+                                  <p
+                                    class="
+                                      small-thick
+                                      text-left
+                                      Color-black
+                                      mb-1
+                                    "
+                                  >
+                                    <i
+                                      class="fa fa-calendar"
+                                      aria-hidden="true"
+                                    ></i>
+                                    Age
+                                  </p>
+                                </div>
+                                <div class="col-7">
+                                  <p
+                                    class="
+                                      text-regular text-left
+                                      Color-gray-60
+                                      mb-1
+                                    "
+                                  >
+                                    {{ getAge(activeCV.dob) }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="row mb-5">
+                                <div class="col-5">
+                                  <p
+                                    class="
+                                      small-thick
+                                      text-left
+                                      Color-black
+                                      mb-1
+                                    "
+                                  >
+                                    <i
+                                      class="fa fa-briefcase"
+                                      aria-hidden="true"
+                                    ></i>
+                                    Experience
+                                  </p>
+                                </div>
+                                <div class="col-7">
+                                  <p
+                                    class="
+                                      text-regular text-left
+                                      Color-gray-60
+                                      mb-1
+                                    "
+                                  >
+                                    {{ activeCV.yearsOfExp }} YEARS
+                                  </p>
+                                </div>
+                              </div>
+                              <div
+                                class="row"
+                                v-if="activeCV.audioclip_url.length > 0"
+                              >
+                                <div class="col-12">
+                                  <p
+                                    class="
+                                      text-left
+                                      body-detail
+                                      mb-3
+                                      Color-black
+                                    "
+                                  >
+                                    AUDIO
+                                  </p>
+                                  <audio
+                                    class="audio"
+                                    controls
+                                    v-if="activeCV.audioclip_url"
+                                  >
+                                    <source
+                                      :src="activeCV.audioclip_url"
+                                      type="audio/mpeg"
+                                    />
+                                  </audio>
+                                  <br /><br />
+                                </div>
+                              </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-5">
-                              <p class="small-thick text-left Color-black mb-1">
-                                <i class="fa fa-briefcase" aria-hidden="true"></i>
-                                Experience
-                              </p>
-                            </div>
-                            <div class="col-7">
-                              <p class="text-regular text-left Color-gray-60 mb-1">
-                                {{ activeCV.yearsOfExp }} YEARS
-                              </p>
+                          <div class="row justify-content-center my-5">
+                            <div class="col-10 col-md-8">
+                              <button
+                                class="
+                                  button button-primary
+                                  border-radius-8
+                                  borderColor-primary
+                                  bgColor-primary
+                                  Color-white
+                                  w-100
+                                "
+                                @click.prevent="shortlist(activeCV.email)"
+                                v-if="
+                                  activeCV.selectionStatus.length == 0 ||
+                                  activeCV.selectionStatus.filter(
+                                    (user) => user.user == userEmail
+                                  ).length == 0
+                                "
+                              >
+                                SHORTLIST
+                              </button>
+                              <button
+                                class="
+                                  button button-primary
+                                  border-radius-8
+                                  borderColor-primary
+                                  bgColor-primary
+                                  Color-white
+                                  w-100
+                                "
+                                @click.prevent="
+                                  removeShortlisted(activeCV.email)
+                                "
+                                v-else-if="
+                                  activeCV.selectionStatus.length > 0 &&
+                                  activeCV.selectionStatus[0].user == userEmail
+                                "
+                              >
+                                REMOVE FROM LIST
+                              </button>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center my-5">
-                        {{activeCV}}
-                        <div class="col-10 col-md-8">
-                          <button
-                            class="
-                              button button-primary
-                              border-radius-8
-                              borderColor-primary
-                              bgColor-primary
-                              Color-white
-                              w-100
-                            "
-                            @click.prevent="shortlist(activeCV.email)"
-                            v-if="activeCV.availability == true"
-                          >
-                            SHORTLIST
-                          </button>
-                          <button
-                            class="
-                              button button-primary
-                              border-radius-8
-                              borderColor-primary
-                              bgColor-primary
-                              Color-white
-                              w-100
-                            "
-                            @click.prevent="removeShortlisted(activeCV.email)"
-                            v-else
-                          >
-                            REMOVE FROM LIST
-                          </button>
                         </div>
                       </div>
                     </div>
-                  </div>    
-                </div>
-              </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -468,14 +584,20 @@ export default {
       console.log(val);
       return val;
     },
-    addMax(){
-      if(this.max < this.allResumes.length && this.allResumes.length -this.max > 5){
+    addMax() {
+      if (
+        this.max < this.allResumes.length &&
+        this.allResumes.length - this.max > 5
+      ) {
         this.max = this.max + 5;
-      }else if(this.max < this.allResumes.length && this.allResumes.length - this.max < 5){
+      } else if (
+        this.max < this.allResumes.length &&
+        this.allResumes.length - this.max < 5
+      ) {
         this.max = this.max + (this.allResumes.length - this.max);
       }
     },
-    async quickSearch(){
+    async quickSearch() {
       this.loading = true;
       this.max = 0;
       this.allResumes = [];
@@ -490,22 +612,22 @@ export default {
         minYears: 0,
         maxYears: 50,
         search: this.searchValue,
-      }
+      };
       this.allResumes = await resumes.advancedSearch(skillset);
       this.addMax();
       this.loading = false;
     },
     async getResults(skillset) {
       if (skillset.advancedSearch == true) {
-        try{
+        try {
           this.allResumes = await resumes.advancedSearch(skillset);
-        }catch(e){
+        } catch (e) {
           console.log(e);
         }
       } else {
-        try{
+        try {
           this.allResumes = await resumes.getBySkillset(skillset);
-        }catch(e){
+        } catch (e) {
           console.log(e);
         }
       }
@@ -545,6 +667,11 @@ export default {
         this.user = await users.getUserByEmail(this.userEmail);
         await this.getResults(this.items);
         this.myCandidatesLength = this.user.myCandidates.length;
+        if (this.modalActive == true) {
+          this.activeCV = this.allResumes.filter(
+            (cv) => cv.email == this.activeCV.email
+          )[0];
+        }
       } catch (error) {
         console.error(error);
       }
@@ -560,6 +687,11 @@ export default {
         this.user = await users.getUserByEmail(this.userEmail);
         await this.getResults(this.items);
         this.myCandidatesLength = this.user.myCandidates.length;
+        if (this.modalActive == true) {
+          this.activeCV = this.allResumes.filter(
+            (cv) => cv.email == this.activeCV.email
+          )[0];
+        }
       } catch (error) {
         console.error(error);
       }
