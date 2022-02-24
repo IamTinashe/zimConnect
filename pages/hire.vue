@@ -72,6 +72,7 @@
                           mr-1 mr-sm-3
                           pt-2
                         "
+                        @click="goto('roles')"
                       >
                         <span>{{ company.name }}</span>
                       </div>
@@ -88,7 +89,7 @@
               </div>
               <hr class="w-100 Color-gray-40 bgColor-gray-40 border-line" />
 
-              <div class="row position-relative my-5 mb-0">
+              <div class="row position-relative my-5 mb-0" ref="roles">
                 <div
                   class="col-sm-12 col-md-6 col-lg-3"
                   v-for="(position, index) in positions"
@@ -464,6 +465,13 @@ export default {
         },
       });
     },
+    goto(refName) {
+      var element = this.$refs[refName];
+      window.scrollTo({
+        top: 700,
+        behavior: 'smooth',
+      });
+    }
   },
   head() {
     return {

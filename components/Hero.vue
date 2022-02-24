@@ -20,7 +20,7 @@
                       borderColor-primary
                       button-primary
                       border-radius-8
-                      w-25
+                      get-started-btn
                       py-3
                     "
                   >

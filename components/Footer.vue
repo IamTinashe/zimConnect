@@ -13,7 +13,7 @@
         </div>
         <div class="col-12 col-md-6 pr-5">
           <h3 class="Color-primary feature-paragraph ml-md-5">INFORMATION</h3>
-          <ul class="Color-white footer-small ml-5 pl-3">
+          <ul class="Color-white footer-small ml-md-5 pl-3">
             <li><a href="https://zimworx.com" target="_blank" rel="noopener" class="Color-white">About Us</a></li>
             <li><a href="#" target="_blank" rel="noopener" class="Color-white">Terms & Conditions</a></li>
             <li><a href="#" target="_blank" rel="noopener" class="Color-white">Privacy Policy</a></li>

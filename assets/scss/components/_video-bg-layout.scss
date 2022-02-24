@@ -15,7 +15,8 @@
 @media only screen and (max-width: 768px){
   .bgimage{
     background-image: url("/images/joina-mobile.jpg");
-    background-size: cover
+    background-size: cover;
+    height: 70vh;
   }
 }
 @include breakpoint(large){

@@ -6,7 +6,7 @@
           TURN FRUSTRATION INTO POSITIVE CUSTOMER INTERACTIONS
         </h2>
         <p class="small Color-white mb-5">
-          We recruite experienced candidates and train them to understand your
+          We recruit experienced candidates and train them to understand your
           products, services and company policies.
         </p>
         <div
@@ -27,7 +27,7 @@
         <h2 class="title-large text-center Color-gray-80 pb-5">
           <span class="text-underline-80">WHAT'S IN IT FOR YOU</span>
         </h2>
-        <div class="row mt-5 justify-content-md-center">
+        <div class="row mt-5 justify-content-center">
           <div class="col-sm-10 col-md-4">
             <div
               class="
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-        <div class="row justify-content-md-center mb-5">
+        <div class="row justify-content-center mb-5">
           <div class="col-sm-10 col-md-4">
             <div
               class="

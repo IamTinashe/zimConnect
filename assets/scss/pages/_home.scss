@@ -8,4 +8,14 @@
       margin-top: 0px;
     }
   }
+
+  .get-started-btn{
+    width: 75%;
+    @include breakpoint(medium){
+      width: 50%;
+    }
+    @include breakpoint(large){
+      width: 25%;
+    }
+  }
 }
