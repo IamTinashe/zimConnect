@@ -100,7 +100,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/reset`
+          content: `https://worxconnect.com/reset`
         },
         {
           hid: 'twitter:title',
@@ -116,7 +116,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/reset`,
+          href: `https://worxconnect.com/reset`,
         }
       ],
     }

@@ -742,7 +742,7 @@ export default {
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://worxconnect.org/results`,
+          content: `https://worxconnect.com/results`,
         },
         {
           hid: "twitter:title",
@@ -759,7 +759,7 @@ export default {
       link: [
         {
           rel: "canonical",
-          href: `https://worxconnect.org/results`,
+          href: `https://worxconnect.com/results`,
         },
       ],
     };

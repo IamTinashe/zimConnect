@@ -157,7 +157,7 @@ export default {
             if (this.validateUsername(this.user.username)) {
               try {
                 if (
-                  this.user.email.includes("@worxconnect.org") ||
+                  this.user.email.includes("@worxconnect.com") ||
                   this.user.email.includes("@zimworx.com") ||
                   this.user.email.includes("@globalbpsolutions.com") ||
                   this.user.email.includes("@globalimagingusa.com")
@@ -255,7 +255,7 @@ export default {
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://worxconnect.org/register`,
+          content: `https://worxconnect.com/register`,
         },
         {
           hid: "twitter:title",
@@ -272,7 +272,7 @@ export default {
       link: [
         {
           rel: "canonical",
-          href: `https://worxconnect.org/register`,
+          href: `https://worxconnect.com/register`,
         },
       ],
     };

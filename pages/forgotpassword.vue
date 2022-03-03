@@ -86,7 +86,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/forgotpassword`
+          content: `https://worxconnect.com/forgotpassword`
         },
         {
           hid: 'twitter:title',
@@ -102,7 +102,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/forgotpassword`,
+          href: `https://worxconnect.com/forgotpassword`,
         }
       ],
     }

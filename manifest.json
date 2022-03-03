@@ -2,7 +2,7 @@
   "name": "WorXconnect",
   "short_name": "WorXconnect",
   "lang": "en",
-  "start_url": "https://worxconnect.org",
+  "start_url": "https://worxconnect.com",
   "display": "standalone",
   "gcm_sender_id": "",
   "gcm_sender_id_comment": "",

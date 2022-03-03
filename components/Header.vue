@@ -4,7 +4,7 @@
       <div class="row justify-content-md-center mx-lg-2">
         <div class="show-large-only col-md-6 Color-white">
           <span>PHONE: 940.757.0022</span>
-          <span class="ml-2">EMAIL: info@worxconnect.org</span>
+          <span class="ml-2">EMAIL: info@worxconnect.com</span>
         </div>
         <div class="show-large-only col-md-3 col-lg-4"></div>
         <div class="col-sm-12 col-md-3 col-lg-2 text-right">

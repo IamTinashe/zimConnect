@@ -13,7 +13,7 @@
               <br>  Argyle, TX 76226
               <br>  (940) 757-0022 Office
               <br>  (940) 757-0045 Fax
-              <br>  info@worxconnect.org
+              <br>  info@worxconnect.com
             </p>
           </div>
           <div class="col-sm-12 col-md-5 col-lg-4">
@@ -23,7 +23,7 @@
               <br>  Harare, Zimbabwe
               <br>  (940) 757-0022 Office
               <br>  (940) 757-0045 Fax
-              <br>  info@worxconnect.org
+              <br>  info@worxconnect.com
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/contact`
+          content: `https://worxconnect.com/contact`
         },
         {
           hid: 'twitter:title',
@@ -84,7 +84,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/contact`,
+          href: `https://worxconnect.com/contact`,
         }
       ],
     }

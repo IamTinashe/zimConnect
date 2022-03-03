@@ -136,7 +136,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/faq`
+          content: `https://worxconnect.com/faq`
         },
         {
           hid: 'twitter:title',
@@ -152,7 +152,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/faq`,
+          href: `https://worxconnect.com/faq`,
         }
       ],
     }

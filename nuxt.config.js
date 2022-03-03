@@ -5,7 +5,7 @@ require('dotenv').config();
 const manifest = require('./manifest.json');
 //const BASE_URL = 'http://localhost:4000';
 //const BASE_URL = 'http://159.69.120.82';
-const BASE_URL = 'https://worxconnect.org';
+const BASE_URL = 'https://worxconnect.com';
 module.exports = {
   env: {
     Base: BASE_URL,
@@ -73,7 +73,7 @@ module.exports = {
       { hid: 'og:image:width', property: 'og:image:width', content: 1200 },
       { hid: 'og:image:height', property: 'og:image:height', content: 630 },
       { hid: 'og:locale', property: 'og:locale', content: 'en_GB' },
-      { hid: 'og:email', property: 'og:email', content: 'info@worxconnect.org' },
+      { hid: 'og:email', property: 'og:email', content: 'info@worxconnect.com' },
       { hid: 'og:phone_number', property: 'og:phone_number', content: '+1 940 757 0022' },
       { hid: 'og:latitude', property: 'og:latitude', content: '33.120605' },
       { hid: 'og:longitude', property: 'og:longitude', content: '-97.185202' },

@@ -45,7 +45,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/home`
+          content: `https://worxconnect.com/home`
         },
         {
           hid: 'twitter:title',
@@ -61,7 +61,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org`,
+          href: `https://worxconnect.com`,
         }
       ],
     }

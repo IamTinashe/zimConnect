@@ -82,7 +82,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/login`
+          content: `https://worxconnect.com/login`
         },
         {
           hid: 'twitter:title',
@@ -98,7 +98,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/login`,
+          href: `https://worxconnect.com/login`,
         }
       ],
     }

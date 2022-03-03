@@ -497,7 +497,7 @@ export default {
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://worxconnect.org/hire`,
+          content: `https://worxconnect.com/hire`,
         },
         {
           hid: "twitter:title",
@@ -514,7 +514,7 @@ export default {
       link: [
         {
           rel: "canonical",
-          href: `https://worxconnect.org/hire`,
+          href: `https://worxconnect.com/hire`,
         },
       ],
     };

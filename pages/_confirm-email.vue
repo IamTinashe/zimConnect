@@ -98,7 +98,7 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://worxconnect.org/confirm`
+          content: `https://worxconnect.com/confirm`
         },
         {
           hid: 'twitter:title',
@@ -114,7 +114,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://worxconnect.org/confirm`,
+          href: `https://worxconnect.com/confirm`,
         }
       ],
     }
