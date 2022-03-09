@@ -259,7 +259,7 @@
                     </div>
                     <div class="col-4 float-left">
                       <input
-                        type="number"
+                        type="text"
                         class="form-control float-left"
                         :placeholder="profile.maxBudget"
                         v-model="profile.maxBudget"
