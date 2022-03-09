@@ -8,11 +8,12 @@ $faint-blue: #F6F7FB;
 $deep-blue: #698ABA;
 $green: #008000;
 $yellow: #FFFF00;
+$dark-blue: #4d5c6b;
 
 
 $blue-lighter: #d0e0f7;
 $blue-light: #73a3e8;
-$blue-default: #1665D8;
+$blue-default: #2886c8;
 $blue-dark: #0d3d82;
 $blue-darker: #04142b;
 
@@ -26,7 +27,7 @@ $gray-40: #878787;
 $gray-60: #6e6d6d;
 $gray-80: #4a4a4a;
 
-$primary: $blue;
+$primary: $blue-default;
 $secondary: $gray;
 $tertiary: $deep-blue;
 $quaternary: $sky-blue;
