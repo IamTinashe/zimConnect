@@ -15,7 +15,7 @@ class Auth {
   }
 
   static submitEmail(data){
-    let api = '/api/auth/forgot';
+    let api = '/site/auth/forgot';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)
@@ -27,7 +27,7 @@ class Auth {
   }
 
   static resetPassword(data){
-    let api = '/api/auth/resetpassword';
+    let api = '/site/auth/resetpassword';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)
