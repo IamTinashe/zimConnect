@@ -10,6 +10,9 @@
             <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">CREATE A NEW PASSWORD</h2>
             <small class="text-center Color-error" v-if="error.length > 0">{{error}} </small>
             <form class="form pt-3 pb-5" @submit.prevent="userReset()">
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email*</label>
+              <input v-model="confirm.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+
               <label class="ml-2 Color-gray-80 feature-paragraph" for="password">New Password*</label>
               <input v-model="confirm.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
@@ -60,8 +63,8 @@ export default {
   },
   mounted(){
     this.loggedIn = this.$store.state.auth.loggedIn;
-    this.confirm.email = this.$route.params.email;
-    this.confirm.confirmationCode = this.$route.params.code;
+    this.confirm.email = this.$route.query.email;
+    this.confirm.confirmationCode = this.$route.query.code;
   },
   methods: {
     async userReset() {
