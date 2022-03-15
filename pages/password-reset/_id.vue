@@ -60,7 +60,8 @@ export default {
   },
   mounted(){
     this.loggedIn = this.$store.state.auth.loggedIn;
-    this.confirm.email = this.$route.params.id;
+    this.confirm.email = this.$route.params.email;
+    this.confirm.confirmationCode = this.$route.params.code;
   },
   methods: {
     async userReset() {
