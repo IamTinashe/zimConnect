@@ -27,7 +27,7 @@ class Auth {
   }
 
   static resetPassword(data){
-    let api = '/site/auth/resetpassword';
+    let api = '/site/auth/reset';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)
