@@ -28,8 +28,8 @@
               class="
                 button button-primary
                 Color-white
-                bgColor-primary
-                borderColor-primary
+                bgColor-blue
+                borderColor-blue
                 border-radius-1
                 p-3
                 mb-5
@@ -50,8 +50,8 @@
               class="
                 button button-primary
                 Color-white
-                bgColor-primary
-                borderColor-primary
+                bgColor-blue
+                borderColor-blue
                 border-radius-1
                 p-3
                 w-20
@@ -71,8 +71,8 @@
                 class="
                   button button-primary
                   Color-white
-                  bgColor-light-blue
-                  borderColor-light-blue
+                  bgColor-blue
+                  borderColor-blue
                   border-radius-1
                   px-2
                   py-3
@@ -165,12 +165,12 @@
                   <button
                     class="
                       button button-primary
-                      bgColor-primary
+                      bgColor-blue
                       py-1
                       px-4
                       border-radius-4
                       float-left
-                      borderColor-primary
+                      borderColor-blue
                       text-regular
                       button-wide-small
                     "
@@ -181,12 +181,12 @@
                   <button
                     class="
                       button button-primary
-                      bgColor-light-blue
+                      bgColor-blue
                       py-1
                       px-4
                       border-radius-4
                       float-left
-                      borderColor-light-blue
+                      borderColor-blue
                       text-regular
                       mx-md-2
                       my-md-0
@@ -205,7 +205,7 @@
                   <button
                     class="
                       button button-primary
-                      bgColor-light-blue
+                      bgColor-blue
                       py-1
                       px-4
                       mx-md-2
@@ -213,7 +213,7 @@
                       my-1
                       border-radius-4
                       float-left
-                      borderColor-light-blue
+                      borderColor-blue
                       text-regular
                       button-wide-small
                     "
@@ -230,7 +230,7 @@
                   <button
                     class="
                       button button-primary
-                      bgColor-light-blue
+                      bgColor-blue
                       py-1
                       px-4
                       mx-md-2
@@ -238,7 +238,7 @@
                       my-1
                       border-radius-4
                       float-left
-                      borderColor-light-blue
+                      borderColor-blue
                       text-regular
                       button-wide-small
                     "

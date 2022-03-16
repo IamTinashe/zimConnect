@@ -70,7 +70,7 @@
                     <p class="text-center">
                       <i
                         @click="removeShortlisted(value.email)"
-                        class="fa remove-candidate fa-2x fa-trash"
+                        class="fa Color-blue remove-candidate fa-2x fa-trash"
                         aria-hidden="true"
                       ></i>
                     </p>
@@ -86,12 +86,12 @@
                 <button
                   class="
                     button button-primary
-                    bgColor-light-blue
+                    bgColor-blue
                     py-2
                     px-5
                     my-5
                     border-radius-16
-                    borderColor-light-blue
+                    borderColor-blue
                     body-detail
                   "
                   @click="sendQuote()"

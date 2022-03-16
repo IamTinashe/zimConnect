@@ -16,8 +16,8 @@
                   <div
                     class="
                       button
-                      bgColor-primary
-                      borderColor-primary
+                      bgColor-blue
+                      borderColor-blue
                       button-primary
                       border-radius-8
                       get-started-btn

@@ -193,8 +193,8 @@
             <div
               class="
                 button button-primary
-                bgColor-primary
-                borderColor-primary
+                bgColor-blue
+                borderColor-blue
                 border-radius-4
                 button-size-200
                 mb-4

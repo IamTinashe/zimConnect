@@ -206,8 +206,8 @@
               <button
                 class="
                   button button-primary
-                  bgColor-primary
-                  borderColor-primary
+                  bgColor-blue
+                  borderColor-blue
                   border-radius-8
                   py-2
                   px-4
@@ -301,8 +301,8 @@
                   <button
                     class="
                       button button-primary
-                      bgColor-primary
-                      borderColor-primary
+                      bgColor-blue
+                      borderColor-blue
                       border-radius-12
                       w-100
                       py-3
