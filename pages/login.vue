@@ -7,9 +7,9 @@
       <div class="container">
         <div class="row hero justify-content-md-center">
           <div class="col-sm-12 col-md-10 col-lg-8 middle-align">
-            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">LOGIN</h2>
+            <h2 class="text-center Color-gray-80 subhead mt-5 mt-lg-0 py-4">SIGNIN</h2>
             <small class="text-center feature-paragraph Color-error" v-if="error.length > 0">{{error}} </small>
-            <form class="form pt-3 pb-5" @submit.prevent="userLogin()">
+            <form class="form pt-3 pb-5" @subSmit.prevent="userLogin()">
               <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email*</label>
               <input v-model="login.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
@@ -17,7 +17,7 @@
               <input v-model="login.password" type="password" id="password" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
               <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3">
-                LOGIN
+                SIGNIN
               </button>
               <NuxtLink class="Color-primary float-right mt-3" to="/forgotpassword" title="Forgot Password">Forgot Password </NuxtLink>
             </form>

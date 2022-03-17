@@ -42,7 +42,8 @@
                           p-small
                         "
                       >
-                        {{ myCandidatesLength }} Candidates
+                        <span v-if="myCandidatesLength == 1"> {{myCandidatesLength}} Candidate </span>
+                        <span v-else> {{myCandidatesLength}} Candidates </span>
                       </button>
                     </NuxtLink>
                   </div>
