@@ -4,12 +4,13 @@
       <div class="container mt-5 mt-lg-0 pt-5 pt-lg-0">
         <div class="row hero">
           <div class="col-lg-12 middle-align">
-            <p class="text-center text-hero Color-white pb-1">
-              <strong style="font-weight: 600">Browse Candidates </strong>
-            </p>
-            <p class="text-center paragraph-large Color-white pb-2">
-              Connecting First Class Virtual Teams to the World
-            </p>
+            <div class="row  justify-content-md-center">
+              <div class="col-sm-12 col-md-8">
+                <p class="text-center text-hero-1 Color-white pb-1">
+                  <strong style="font-weight: 600">Connecting the World to First Class Virtual Teams </strong>
+                </p>
+              </div>
+            </div>
             <div class="row justify-content-md-center">
               <div class="col-12 col-lg-10">
                 <NuxtLink to="/hire" title="Find Candidates" class="text-decoration-none">
