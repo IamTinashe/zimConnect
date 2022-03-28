@@ -3,7 +3,7 @@ const BASEUrl = process.env.baseUrl;
 
 class Auth {
   static confirm(data){
-    let api = '/site/auth/confirm';
+    let api = '/auth/confirm';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)
@@ -15,7 +15,7 @@ class Auth {
   }
 
   static submitEmail(data){
-    let api = '/site/auth/forgot';
+    let api = '/auth/forgot';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)
@@ -27,7 +27,7 @@ class Auth {
   }
 
   static resetPassword(data){
-    let api = '/site/auth/reset';
+    let api = '/auth/reset';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.put(BASEUrl + api, data)

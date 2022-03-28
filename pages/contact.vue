@@ -3,6 +3,35 @@
     <div class="w-100 banner">
       <img class="w-100 banner-image" src="/images/smiling-woman.jpg" alt="Smiling Woman"/>
     </div>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-8 col-lg-6">
+            <span v-if="error" class="Color-red-80">{{ error }}</span>
+            <form v-if="sent == false" class="form pt-3 pb-5" @submit.prevent="sendMessage()">
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="name">Name*</label>
+              <input v-model="form.name" type="text" id="name" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="email">Email*</label>
+              <input v-model="form.email" type="email" id="email" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+
+              <label class="ml-2 Color-gray-80 feature-paragraph" for="message">Message*</label>
+              <textarea v-model="form.message" type="textarea" id="message" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
+
+              <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3">
+                SEND
+              </button>
+            </form>
+            <div v-else class="text-center">
+              <h2 class="Color-gray-80 group-header mt-5 mt-lg-0 py-4">Your Message was successfully sent</h2>
+              <NuxtLink to="/login" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3 mb-5">
+                SIGNIN
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid bgColor-gray-10 pb-5">
       <div class="container">
         <div class="row hero justify-content-md-center">
@@ -36,15 +65,28 @@
 </template>
 
 <script>
+import contact from "@/assets/js/zimconnect/contact";
 export default {
   data() {
     return {
-      form: {},
-      error: ''
+      form: {
+        name: "",
+        email: "",
+        message: ""
+      },
+      error: '',
+      sent: false
     }
   },
   methods: {
-    
+    async sendMessage(){
+      try {
+        const response = await contact.sendMessage(this.form);
+        this.sent = true;
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    }
   },
   head() {
     return {

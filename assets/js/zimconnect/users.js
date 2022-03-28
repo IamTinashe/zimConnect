@@ -5,7 +5,7 @@ class Users {
   static getUserByEmail(email){
     return new Promise(async (resolve, reject) => {
       try {
-        let api = '/site/users/email/' + email;
+        let api = '/users/email/' + email;
         let response = await axios.get(BASEUrl + api);
         resolve(response.data);
       } catch (error) {
@@ -15,7 +15,7 @@ class Users {
   }
 
   static addUser(user){
-    let api = '/site/users/create';
+    let api = '/users/create';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, user);

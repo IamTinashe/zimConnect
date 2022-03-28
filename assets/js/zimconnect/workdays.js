@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASEUrl = process.env.baseUrl;
+const BASEUrl = process.env.basaJava;
 
 class Workdays {
     static getWorkdays(token){

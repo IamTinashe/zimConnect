@@ -5,12 +5,13 @@ require('dotenv').config();
 const manifest = require('./manifest.json');
 //const BASE_URL = 'http://localhost:4000';
 //const BASE_URL = 'http://159.69.120.82';
-const BASE_URL = 'https://worxconnect.com';
+const BASE_URL = 'https://worxconnect.com/site';
 module.exports = {
   env: {
     Base: BASE_URL,
     title: 'WorXconnect',
-    baseUrl: process.env.BASE_URL || BASE_URL
+    baseUrl: process.env.BASE_URL || BASE_URL,
+    basaJava: "https://worxconnect.com"
   },
   helmet: {
     dnsPrefetchControl: true,
