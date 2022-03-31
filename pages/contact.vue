@@ -25,7 +25,7 @@
             <div v-else class="text-center">
               <h2 class="Color-gray-80 group-header mt-5 mt-lg-0 py-4">Your Message was successfully sent</h2>
               <NuxtLink to="/login" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3 mb-5">
-                SIGNIN
+                SIGN IN
               </NuxtLink>
             </div>
           </div>

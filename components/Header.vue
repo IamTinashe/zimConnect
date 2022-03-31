@@ -9,10 +9,10 @@
         <div class="show-large-only col-md-3 col-lg-4"></div>
         <div class="col-sm-12 col-md-3 col-lg-2 text-right">
           <NuxtLink v-if="!loggedIn" class="Color-white text-decoration-none" to="/register" title="Register">
-            <span class="mr-5">SIGNUP</span>
+            <span class="mr-5">SIGN UP</span>
           </NuxtLink>
           <NuxtLink v-if="!loggedIn" class="Color-white text-decoration-none" to="/login" title="Login">
-            <span>SIGNIN</span>
+            <span>SIGN IN</span>
           </NuxtLink>
           <p v-else class="Color-white text-decoration-none">
             <span class="mr-5">{{user.fullname}}</span>
