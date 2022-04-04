@@ -144,7 +144,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-lg-3" v-if="user.admin == true">
+                <div class="col-md-3 col-lg-3">
                   <p
                     class="
                       text-regular
@@ -538,6 +538,7 @@
       <div class="container text-center Color-red" v-else>
         Could not find any CVs
       </div>
+      <BenefitsPopup/>
     </div>
   </div>
 </template>
@@ -547,6 +548,9 @@ import users from "@/assets/js/zimconnect/users";
 import resumes from "@/assets/js/zimconnect/resumes";
 import shortlist from "@/assets/js/zimconnect/shortlist";
 export default {
+  components: {
+    'BenefitsPopup': () => import('@/components/BenefitsPopup'),
+  },
   data() {
     return {
       userEmail: "",
