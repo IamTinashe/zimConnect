@@ -111,8 +111,9 @@
                 Self Improvement Activities
               </h3>
               <p class="text-regular px-4 Color-gray-60">
-                We offer weekly Ted talks, workshops and other interesting self improvement
-                activities to keep the team motivated and at their best in terms of their work.
+                We offer weekly Ted talks, workshops and other interesting self
+                improvement activities to keep the team motivated and at their
+                best in terms of their work.
               </p>
             </div>
           </div>
@@ -150,12 +151,14 @@
                 mb-5
               "
             >
-              <h3 class="Color-primary group-header mb-4 px-4">No Long Term Contracts</h3>
+              <h3 class="Color-primary group-header mb-4 px-4">
+                No Long Term Contracts
+              </h3>
               <p class="text-regular px-4 Color-gray-60">
                 We make sure you get the services you want, when you, for as
-                long as you need them. With our no long term contract obligation you are
-                able to select only the services you need and you can cancel at
-                any time.
+                long as you need them. With our no long term contract obligation
+                you are able to select only the services you need and you can
+                cancel at any time.
               </p>
             </div>
           </div>
@@ -163,15 +166,36 @@
 
         <div class="row justify-content-sm-center">
           <div class="col-sm-12 col-md-10">
+            <h2 class="title-large text-center Color-gray-80 pb-5">
+              <span class="text-underline-80">MEET YOUR TEAM MEMBER</span>
+            </h2>
             <div class="video-responsive">
-              <iframe
-                src="https://www.youtube.com/embed/TI8BMatyWP8?controls=0"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                class="video"
-              ></iframe>
+              <video class="meet-video" controls>
+                <source src="/videos/tariro.mp4" type="video/mp4" />
+                <source src="/videos/tariro.ogg" type="video/ogg" />
+                Your browser does not support the video tag.
+              </video>
             </div>
+            <NuxtLink
+              to="/meet-your-team-member"
+              title="MEET YOUR TEAM MEMBER"
+              class="text-decoration-none mt-5"
+            >
+              <div
+                class="
+                  button button-primary
+                  bgColor-blue
+                  borderColor-blue
+                  border-radius-4
+                  button-size-200
+                  mb-4
+                  py-2
+                  mt-5
+                "
+              >
+                <span class="text-regular">MEET YOUR TEAM MEMBER</span>
+              </div>
+            </NuxtLink>
           </div>
         </div>
       </div>

@@ -1,0 +1,19 @@
+.meet-your-team-member {
+  .bg-image {
+    background-image: url("/images/smiling-woman-mobile.jpg");
+    background-color: $gray-5;
+    background-position: top right;
+    background-size: auto 70vh;
+    height: 70vh;
+
+    @include breakpoint(medium) {
+      background-image: url("/images/smiling-woman.jpg");
+      background-size: cover;
+      height: auto;
+    }
+  }
+
+  .hero {
+    min-height: 60vh;
+  }
+}
