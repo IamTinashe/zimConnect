@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-12 col-lg-3 bgColor-white px-5 px-lg-4 py-4">
               <h3 class="Color-primary feature-paragraph pb-1">
-                Telemarketer
+                Sales
               </h3>
               <p class="small Color-gray">
                 We have highly aggressive sales people who are great on the phone. Team players who will be
