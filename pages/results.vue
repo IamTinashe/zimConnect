@@ -144,7 +144,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-lg-3">
+                <!--<div class="col-md-3 col-lg-3">
                   <p
                     class="
                       text-regular
@@ -159,7 +159,7 @@
                       allResumes[index].maxSalary
                     }}
                   </p>
-                </div>
+                </div> -->
               </div>
               <div class="row justify-content-md-center">
                 <div class="col-12 col-md-8">
