@@ -19,8 +19,8 @@
         <div class="col-sm-12 col-md-10">
           <div class="video-responsive my-5">
             <video class="meet-video" controls>
-              <source src="/videos/tariro.mp4" type="video/mp4" />
-              <source src="/videos/tariro.ogg" type="video/ogg" />
+              <source src="/videos/keith.mp4" type="video/mp4" />
+              <source src="/videos/keith.ogg" type="video/ogg" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -37,8 +37,8 @@
         <div class="col-12 col-md-6">
           <div class="video-responsive my-5">
             <video class="meet-video" controls>
-              <source src="/videos/keith.mp4" type="video/mp4" />
-              <source src="/videos/keith.ogg" type="video/ogg" />
+              <source src="/videos/tariro.mp4" type="video/mp4" />
+              <source src="/videos/tariro.ogg" type="video/ogg" />
               Your browser does not support the video tag.
             </video>
           </div>
