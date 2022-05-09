@@ -171,8 +171,8 @@
             </h2>
             <div class="video-responsive">
               <video class="meet-video" controls>
-                <source src="/videos/tariro.mp4" type="video/mp4" />
-                <source src="/videos/tariro.ogg" type="video/ogg" />
+                <source src="/videos/panashe.mp4" type="video/mp4" />
+                <source src="/videos/panashe.ogg" type="video/ogg" />
                 Your browser does not support the video tag.
               </video>
             </div>
