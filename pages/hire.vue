@@ -309,63 +309,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="row position-relative mt-5">
-                  <div class="col-sm-12">
-                    <h2 class="paragraph-large Color-primary">PRICE RANGES</h2>
-                    <div class="row">
-                      <div class="col-12 col-md-4 my-3">
-                        <h2 class="feature-paragraph">DENTAL</h2>
-                        <ol class="small Color-gray-60">
-                          <li>Patient Care Follow-up $600-$1000</li>
-                          <li>Reactivation of Patients $600 - $1000</li>
-                          <li>Unscheduled Treatment Plans - $650-$1000</li>
-                          <li>Insurance Verification $650 - $1000</li>
-                          <li>Hygiene Re-Care - $600-1000</li>
-                        </ol>
-                      </div>
-                      <div class="col-12 col-md-4 my-3">
-                        <h2 class="feature-paragraph">SALES</h2>
-                        <ol class="small Color-gray-60">
-                          <li>Sales Assistant $700- $1200</li>
-                          <li>Product Support - $550-$850</li>
-                          <li>Account Support - $650 - $1200</li>
-                          <li>Technical Sales Specialist $2000 - $4500</li>
-                        </ol>
-                      </div>
-                      <div class="col-12 col-md-4 my-3">
-                        <h2 class="feature-paragraph">ACCOUNTING</h2>
-                        <ol class="small Color-gray-60">
-                          <li>Accounts Payable Officer $750 - $1500</li>
-                          <li>Book Keeping $ 700 - $1200</li>
-                          <li>Accounting Manager $3500 - $5500</li>
-                          <li>Collections - $750 - $1200</li>
-                          <li>Accounting Assistant - $800- $1500</li>
-                        </ol>
-                      </div>
-                      <div class="col-12 col-md-4 my-3">
-                        <h2 class="feature-paragraph">HUMAN RESOURCES</h2>
-                        <ol class="small Color-gray-60">
-                          <li>Payroll Administrator $650- $1200</li>
-                          <li>Payroll Manager $1800-$3500</li>
-                          <li>Senior Technical Recruiter $1500 - $3500</li>
-                          <li>HR Manager - $5000 - $10000</li>
-                          <li>Recruiter $850- $2500</li>
-                        </ol>
-                      </div>
-                      <div class="col-12 col-md-4 my-3">
-                        <h2 class="feature-paragraph">OTHER</h2>
-                        <ol class="small Color-gray-60">
-                          <li>Web Developer $2000 - $5000</li>
-                          <li>IT Specialist $5500 - $10000</li>
-                          <li>Software Programmer - $1500- $4000</li>
-                          <li>Content Writer $800 - $1500</li>
-                          <li>Digital Marketer $1000 - $2500</li>
-                          <li>Graphic Designer $800 - $3000</li>
-                        </ol>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div class="row justify-content-sm-center position-relative my-5">
