@@ -66,7 +66,7 @@
                       </audio>
                     </div>
                   </div>
-                  <div class="w-10 float-left">
+                  <!-- <div class="w-10 float-left">
                     <p class="text-center">
                       <i
                         @click="removeShortlisted(value.email)"
@@ -75,29 +75,53 @@
                       ></i>
                     </p>
                     <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="total">
+                <!-- <div class="total">
                   <div class="float-left w-90">Total</div>
                   <div class="float-left text-center w-10">
                     ${{ totalShortlistedValue }}
                   </div>
+                </div> -->
+                <div class="row justify-content-md-center">
+                  <div class="col-12 col-md-8">
+                    <div class="w-100 d-inline-flex">
+                    <button
+                      class="
+                        button button-primary
+                        bgColor-blue
+                        py-3
+                        px-5
+                        my-5
+                        ml-5
+                        border-radius-16
+                        borderColor-blue
+                        body-detail
+                      "
+                      @click="sendQuote()"
+                    >
+                      Get a Quote
+                    </button>
+                    <Nuxt-Link to="/schedule" class="text-decoration-none">
+                      <button
+                        class="
+                          button button-primary
+                          bgColor-blue
+                          py-3
+                          px-5
+                          my-5
+                          mr-5
+                          border-radius-16
+                          borderColor-blue
+                          body-detail
+                        "
+                      >
+                        Schedule a Call
+                      </button>
+                    </Nuxt-Link>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  class="
-                    button button-primary
-                    bgColor-blue
-                    py-2
-                    px-5
-                    my-5
-                    border-radius-16
-                    borderColor-blue
-                    body-detail
-                  "
-                  @click="sendQuote()"
-                >
-                  Get Quote
-                </button>
               </div>
             </div>
             <div
@@ -159,16 +183,16 @@
                       <source :src="value.audioclip_url" type="audio/mpeg" />
                     </audio>
                   </div>
-                  <div class="w-10 float-left">
+                  <!-- <div class="w-10 float-left">
                     <p class="pb-0 mb-0 text-center">${{ value.value }}</p>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="total">
+                <!-- <div class="total">
                   <div class="float-left w-90">Total</div>
                   <div class="float-left w-10 text-center">
                     ${{ totalSelectedValue }}
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
