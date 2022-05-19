@@ -5,7 +5,7 @@
       <Hero/>
       <TrendingBox/>
       <WhatsInIt/>
-      <ClientsBanner/>
+      <clientsBanner/>
       <Footer/>
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
     'Hero': () => import('@/components/Hero'),
     'TrendingBox': () => import('@/components/TrendingBox'),
     'WhatsInIt': () => import('@/components/WhatsInIt'),
-    'ClientsBanner': () => import('@/components/ClientsBanner'),
+    'clientsBanner': () => import('@/components/clientsBanner'),
     'Footer': () => import('@/components/Footer')
   },
   mounted(){

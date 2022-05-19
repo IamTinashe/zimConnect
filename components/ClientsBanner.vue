@@ -4,7 +4,7 @@
       <div class="overlay">
         <div class="container py-5 text-center">
           <h2 class="Color-white title-large mb-5">
-            <span class="text-underline-white-80">WHAT CLIENTS SAY</span>
+            <span class="text-underline-white-80">WHAT clientS SAY</span>
           </h2>
           <div class="py-5">
             <div class="testimonial-image">

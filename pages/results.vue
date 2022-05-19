@@ -99,8 +99,9 @@
               "
               v-for="(value, index) in max"
               :key="'max' + index"
+              :class="{ 'bgColor-pink': allResumes[index].employed}"
             >
-              <div class="row">
+              <div class="row" >
                 <div class="col-md-3 col-lg-2">
                   <div class="circular-portrait">
                     <img
@@ -249,12 +250,15 @@
                         allResumes[index].selectionStatus[0].user !=
                           userEmail) ||
                       (allResumes[index].availability == true &&
-                        allResumes[index].selectionStatus.length == 0)
+                        allResumes[index].selectionStatus.length == 0) &&
+                        !allResumes[index].employed == true
                     "
                     @click="shortlist(allResumes[index].email)"
                   >
                     Shortlist
                   </button>
+                  <p class="p-small Color-gray-60 mt-1 text-right text-uppercase" v-else>
+                    Already Employed: {{allResumes[index].client}}</p>
                   <div
                     class="py-1 px-4 mx-2 my-3 my-md-0 float-left small button-wide-small"
                     v-if="allResumes[index].availability == false"
@@ -493,7 +497,7 @@
                                   activeCV.selectionStatus.length == 0 ||
                                   activeCV.selectionStatus.filter(
                                     (user) => user.user == userEmail
-                                  ).length == 0)
+                                  ).length == 0) && !activeCV.employed == true
                                 "
                               >
                                 SHORTLIST
@@ -547,6 +551,7 @@
 import users from "@/assets/js/zimconnect/users";
 import resumes from "@/assets/js/zimconnect/resumes";
 import shortlist from "@/assets/js/zimconnect/shortlist";
+import employees from "@/assets/json/employees.json";
 export default {
   components: {
     'BenefitsPopup': () => import('@/components/BenefitsPopup'),
@@ -641,6 +646,16 @@ export default {
       } else {
         this.max = this.allResumes.length;
       }
+      this.allResumes.forEach(resume => {
+        employees.forEach(employee => {
+          if (resume.fullname.toLowerCase() == employee.employee_name.toLowerCase() || resume.fullname.toLowerCase().includes(employee.employee_name.toLowerCase()) || employee.employee_name.toLowerCase().includes(resume.fullname.toLowerCase())) {
+            resume.employed = true;
+            resume.client = employee.client;
+            resume.profession = employee.job_title;
+          }
+        });
+      });
+      
       this.loading = false;
       this.search = false;
     },
