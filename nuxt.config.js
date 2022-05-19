@@ -116,8 +116,8 @@ module.exports = {
     '@/assets/scss/app.scss'
   ],
   plugins: [
-    '~/plugins/vue-excel-export',
-    '~/plugins/vuesax'
+    '~/plugins/vuesax',
+    { src: '~/plugins/vue-calendly', mode: 'client' }
   ],
   modules: [
     "@nuxtjs/axios",
