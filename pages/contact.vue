@@ -19,8 +19,29 @@
               <textarea v-model="form.message" type="textarea" id="message" class="form-input w-100 px-3 py-2 py-md-3 mb-4"/>
 
               <button type="submit" class="button button-primary Color-white bgColor-primary borderColor-primary expanded border-radius-16 py-2 py-md-3">
-                SEND
+                Send
               </button>
+
+              <p class="title text-center my-5 Color-gray-40">OR</p>
+
+              <Nuxt-Link to="/schedule" class="text-decoration-none">
+                      <button
+                        class="
+                          button button-primary
+                          bgColor-blue
+                          py-3
+                          px-5
+                          my-5
+                          mr-5
+                          border-radius-16
+                          borderColor-blue
+                          body-detail
+                          expanded
+                        "
+                      >
+                        Schedule a Call
+                      </button>
+                    </Nuxt-Link>
             </form>
             <div v-else class="text-center">
               <h2 class="Color-gray-80 group-header mt-5 mt-lg-0 py-4">Your Message was successfully sent</h2>

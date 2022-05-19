@@ -215,6 +215,11 @@
                   </div>
                 </div>
               </div>
+              <div class="row justify-content-sm-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                  <p class="body-detail text-center Color-gray-60">The average pay range is generally $11.50 per hour</p>
+                </div>
+              </div>
               <hr class="w-100 Color-gray-40 bgColor-gray-40 border-line" />
 
               <button

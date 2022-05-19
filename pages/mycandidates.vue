@@ -311,12 +311,12 @@ export default {
         {
           hid: "og:url",
           property: "og:url",
-          content: `https://zomconnect.org/candidates`,
+          content: `https://worxconnect.com/candidates`,
         },
         {
           hid: "og:image",
           property: "og:image",
-          content: `https://zomconnect.org/images/test.png`,
+          content: `https://worxconnect.com/images/test.png`,
         },
         {
           hid: "twitter:title",
@@ -332,7 +332,7 @@ export default {
       link: [
         {
           rel: "canonical",
-          href: `https://zomconnect.org/candidates`,
+          href: `https://worxconnect.com/candidates`,
         },
       ],
     };

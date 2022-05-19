@@ -27,6 +27,54 @@ export default {
     const recaptchaScript = document.createElement('script')
     recaptchaScript.setAttribute('src', 'https://assets.calendly.com/assets/external/widget.js')
     document.head.appendChild(recaptchaScript)
-  }
+  },
+  head() {
+    return {
+      title: `${process.env.title} | Schedule a Call`,
+      meta: [
+        {
+          hid: "description",
+          property: "description",
+          content: "Schedule a call and get a free consultation with our experts.",
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: `${process.env.title} | Schedule a Call`,
+        },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: "Schedule a call and get a free consultation with our experts.",
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `https://worxconnect.com/schedule`,
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: `https://worxconnect.com/images/test.png`,
+        },
+        {
+          hid: "twitter:title",
+          property: "twitter:title",
+          content: `${process.env.title} | Schedule a Call`,
+        },
+        {
+          hid: "twitter:description",
+          property: "twitter:description",
+          content: "Schedule a call and get a free consultation with our experts.",
+        },
+      ],
+      link: [
+        {
+          rel: "canonical",
+          href: `https://worxconnect.com/candidates`,
+        },
+      ],
+    };
+  },
 }
 </script>
