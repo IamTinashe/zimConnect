@@ -14,12 +14,12 @@
 <script>
 export default {
   components: {
-    'BGLayout': () => import('@/components/BGLayout'),
-    'Hero': () => import('@/components/Hero'),
-    'TrendingBox': () => import('@/components/TrendingBox'),
-    'WhatsInIt': () => import('@/components/WhatsInIt'),
-    'clientsBanner': () => import('@/components/clientsBanner'),
-    'Footer': () => import('@/components/Footer')
+    "BGLayout": () => import("@/components/BGLayout"),
+    "Hero": () => import("@/components/Hero"),
+    "TrendingBox": () => import("@/components/TrendingBox"),
+    "WhatsInIt": () => import("@/components/WhatsInIt"),
+    "clientsBanner": () => import("@/components/ClientsBanner"),
+    "Footer": () => import("@/components/Footer")
   },
   mounted(){
   },
