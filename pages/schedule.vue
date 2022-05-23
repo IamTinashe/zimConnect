@@ -12,7 +12,7 @@
         <div class="col-12">
           <client-only>
             <!-- <div class="calendly-inline-widget" data-url="https://calendly.com/yuliana-4/60min" style="min-width:320px;height:630px;"></div> -->
-            <vue-calendly url="https://calendly.com/tinashezimworx/test"></vue-calendly>
+            <vue-calendly url="https://calendly.com/gbps/worxconnect-discovery-call"></vue-calendly>
           </client-only>
         </div>
       </div>
